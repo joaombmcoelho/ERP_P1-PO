@@ -15,7 +15,7 @@ import pt.tecnico.uilib.menus.CommandException;
 class DoCheckout extends BasketCommand {
 
     DoCheckout(ErpManager manager, Basket basket) {
-        super(true, Label.CHECKOUT, manager, basket, /*FIXME add validity condition*/);
+        super(true, Label.CHECKOUT, manager, basket); /*FIXME add validity condition a seguir ao basket acrescentar*/
     }
 
     @Override

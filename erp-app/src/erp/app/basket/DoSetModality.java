@@ -15,7 +15,7 @@ import pt.tecnico.uilib.menus.CommandException;
 class DoSetModality extends BasketCommand {
 
     DoSetModality(ErpManager manager, Basket basket) {
-        super(Label.SET_MODALITY, manager, basket, /*FIXME add validity condition*/);
+        super(Label.SET_MODALITY, manager, basket); /*FIXME add validity condition adicionar a seguir ao basket*/
         //FIXME maybe define fields
     }
 

@@ -1,0 +1,25 @@
+# ---  Java ---
+*.class
+*.jar
+
+# Pastas de binários/build
+bin/
+build/
+target/
+out/
+
+# VSCode
+.vscode/
+
+# --- Lixo do Sistema Operativo ---
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# --- Logs e Temporários ---
+*.log
+*.tmp
