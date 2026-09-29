@@ -15,7 +15,14 @@ import pt.tecnico.uilib.menus.CommandException;
 class DoCheckout extends BasketCommand {
 
     DoCheckout(ErpManager manager, Basket basket) {
-        super(true, Label.CHECKOUT, manager, basket); /*FIXME add validity condition a seguir ao basket acrescentar*/
+        /**
+        * o codigo original da erro de compilacao e eh:
+        * super(true, Label.CHECKOUT, manager, basket, /*FIXME add validity condition* );
+        * sem isso fica:
+        * super(true, Label.CHECKOUT, manager, basket); /*FIXME add validity condition a seguir ao basket acrescentar*
+        * mas nao compila, para compilar, mas esta ERRADO!!!!!!!!!!!!!!!!!!!!!!!!!!!!:
+        */
+       super(Label.CHECKOUT, manager, basket);
     }
 
     @Override
