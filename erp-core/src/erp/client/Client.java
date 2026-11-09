@@ -67,7 +67,7 @@ public class Client implements Serializable {
             Client c = (Client) o;
             return (_email.equals(c.getEmail()) && 
                     _name.equals(c.getName()) &&
-                    _totalSpent = c.getTotalSpent() &&
+                    _totalSpent == c.getTotalSpent() &&
                     _clientBaskets.equals(c.getBaskets()));
         }
         return false;
