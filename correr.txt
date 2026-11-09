@@ -1,6 +1,5 @@
 /***************** ERP *****************/
 
-
 make all
 java -cp "/usr/share/java/po-uilib.jar:erp-core/erp-core.jar:erp-app/erp-app.jar" erp.app.App
 

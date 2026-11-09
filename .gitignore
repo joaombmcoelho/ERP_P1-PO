@@ -1,25 +1,16 @@
-# ---  Java ---
+####### Java #######
 *.class
+
+####### Packages #######
 *.jar
 
-# Pastas de binários/build
-bin/
-build/
-target/
-out/
-
-# VSCode
+####### VS Code #######
 .vscode/
+*.code-workspace
 
-# --- Lixo do Sistema Operativo ---
+####### macOS #######
 .DS_Store
-.DS_Store?
-._*
-.Spotlight-V100
-.Trashes
-ehthumbs.db
-Thumbs.db
 
-# --- Logs e Temporários ---
+####### Logs & temps #######
 *.log
 *.tmp
