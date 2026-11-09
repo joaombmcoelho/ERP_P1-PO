@@ -2,6 +2,14 @@ package erp;
 
 import erp.exceptions.*;
 import java.io.*;
+//my imports:
+import java.io.ObjectOutputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+
 //FIXME maybe import classes
 
 /**
@@ -14,21 +22,59 @@ public class ErpManager {
 
     /** The object doing all the actual work. */
     private Erp _erp = new Erp();
+    private String _filename = "";  /** added for save */
 
     //FIXME maybe define constructors
 
     // --- persistence -------------------------------------------------------
 
     public void save() throws MissingFileAssociationException, IOException {
-        //FIXME implement method
+
+        if (_filename == null || _filename.isEmpty()){
+            throw new MissingFileAssociationException();
+        }
+
+        /** using try with resources */
+        try (ObjectOutputStream oos =   new ObjectOutputStream(
+                                        new BufferedOutputStream(
+                                        new FileOutputStream(_filename)))){
+            oos.writeObject(_erp);
+        }
     }
 
     public void saveAs(String filename) throws MissingFileAssociationException, IOException {
-        //FIXME implement method
+        
+        if (filename == null || filename.isEmpty()){
+            throw new MissingFileAssociationException();
+        }
+
+        _filename = filename;
+        
+        try{
+            save();
+        } catch (MissingFileAssociationException e){
+            e.printStackTrace();
+        }
     }
 
     public void load(String filename) throws UnavailableFileException {
-        //FIXME implement method
+        
+        if (filename == null || filename.isEmpty()){
+            throw new UnavailableFileException(filename);
+        }
+
+        /** using try with resources */
+        try (ObjectInputStream ois =    new ObjectInputStream(
+                                        new BufferedInputStream(
+                                        new FileInputStream(filename)))){
+            /** attatch the new filename and erp to the manager */
+            _erp = (Erp) ois.readObject();
+            _filename = filename;
+        }
+        catch(IOException | ClassNotFoundException e){
+            throw new UnavailableFileException(filename);
+        }
+
     }
 
     public void importFile(String filename) throws ImportFileException {
