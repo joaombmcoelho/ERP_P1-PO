@@ -18,9 +18,9 @@ public class Client implements Serializable {
     private double _totalSpent;
     private Map<Integer, Basket> _clientBaskets; 
 
-    public Client(){
-        _email = "";
-        _name = "";
+    public Client(String email, String name){
+        _email = email;
+        _name = name;
         _totalSpent = 0;
         _clientBaskets = new HashMap<>();
     }
