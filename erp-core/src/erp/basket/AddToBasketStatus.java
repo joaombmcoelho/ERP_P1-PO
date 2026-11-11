@@ -1,3 +1,5 @@
+package erp.basket;
+
 public enum AddToBasketStatus {
     ADDED,
     REMOVED,
