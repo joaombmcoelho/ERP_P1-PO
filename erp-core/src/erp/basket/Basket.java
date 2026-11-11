@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.ArrayList;
 
 import erp.client.Client;
 import erp.purchase.OrderSplit;
@@ -15,6 +16,7 @@ import erp.company.Company;
 import erp.purchase.AdditionalService;
 import erp.product.Product;
 import erp.purchase.PurchaseLine;
+import erp.purchase.Purchase;
 
 /**
  * A client's shopping basket at one company: what it intends to buy, and how it
@@ -36,17 +38,19 @@ public class Basket implements Serializable {
     private Client _client;
     private Company _company;
     private OrderSplit _orderSplit;
+    private OrderSplit _defaultSplit;
     private TransportMethod _transportMethod;
     private List<AdditionalService> _additionalServices;
     
     private Map<Product, Integer> _basketLines; 
 
-    public Basket (Client client, Company company, OrderSplit orderSplit,
+    public Basket (Client client, Company company, OrderSplit orderSplit, OrderSplit defaultSplit,
                     TransportMethod transportMethod, List<AdditionalService> additionalServices){                   
         
         _client = client;
         _company = company;
         _orderSplit = orderSplit;
+        _defaultSplit = defaultSplit;
         _transportMethod = transportMethod;
         _additionalServices = additionalServices;
         _basketLines = new HashMap<>();
@@ -148,41 +152,95 @@ public class Basket implements Serializable {
         return AddToBasketStatus.ADDED;
 
     }
-}
 
-public CheckoutStatus checkout(){
 
-    // problem if user wants to checkout empty basket
-    if (isEmpty()){
-        return CheckoutStatus.CANT_CHECKOUT_EMPTY_BASKET;
+    public void clearBasket(OrderSplit _defaultSplit){
+        _basketLines.clear();
+        _transportMethod = null;
+        _additionalServices.clear();
+        _orderSplit = _defaultSplit; // order split goes back to default (single)
     }
 
-    // problem if user wants to checkout a basket without transport method set
-    else if (hasTransportMethod() == false){
-        return CheckoutStatus.NO_TRANSPORT_METHOD;
-    }
+    public CheckoutStatus canCheckout(){
 
-    // problem if the company doesnt all the required quantities of products
-    for (Product product: _basketLines.keySet()){
-        int quantity = _basketLines.get(product);
-        
-        if (_company.getProductQuantity(product) < quantity){
-            return CheckoutStatus.NOT_ENOUGH;
+        // problem if user wants to checkout empty basket
+        if (isEmpty()){
+            return CheckoutStatus.CANT_CHECKOUT_EMPTY_BASKET;
         }
+
+        // problem if user wants to checkout a basket without a set transport method
+        else if (hasTransportMethod() == false){
+            return CheckoutStatus.NO_TRANSPORT_METHOD;
+        }
+
+        // problem if the company doesnt all the required quantities of products
+        for (Product product: _basketLines.keySet()){
+            int quantity = _basketLines.get(product);
+            
+            if (_company.getProductQuantity(product) < quantity){
+                return CheckoutStatus.NOT_ENOUGH;
+            }
+        }
+
+        return CheckoutStatus.SUCCESS;
     }
 
-    //todo ver o q fazer aqui
-    PurchaseLine<List> purchaseLines;
+    public Purchase checkout(){ //! return purchase so erp saves it in the global map
 
-    // perform the checkout
-    for (Product product: _basketLines.keySet()){
-        int quantity = _basketLines.get(product);
+        List <PurchaseLine> purchaseLines = new ArrayList<>();
+
+        // iterate each product in the basket
+        for (Product product: _basketLines.keySet()){
+            int quantity = _basketLines.get(product);
+
+            // lock sale price in the purchase lines
+            double salePrice = _company.calcSellPrice (product); //todo
+
+            PurchaseLine line = new PurchaseLine(product, quantity, salePrice);
+            purchaseLines.add(line);
+        }
+
+        Purchase purchase = new Purchase(_client, _company, purchaseLines);   //todo purchase id e purchase date no erp??
+
+        // split the purchase in orders through ordersplit strategy
+        List<List<PurchaseLine>>  splitOrders;
+        splitOrders = _orderSplit.split(purchaseLines);
+
+        for(List<PurchaseLine> OrderPurchaseLines: splitOrders){
+            
+            // get each order after the split
+            Order order = new Order(OrderPurchaseLines, _transportMethod, _additionalServices) //todo purchase id e purchase date no erp??
+
+            // save them in the final purchase
+            purchase.addOrder(order);
+        }
+
+        // remove company product inventory
+        for (Product product: _basketLines.keySet()){
+            int quantity = _basketLines.get(product);
+            _company.changeInventory(product, -quantity, null);
+        }
+
+        // charge the client for the purchase
+        double TotalCost = purchase.calcTotalCost();
+        _client.addToTotalSpent(TotalCost);
+
+        // company start following the client
+        //todo check if we use client status
+        boolean addClientStatus = _company.addClient(_client);
+        _company.addPurchase(purchase);
         
-        // lock the sale price in purchase lines
+        if(addClientStatus == false){
+            //todo
+        }
 
+        // clear the basket
+        clearBasket();
+
+        return purchase; //! return purchase so erp saves it in the global map
     }
-
-    
-
 }
+
+
+
 

@@ -53,7 +53,7 @@ public class Client implements Serializable {
         _name = newName;
     }
 
-    public void AddToTotalSpent(double ValueToAdd){
+    public void addToTotalSpent(double ValueToAdd){
         _totalSpent += ValueToAdd;
     }
 
