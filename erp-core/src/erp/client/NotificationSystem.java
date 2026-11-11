@@ -1,3 +1,5 @@
+package erp.client;
+
 public interface NotificationSystem {
 
     public NotType getNotType();
