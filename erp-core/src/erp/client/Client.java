@@ -39,7 +39,7 @@ public class Client implements Serializable {
         return _totalSpent;
     }
 
-    public Map<Integer, Basket> getBaskets() {
+    public Map<Integer, Basket> getAllBaskets() {
         return Collections.unmodifiableMap(_clientBaskets);
     }
 
@@ -68,7 +68,7 @@ public class Client implements Serializable {
             return (_email.equals(c.getEmail()) && 
                     _name.equals(c.getName()) &&
                     _totalSpent == c.getTotalSpent() &&
-                    _clientBaskets.equals(c.getBaskets()));
+                    _clientBaskets.equals(c.getAllBaskets()));
         }
         return false;
     }
