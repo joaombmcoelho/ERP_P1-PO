@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import erp.product.Product;
 
-public class ProductInventory {
+public class ProductInventory implements Serializable {
 
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
@@ -35,8 +35,8 @@ public class ProductInventory {
 
     /** SETTERS */
 
-    public void addUnits(int quantity){
-        _unitsAvailable += quantity;
+    public void setUnitsAvailable(int units){
+        _unitsAvailable = units;
     }
 
     public void setRPFactor(double newRPFactor){
@@ -51,8 +51,8 @@ public class ProductInventory {
    public boolean equals(Object o){
         if (o instanceof ProductInventory){
             ProductInventory pi = (ProductInventory) o;
-                return(_unitsAvailable.equals(pi.getUnitsAvailable()) &&
-                       _rpFactor.equals(pi.getRPFactor()) &&
+                return(_unitsAvailable == pi.getUnitsAvailable() &&
+                       _rpFactor ==pi.getRPFactor() &&
                        _product.equals(pi.getProduct()));
         }
         return false;
@@ -63,7 +63,11 @@ public class ProductInventory {
         return _product.getID()+ " - " + _unitsAvailable + " - " + _rpFactor + " - " + calcSellPrice();
    }
 
+    public void addUnits(int quantity){
+        _unitsAvailable += quantity;
+    }
+
    public double calcSellPrice(){
-        return _product.getRecommendedPrice()*_rpFactor;
+        return Math.round(_product.getRecommendedPrice()*_rpFactor * 100)/100.0;  /** Arredondar para duas casas decimais  */
    }
 }
