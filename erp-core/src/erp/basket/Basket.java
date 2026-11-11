@@ -218,7 +218,7 @@ public class Basket implements Serializable {
         // remove company product inventory
         for (Product product: _basketLines.keySet()){
             int quantity = _basketLines.get(product);
-            _company.changeInventory(product, -quantity, null);
+            _company.addUnits(product, -quantity);
         }
 
         // charge the client for the purchase
