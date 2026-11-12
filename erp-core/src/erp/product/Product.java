@@ -13,6 +13,7 @@ public abstract class Product implements Serializable{
     protected Category _category;
     protected int _basePrice;
     protected int _baseShippingTime;
+    protected int _totalUnitsAvailable;
 
     public Product(int id, String name,Category c, int basePrice, int baseShipping){
         _id = id;
@@ -20,7 +21,7 @@ public abstract class Product implements Serializable{
         _category = c;     /** NOT SURE VERIFICAR DEPOIS */
         _basePrice = basePrice;
         _baseShippingTime = baseShipping;
-
+        _totalUnitsAvailable = 0;
     }
 
     /** GETTERS */
@@ -37,13 +38,18 @@ public abstract class Product implements Serializable{
         return _category;
     }
 
-     public int getBasePrice(){
+    public int getBasePrice(){
         return _basePrice;
-     }
+    }
 
     public int getBaseShippingTime(){
         return _baseShippingTime;
     }
+
+    public int getTotalUnitsAvailable(){
+        return _totalUnitsAvailable;
+    }
+
 
     /** SETTERS */
 
@@ -67,7 +73,13 @@ public abstract class Product implements Serializable{
         _baseShippingTime = newBaseShipping;
     }
 
+    public void addToTotalUnits(int unitsToAdd){
+        _totalUnitsAvailable += unitsToAdd;
+    }
+
     public abstract double getRecommendedPrice();
     public abstract String getType();
     public abstract String getAdditionalInfo();
+
+    //!todo por aqui as equals e tostring . disse te mal :-(
 }
