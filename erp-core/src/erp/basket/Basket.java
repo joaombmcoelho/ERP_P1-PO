@@ -209,7 +209,7 @@ public class Basket implements Serializable {
         for(List<PurchaseLine> OrderPurchaseLines: splitOrders){
             
             // get each order after the split
-            Order order = new Order(OrderPurchaseLines, _transportMethod, _additionalServices) //todo purchase id e purchase date no erp??
+            Order order = new Order(OrderPurchaseLines, _transportMethod, _additionalServices); //todo purchase id e purchase date no erp??
 
             // save them in the final purchase
             purchase.addOrder(order);

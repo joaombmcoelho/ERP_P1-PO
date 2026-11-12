@@ -77,7 +77,7 @@ public class Company implements Serializable{
         return productInventory.getUnitsAvailable();
     }
 
-    public getProductRPFactor(product product){
+    public double getProductRPFactor(Product product){
         ProductInventory productInventory = getInventory(product);
         
         return productInventory.getRPFactor();
@@ -116,7 +116,7 @@ public class Company implements Serializable{
             return (_id == c.getId() && 
                     _name.equals(c.getName()) &&
                     _inventory.equals(c.getAllInventory()) &&
-                    _puchases.equals(c.getAllPurchases()) &&
+                    _purchases.equals(c.getAllPurchases()) &&
                     _clients.equals(c.getAllClients()));
         }
         return false;
@@ -134,7 +134,7 @@ public class Company implements Serializable{
     public boolean hasStock(Product product){
         ProductInventory productInventory = getInventory(product);
 
-        if (productInventory.getUnitsAvailable > 0){
+        if (productInventory.getUnitsAvailable() > 0){
             return true;
         }
         return false;

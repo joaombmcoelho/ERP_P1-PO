@@ -8,11 +8,11 @@ public abstract class Product implements Serializable{
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
 
-    private int _id;
-    private String _name;
-    private Category _category;
-    private int _basePrice;
-    private int _baseShippingTime;
+    protected int _id;
+    protected String _name;
+    protected Category _category;
+    protected int _basePrice;
+    protected int _baseShippingTime;
 
     public Product(int id, String name,Category c, int basePrice, int baseShipping){
         _id = id;
