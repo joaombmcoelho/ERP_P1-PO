@@ -19,6 +19,7 @@ import erp.company.InventoryStatus;
 import erp.client.Client;
 import erp.product.Product;
 import erp.company.ProductInventory;
+import erp.basket.AddToBasketStatus;
 import erp.basket.Basket;
 import erp.basket.CheckoutStatus;
 
@@ -259,9 +260,21 @@ class Erp implements Serializable {
 
     /******************** BASKET MENU *********************/
 
-    //todo JOAO CHANGE BASKET PRODUCT
+    public AddToBasketStatus changeProductInBasket(Basket basket, int productId, int quantityToChange) 
+        throws UnknownProductException{
 
-    //todo JOAO SHOW BASKET
+        Product product = getProduct(productId);
+
+        AddToBasketStatus message = basket.addToBasket(product, quantityToChange);
+        
+        // todo nao esquecer throwar product not supplied na app
+
+        return message;
+    }
+
+    public String showBasket(Basket basket){
+        return basket.toString();
+    }
 
     //todo RITA SET ORDER SPLIT
 

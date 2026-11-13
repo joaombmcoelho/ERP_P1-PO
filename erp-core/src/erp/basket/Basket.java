@@ -94,6 +94,44 @@ public class Basket implements Serializable {
         return Collections.unmodifiableMap(_basketLines);
     }
 
+    public String getTransportDescription(){
+
+        TransportMethod tm = getTransportMethod();
+
+        /** build transport method part of the description */
+        String tmString = "";
+        if (tm == null){
+            /** if there is no transport method set yet, print "SEM TRANSPORTE" */
+            tmString = "SEM TRANSPORTE";
+        }
+        else{
+            tmString = tm.getKey();
+        }
+
+        /** build additional services part of the description */
+        String addServicesString = "";
+
+        for (AdditionalService aS: _additionalServices){
+            addServicesString += "+" + aS.getKey();
+        }
+        return tmString + addServicesString;
+    }
+
+    public double getLineTotalCost(Product product, int quantity){
+        return (_company.getProductSellPrice(product) * quantity);
+    }
+
+    public double getAllLinesTotalCost(){
+
+        double TotalCost = 0;
+        for(Map.Entry<Product, Integer> entry : _basketLines.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
+            TotalCost += getLineTotalCost(product, quantity);
+        }
+        return TotalCost;
+    }
+
     /** SETTERS */
 
     public void setOrderSplit(OrderSplit orderSplit){
@@ -134,9 +172,14 @@ public class Basket implements Serializable {
 
         Integer currentQuantity = _basketLines.get(product);
 
-        // Check if the user is adding a new product
+        // Check if user is adding a new product
         if(currentQuantity == null){
             currentQuantity = 0;
+        }
+
+        // problem if user wants to add a product the company doesnt provide
+        if (!(_company.providesProduct(product))){
+            return AddToBasketStatus.NOT_SUPPLIED;
         }
 
         // problem if user wants to remove a product that's not in basket
@@ -154,7 +197,7 @@ public class Basket implements Serializable {
         }
 
         // Check if we want to remove existing product
-        if (finalQuantity <= 0 && currentQuantity == 0){
+        if (finalQuantity <= 0 && currentQuantity > 0){
             _basketLines.remove(product);
             return AddToBasketStatus.REMOVED;
         }
@@ -245,7 +288,21 @@ public class Basket implements Serializable {
         // clear the basket
         clearBasket();
 
-        return purchase; //! return purchase so erp saves it in the global map
+        return purchase; 
+    }
+
+    @Override
+    public String toString(){
+
+        String string = "";
+        /** 1st line */
+
+        /** emailCliente - idEmpresa - estratégia - descrição do transporte e serviços - preço total dos itens */
+        string += (getClient().getEmail() + " - " + getCompany().getId() + " - " + getOrderSplit().getKey()
+                    + " - " + getTransportDescription() + " - " + String.format("%.2f", getAllLinesTotalCost()));
+        /** basket lines */
+        /** ␣␣idProduto - nome - quantidade - preço unitário - total da linha */
+        //todo print basket lines
     }
 }
 

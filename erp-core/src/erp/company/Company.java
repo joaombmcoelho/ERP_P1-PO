@@ -69,6 +69,10 @@ public class Company implements Serializable{
         return Collections.unmodifiableList(_clients);
     }
 
+    public boolean providesProduct(Product product){
+        return _inventory.containsKey(product);
+    }
+
     /* inventory-related */
 
     public int getProductUnitsAvailable(Product product){
