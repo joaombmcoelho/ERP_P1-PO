@@ -136,17 +136,17 @@ public class Basket implements Serializable {
 
         // problem if user wants to add more quantity than inventory
         if (quantity > 0){
-            if (finalQuantity > _company.getProductQuantity(product)){ //TODO
+            if (finalQuantity > _company.getProductUnitsAvailable(product)){
                     return AddToBasketStatus.NOT_ENOUGH;
             }
         }
 
         // Check if we want to remove existing product
-        if (finalQuantity <= 0 && newProduct == false){
+        if (finalQuantity <= 0 && currentQuantity == 0){
             _basketLines.remove(product);
             return AddToBasketStatus.REMOVED;
         }
-        // Add a new Product do the Basket or increase/decrease quantity
+        // Add a new Product to the Basket or increase/decrease quantity
         _basketLines.put(product, finalQuantity);
 
         return AddToBasketStatus.ADDED;
@@ -154,7 +154,7 @@ public class Basket implements Serializable {
     }
 
 
-    public void clearBasket(OrderSplit _defaultSplit){
+    public void clearBasket(){
         _basketLines.clear();
         _transportMethod = null;
         _additionalServices.clear();
@@ -177,7 +177,7 @@ public class Basket implements Serializable {
         for (Product product: _basketLines.keySet()){
             int quantity = _basketLines.get(product);
             
-            if (_company.getProductQuantity(product) < quantity){
+            if (_company.getProductUnitsAvailable(product) < quantity){
                 return CheckoutStatus.NOT_ENOUGH;
             }
         }
@@ -194,7 +194,7 @@ public class Basket implements Serializable {
             int quantity = _basketLines.get(product);
 
             // lock sale price in the purchase lines
-            double salePrice = _company.calcSellPrice (product); //todo
+            double salePrice = _company.getProductSellPrice(product);
 
             PurchaseLine line = new PurchaseLine(product, quantity, salePrice);
             purchaseLines.add(line);
@@ -227,12 +227,8 @@ public class Basket implements Serializable {
 
         // company start following the client
         //todo check if we use client status
-        boolean addClientStatus = _company.addClient(_client);
+        _company.addClient(_client);
         _company.addPurchase(purchase);
-        
-        if(addClientStatus == false){
-            //todo
-        }
 
         // clear the basket
         clearBasket();

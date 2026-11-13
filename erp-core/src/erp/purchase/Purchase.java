@@ -34,7 +34,7 @@ public class Purchase implements Serializable{
     public Purchase(Client client, Company company, List<PurchaseLine> purchaseLines){
         _client = client;
         _company = company;
-        _purchaseLines = purchaseLine;
+        _purchaseLines = purchaseLines;
         _orders = new ArrayList<>();
     }
 
@@ -43,7 +43,7 @@ public class Purchase implements Serializable{
         _purchaseDate = purchaseDate;
         _client = client;
         _company = company;
-        _purchaseLines = purchaseLine;
+        _purchaseLines = purchaseLines;
         _orders = new ArrayList<>();
         
     }
@@ -86,11 +86,11 @@ public class Purchase implements Serializable{
     }
 
     public void setClient(Client newClient){
-        _cliente = newClient;
+        _client = newClient;
     }
 
     public void setCompany(Company newCompany){
-        _company = company;
+        _company = newCompany;
     }
 
     public void addPurchaseLine(PurchaseLine newLine){    
@@ -107,7 +107,7 @@ public class Purchase implements Serializable{
             Purchase p = (Purchase) o;
             return (_id == p.getID() &&
                     _purchaseDate == p.getPurchaseDate() &&
-                    _purchaseLines.equals(p.get(PurchaseLines)));
+                    _purchaseLines.equals(p.getPurchaseLines()));
         }
         return false;
     }
@@ -119,6 +119,6 @@ public class Purchase implements Serializable{
     }
     */
 
-   public double calcTotalCost(Order or){
+   public double calcTotalCost(){
    }
 }

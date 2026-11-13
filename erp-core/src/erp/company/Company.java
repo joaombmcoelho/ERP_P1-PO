@@ -83,6 +83,12 @@ public class Company implements Serializable{
         return productInventory.getRPFactor();
     }
 
+    public double getProductSellPrice(Product product){
+        ProductInventory productInventory = getInventory(product);
+        
+        return productInventory.calcSellPrice();
+    }
+
     /** SETTERS */
 
     /* company-related */
@@ -92,7 +98,7 @@ public class Company implements Serializable{
     }
 
     public void addPurchase(Purchase newPurchase){ //todo see if we need status
-        _purchases.put(newPurchase.id, newPurchase);
+        _purchases.put(newPurchase.getID(), newPurchase);
     }
 
     /* inventory-related */
@@ -106,7 +112,7 @@ public class Company implements Serializable{
     private void changeRPFactor(Product product, double newFactor){
         ProductInventory productInventory = getInventory(product);
 
-        productInventory.setFactor(newFactor);
+        productInventory.setRPFactor(newFactor);
     }
 
     @Override 
@@ -159,11 +165,11 @@ public class Company implements Serializable{
             if (quantityToAdd <= 0){
                 return InventoryStatus.ERROR_ADD_0_UNITS;
             }
-            _inventory.put(product, new ProductInventory(quantityToAdd, newRPFactor));
+            _inventory.put(product, new ProductInventory(product, quantityToAdd, newRPFactor));
             return InventoryStatus.SUCCESS;
         }
 
-        int resultingQuantity = getInventory(product) + quantityToAdd;
+        int resultingQuantity = getInventory(product).getUnitsAvailable() + quantityToAdd;
 
         // problem if user wants to remove more products than inventory
         if(resultingQuantity < 0){
