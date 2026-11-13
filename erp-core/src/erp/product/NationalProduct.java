@@ -59,5 +59,4 @@ public class NationalProduct extends Product {
         return _id + " - " + getType() + " - "+ _name + " - " + _category + " - " + _basePrice + " - " +
          String.format("%.2f", getRecommendedPrice()) + " - " + _baseShippingTime + " - " + /** total_units */ " - " + getAdditionalInfo() ;
     }
-
 }   
