@@ -3,17 +3,29 @@ package erp.purchase;
 public class GiftCard implements AdditionalService{
 
     @Override 
-    public void getAdditionalCost(){
+    public int getAdditionalCost(){
         return 1;
     }
 
     @Override 
-    public void getAdditionalTime(){
+    public int getAdditionalTime(){
         return 0;
     }
 
     @Override
-    public void getKey(){
+    public String getKey(){
         return "GIFT CARD";
     }
+
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof GiftCard){
+            GiftCard gC = (GiftCard) o;
+            return (getAdditionalCost() == gC.getAdditionalCost() &&
+                    getAdditionalTime() == gC.getAdditionalTime() &&
+                    getKey().equals(gC.getKey()));
+        }
+        return false;
+    }
+
 }

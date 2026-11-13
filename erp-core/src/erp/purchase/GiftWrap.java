@@ -3,17 +3,28 @@ package erp.purchase;
 public class GiftWrap implements AdditionalService{
 
     @Override 
-    public void getAdditionalCost(){
+    public int getAdditionalCost(){
         return 2;
     }
 
     @Override 
-    public void getAdditionalTime(){
+    public int getAdditionalTime(){
         return 1;
     }
 
     @Override
-    public void getKey(){
+    public String getKey(){
         return "GIFT WRAP";
+    }
+
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof GiftWrap){
+            GiftWrap gW = (GiftWrap) o;
+            return (getAdditionalCost() == gW.getAdditionalCost() &&
+                    getAdditionalTime() == gW.getAdditionalTime() &&
+                    getKey().equals(gW.getKey()));
+        }
+        return false;
     }
 }
