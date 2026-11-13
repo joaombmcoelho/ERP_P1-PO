@@ -107,6 +107,7 @@ public class Company implements Serializable{
         ProductInventory productInventory = getInventory(product);
 
         productInventory.addUnits(quantityToAdd);
+        product.addToTotalUnits(quantityToAdd);
     }
 
     private void changeRPFactor(Product product, double newFactor){
@@ -166,6 +167,7 @@ public class Company implements Serializable{
                 return InventoryStatus.ERROR_ADD_0_UNITS;
             }
             _inventory.put(product, new ProductInventory(product, quantityToAdd, newRPFactor));
+            product.addToTotalUnits(quantityToAdd);
             return InventoryStatus.SUCCESS;
         }
 

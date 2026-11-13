@@ -52,5 +52,8 @@ public class TransportMethod implements Serializable{
     //TODO VER
     //public String toString(){
     //}
-
+    @Override
+    public String toString(){
+        return _key;
+    }
 }

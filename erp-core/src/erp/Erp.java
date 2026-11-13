@@ -8,13 +8,19 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
+import erp.purchase.Purchase;
 //import this to use
 import erp.purchase.TransportMethod;
 import erp.company.Company;
+import erp.company.InventoryStatus;
 import erp.client.Client;
 import erp.product.Product;
 import erp.company.ProductInventory;
+import erp.basket.Basket;
+import erp.basket.CheckoutStatus;
 
 /** The whole ERP system: holds all the state and the domain logic. */
 class Erp implements Serializable {
@@ -25,6 +31,15 @@ class Erp implements Serializable {
     //FIXME maybe define attributes
     //FIXME maybe implement constructor
     //FIXME maybe implement methods
+
+    private int _date;
+    private int _nextCompanyId;
+    private int _nextProductId;
+    private int _nextPurchaseId;
+    private Map <Integer, Company> _companies;
+    private Map <Integer, Product> _products;
+    private Map <String, Client> _clients;  //! AO PROCURAR E INSERIR POR email.toLowerCase()
+    //todo RITA OS TEUSA ATRIBUTOS
 
     // --- text file import --------------------------------------------------
 
@@ -48,18 +63,237 @@ class Erp implements Serializable {
 
         try{
             switch (lineContent[0]) {
-                case "RATE"         -> registerTransportMethod(lineContent[1], lineContent[2], lineContent[3]);
-                case "COMPANY"      -> registerCompany(lineContent[1]);
-                case "CLIENT"       -> registerClient(lineContent[1], lineContent[2]);
-                case "NATIONAL"     -> registerNationalProduct(lineContent[1], lineContent[2], lineContent[3], lineContent[4]);
-                case "IMPORTED"     -> registerImportedProduct(lineContent[1], lineContent[2], lineContent[3], lineContent[4], lineContent[5], lineContent[6]);
-                case "SUPPLY"       -> registerProductInCompany(lineContent[1], lineContent[2], lineContent[3], lineContent[4]);
+                case "RATE"         ->  registerTransportMethod(lineContent[1], lineContent[2], lineContent[3]);
+                case "COMPANY"      ->  registerCompany(lineContent[1]);
+                case "CLIENT"       ->  registerClient(lineContent[1], lineContent[2]);
+                case "NATIONAL"     ->  { //factory
+                                        registerNationalProduct(lineContent[1], lineContent[2], lineContent[3], lineContent[4]);
+
+                                        }
+                case "IMPORTED"     ->  {   //factory
+                                        registerImportedProduct(lineContent[1], lineContent[2], lineContent[3], lineContent[4], lineContent[5], lineContent[6]);
+                                        }
+                case "SUPPLY"       ->  registerProductInCompany(lineContent[1], lineContent[2], lineContent[3], lineContent[4]);
                 
-                default             -> throw new UnrecognizedEntryException(line);
+                default             ->  throw new UnrecognizedEntryException(line);
             }
         }
         catch (Exception e) {   //TODO SEE WHAT EXCEPTION
             throw new UnrecognizedEntryException(line, e);
         }
     }
+
+    /** constructor */
+
+    Erp(){
+        _date = 1;
+        _nextCompanyId = 1;
+        _nextProductId = 1;
+        _nextPurchaseId = 1;
+        _companies = new HashMap<>();
+        _products = new HashMap<>();
+        _clients = new HashMap<>();
+
+        //todo RITAAAAAAAA DPS POE AQUI OS ATRIBUTOS Q ACRESCENTASTE EM CIMA
+    }
+
+    /******************** GETTERS *********************/
+
+    public int getCurrentDate(){
+        return _date;
+    }
+
+    public Company getCompany(int companyId) throws UnknownCompanyException{
+
+        Company company = _companies.get(companyId);
+        if (company == null){
+            throw new UnknownCompanyException(companyId);
+        }
+        return company;
+    }
+
+    public Product getProduct(int productId) throws UnknownProductException{
+        
+        Product product = _products.get(productId);
+        if (product == null){
+            throw new UnknownProductException(productId);
+        }
+    }
+
+    public Client getClient(String email) throws UnknownClientException{
+
+        Client client = _clients.get(email.toLowerCase());
+        if (client == null){
+            throw new UnknownClientException(email);
+        }
+        return client;
+    }
+
+    public Purchase getPurchase(int purchaseId) throws UnknownPurchaseException{
+
+        Purchase purchase = _purchases.get(purchaseId);
+        if (purchase == null){
+            throw new UnknownPurchaseException(purchaseId);
+        }
+        return purchase;
+    }
+
+    public Basket getBasket(String email, int companyId)
+                    throws UnknownClientException, UnknownCompanyException{
+        
+        Client client = getClient(email.toLowerCase());
+        Company company = getCompany(companyId);
+
+        Basket basket = client.getBasket(companyId);
+
+        /** create a new basket if client doesnt have one for that company */
+        if (basket == null){
+            basket = new Basket(client, company);
+            client.addBasket(companyId, basket);
+        }
+
+        return basket;
+    }
+
+    /******************** SETTERS *********************/
+
+    public void advanceDate(int daysToAdvance){
+        _date += daysToAdvance;
+        // todo se if we raise exception for negative days
+    }
+
+    /** just used for import file */
+    public void setTransportMethod(String key, int shippingFee, int shippingTime){
+        TransportMethod tm = new TransportMethod(key, shippingFee, shippingTime);
+
+        _transportMethods.put(key.toLowerCase(), tm);
+    }
+
+    /******************** COMPANIES MENU *********************/
+
+    public boolean registerCompany(String name){
+
+        /** problem if name is an empty String */
+        if (name.trim().isEmpty()){
+            return false;
+        }
+
+        Company company = new Company(_nextCompanyId, name);
+        _companies.put(_nextCompanyId, company);
+
+        _nextCompanyId++;
+        return true;
+    }
+
+    public String showCompany(int companyId) throws UnknownCompanyException{
+
+        Company company = getCompany(companyId);
+        
+        return company.toString();
+    }
+
+    //todo RITA SHOW ALL COMPANIES
+
+    public boolean changeInventory(int company_id, int product_id, int quantityToChange, double newRPFactor)
+                    throws UnknownCompanyException, UnknownProductException{
+
+        Company company = getCompany(company_id);
+        Product product = getProduct(product_id);
+
+        if (company.changeInventory(product, quantityToChange, newRPFactor) != InventoryStatus.SUCCESS){
+            return false;
+        }
+        return true;
+    }
+
+    //todo RITA SHOW COMPANY PRODUCTS
+    
+    //todo RITA SHOW COMPANY CLIENTS
+
+    /******************** PRODUCTS MENU *********************/
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! todo joao: product factory alterar pçroduct e donstuir a fabrica de produtos
+    public boolean registerProduct(Product product){
+        _nextProductId++;
+    }
+
+    //todo RITA SHOW PRODUCT
+
+    //todo RITA SHOW ALL PRODUCTS
+
+    //todo RITA SEARCH
+
+    /******************** CLIENTS MENU *********************/
+
+    public boolean registerClient(String email, String name){
+
+        /** problem if name or email are empty Strings */
+        if (email.trim().isEmpty() | name.trim().isEmpty()){
+            return false;
+        }
+
+        /** problem if given email is already registered */
+        if(_clients.containsKey(email)){
+            return false;
+        }
+
+        Client client = new Client(email, name);
+        _clients.put(email.toLowerCase(), client);
+        
+        return true;
+    }
+
+    //todo RITA SHOW CLIENT
+
+    //todo RITA SHOW ALL CLIENTS
+
+    //todo RITA SHOW CLIENT NOTIFICATIONS
+
+    /******************** PURCHASE MENU *********************/
+
+    //! EFETUAR COMPRA ABRE MENU DE CABAZ VER ESSA FUNCAO
+
+    //todo RITA SHOW PURCHASE
+
+    //todo RITA SHOW ALL PURCHASES
+
+    /******************** BASKET MENU *********************/
+
+    //todo JOAO CHANGE BASKET PRODUCT
+
+    //todo JOAO SHOW BASKET
+
+    //todo RITA SET ORDER SPLIT
+
+    //todo RITA SET TRANSPORT METHOD
+
+    //todo RITA ADD ADDITIONAL SERVICE
+
+    /** finalizar compra do enunciado */
+    public boolean checkout(Basket basket){
+
+        if(basket == null || basket.canCheckout() != CheckoutStatus.SUCCESS){
+            return false;
+        }
+        /** create the new purchase that results of basket checkout */
+        Purchase purchase = basket.checkout(_nextPurchaseId, getCurrentDate());
+        _purchases.put(_nextPurchaseId, purchase);
+        _nextPurchaseId++;
+
+        return true;
+    }
+
+    //todo RITA todos os lists keys em baixo
+
 }
+
+
+
+
+
+
+
+
+
+
+

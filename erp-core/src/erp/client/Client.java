@@ -43,6 +43,10 @@ public class Client implements Serializable {
         return Collections.unmodifiableMap(_clientBaskets);
     }
 
+    public Basket getBasket(int companyId){
+        return _clientBaskets.get(companyId);
+    }
+
     /** SETTERS */
 
     public void setEmail(String newEmail){

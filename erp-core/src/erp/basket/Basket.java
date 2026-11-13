@@ -14,6 +14,7 @@ import erp.purchase.OrderSplit;
 import erp.purchase.TransportMethod;
 import erp.company.Company;
 import erp.purchase.AdditionalService;
+import erp.purchase.Order;
 import erp.product.Product;
 import erp.purchase.PurchaseLine;
 import erp.purchase.Purchase;
@@ -53,6 +54,17 @@ public class Basket implements Serializable {
         _defaultSplit = defaultSplit;
         _transportMethod = transportMethod;
         _additionalServices = additionalServices;
+        _basketLines = new HashMap<>();
+    }
+
+    public Basket (Client client, Company company){                   
+        
+        _client = client;
+        _company = company;
+        _orderSplit = new SingleOrderSplit();
+        _defaultSplit = new SingleOrderSplit(); //todo remove
+        _transportMethod = null;    //todo set later
+        _additionalServices = new ArrayList<>();
         _basketLines = new HashMap<>();
     }
 
@@ -185,7 +197,7 @@ public class Basket implements Serializable {
         return CheckoutStatus.SUCCESS;
     }
 
-    public Purchase checkout(){ //! return purchase so erp saves it in the global map
+    public Purchase checkout(int purchaseId, int purchaseDate){ //! return purchase so erp saves it in the global map
 
         List <PurchaseLine> purchaseLines = new ArrayList<>();
 
@@ -200,7 +212,7 @@ public class Basket implements Serializable {
             purchaseLines.add(line);
         }
 
-        Purchase purchase = new Purchase(_client, _company, purchaseLines);   //todo purchase id e purchase date no erp??
+        Purchase purchase = new Purchase(purchaseId, purchaseDate, _client, _company, purchaseLines);   //todo purchase id e purchase date no erp??
 
         // split the purchase in orders through ordersplit strategy
         List<List<PurchaseLine>>  splitOrders;
@@ -209,7 +221,7 @@ public class Basket implements Serializable {
         for(List<PurchaseLine> OrderPurchaseLines: splitOrders){
             
             // get each order after the split
-            Order order = new Order(OrderPurchaseLines, _transportMethod, _additionalServices); //todo purchase id e purchase date no erp??
+            Order order = new Order(purchaseId, purchaseDate, OrderPurchaseLines, getTransportMethod(), getAdditionalServices()); //todo purchase id e purchase date no erp??
 
             // save them in the final purchase
             purchase.addOrder(order);

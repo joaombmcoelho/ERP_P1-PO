@@ -57,6 +57,6 @@ public class NationalProduct extends Product {
     @Override 
     public String toString(){
         return _id + " - " + getType() + " - "+ _name + " - " + _category + " - " + _basePrice + " - " +
-         String.format("%.2f", getRecommendedPrice()) + " - " + _baseShippingTime + " - " + /** total_units */ " - " + getAdditionalInfo() ;
+         String.format("%.2f", getRecommendedPrice()) + " - " + _baseShippingTime + " - " + _totalUnitsAvailable + " - " + getAdditionalInfo() ;
     }
 }   
