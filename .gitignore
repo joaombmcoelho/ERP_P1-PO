@@ -13,4 +13,4 @@
 
 ####### Logs & temps #######
 *.log
-*.tmp
+*.tmp.DS_Store
