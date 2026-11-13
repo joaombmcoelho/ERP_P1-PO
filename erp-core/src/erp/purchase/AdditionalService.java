@@ -1,6 +1,26 @@
 package erp.purchase;
 
+import java.io.Serializable;
 
-public class AdditionalService{
+import java.util.Map;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.ArrayList;
 
+import erp.client.Client;
+import erp.purchase.OrderSplit;
+import erp.purchase.TransportMethod;
+import erp.company.Company;
+import erp.purchase.AdditionalService;
+import erp.product.Product;
+import erp.purchase.PurchaseLine;
+import erp.purchase.Purchase;
+
+public interface AdditionalService extends Serializable{
+    
+    public abstract void calcAdditionalCost();
+    public abstract void calcAdditionalTime();
+    public abstract String getKey();
+    
 }
