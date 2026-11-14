@@ -97,7 +97,7 @@ public class Order implements Serializable{
     @Override
     public String toString(){
         return _purchaseID + " - " + doTransportDescription() + " - " + calcDeliveryDate() + " - " +
-                String.format("%.2f",calcProcessingCost())  + " - " + getProductsIdString();
+                String.format("%.2f",calcProcessingCost())  + " -" + getProductsIdString();
     }
 
     /** Calculates the total value of purchase lines in this order */
