@@ -1,0 +1,12 @@
+--- /work/tests/auto-tests/expected/A-08-02-M-ok.out	2026-11-14 18:16:41.000000000 +0000
++++ /work/tests/.test-work/A-08-02-M-ok.outhyp	2026-11-14 19:45:07.264422071 +0000
+@@ -16,8 +16,7 @@
+ 5 - Mostrar produtos de uma empresa
+ 6 - Mostrar clientes de uma empresa
+ 0 - Sair
+-Escolha uma opção: 1 - Moageira Nacional
+-Menu de Gestão de Empresas
++Escolha uma opção: Menu de Gestão de Empresas
+ 1 - Registar empresa
+ 2 - Mostrar empresa
+ 3 - Mostrar todas as empresas

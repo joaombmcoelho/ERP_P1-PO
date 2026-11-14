@@ -1,4 +1,10 @@
 /***************** ERP COM FICHEIRO*****************/
 
 make all
-java -Dimport=test.import -cp "/usr/share/java/po-uilib.jar:erp-core/erp-core.jar:erp-app/erp-app.jar" erp.app.App
+java -Dimport=tests/test.import -cp "/usr/share/java/po-uilib.jar:erp-core/erp-core.jar:erp-app/erp-app.jar" erp.app.App
+/***************** CORRER TESTES ********************/
+
+./tests/run-tests.sh
+
+mais comandos:
+./tests/run-tests.sh -h

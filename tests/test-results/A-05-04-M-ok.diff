@@ -1,0 +1,18 @@
+--- /work/tests/auto-tests/expected/A-05-04-M-ok.out	2026-11-14 18:16:41.000000000 +0000
++++ /work/tests/.test-work/A-05-04-M-ok.outhyp	2026-11-14 19:45:07.021647068 +0000
+@@ -14,13 +14,13 @@
+ 3 - Mostrar todos os clientes
+ 4 - Mostrar notificações de cliente
+ 0 - Sair
+-Escolha uma opção: Introduza o endereço de correio do cliente: Mostrar cliente: Operação inválida: O cliente palpatine@empire.uni não existe.
+-Menu de Gestão de Clientes
++Escolha uma opção: Menu de Gestão de Clientes
+ 1 - Registar cliente
+ 2 - Mostrar cliente
+ 3 - Mostrar todos os clientes
+ 4 - Mostrar notificações de cliente
+ 0 - Sair
++Escolha uma opção: Número inválido!
+ Escolha uma opção: Menu Principal
+ 1 - Abrir ficheiro
+ 2 - Guardar ficheiro

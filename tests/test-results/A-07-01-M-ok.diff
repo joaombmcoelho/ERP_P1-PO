@@ -1,0 +1,19 @@
+--- /work/tests/auto-tests/expected/A-07-01-M-ok.out	2026-11-14 18:16:41.000000000 +0000
++++ /work/tests/.test-work/A-07-01-M-ok.outhyp	2026-11-14 19:45:07.150206819 +0000
+@@ -16,7 +16,15 @@
+ 5 - Mostrar produtos de uma empresa
+ 6 - Mostrar clientes de uma empresa
+ 0 - Sair
+-Escolha uma opção: Introduza o número da empresa: Mostrar empresa: Operação inválida: A empresa 12 não existe.
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Opção inválida!
+ Menu de Gestão de Empresas
+ 1 - Registar empresa
+ 2 - Mostrar empresa

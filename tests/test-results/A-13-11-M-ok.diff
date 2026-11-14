@@ -1,0 +1,117 @@
+--- /work/tests/auto-tests/expected/A-13-11-M-ok.out	2026-11-14 18:16:41.000000000 +0000
++++ /work/tests/.test-work/A-13-11-M-ok.outhyp	2026-11-14 19:45:07.977872952 +0000
+@@ -16,8 +16,7 @@
+ 5 - Mostrar produtos de uma empresa
+ 6 - Mostrar clientes de uma empresa
+ 0 - Sair
+-Escolha uma opção: Introduza o número da empresa: Introduza o número do produto: Introduza a quantidade a actualizar: Introduza o factor multiplicativo do preço recomendado: A empresa 2 passou a disponibilizar o produto 1.
+-Menu de Gestão de Empresas
++Escolha uma opção: Menu de Gestão de Empresas
+ 1 - Registar empresa
+ 2 - Mostrar empresa
+ 3 - Mostrar todas as empresas
+@@ -25,8 +24,15 @@
+ 5 - Mostrar produtos de uma empresa
+ 6 - Mostrar clientes de uma empresa
+ 0 - Sair
+-Escolha uma opção: Introduza o número da empresa: 2 - 1 - 5 - 1.0 - 19.50
+-Menu de Gestão de Empresas
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Menu de Gestão de Empresas
+ 1 - Registar empresa
+ 2 - Mostrar empresa
+ 3 - Mostrar todas as empresas
+@@ -34,7 +40,7 @@
+ 5 - Mostrar produtos de uma empresa
+ 6 - Mostrar clientes de uma empresa
+ 0 - Sair
+-Escolha uma opção: Introduza o número da empresa: Introduza o número do produto: Introduza a quantidade a actualizar: Introduza o factor multiplicativo do preço recomendado: A empresa 2 passou a disponibilizar o produto 1.
++Escolha uma opção: Opção inválida!
+ Menu de Gestão de Empresas
+ 1 - Registar empresa
+ 2 - Mostrar empresa
+@@ -43,11 +49,76 @@
+ 5 - Mostrar produtos de uma empresa
+ 6 - Mostrar clientes de uma empresa
+ 0 - Sair
+-Escolha uma opção: Introduza o número da empresa: 2 - 1 - 1 - 1.0 - 19.50
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Opção inválida!
+ Menu de Gestão de Empresas
+ 1 - Registar empresa
+ 2 - Mostrar empresa
+ 3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Número inválido!
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
++4 - Alterar inventário de um produto
++5 - Mostrar produtos de uma empresa
++6 - Mostrar clientes de uma empresa
++0 - Sair
++Escolha uma opção: Menu de Gestão de Empresas
++1 - Registar empresa
++2 - Mostrar empresa
++3 - Mostrar todas as empresas
+ 4 - Alterar inventário de um produto
+ 5 - Mostrar produtos de uma empresa
+ 6 - Mostrar clientes de uma empresa
