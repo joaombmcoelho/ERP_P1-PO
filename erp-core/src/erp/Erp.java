@@ -45,6 +45,9 @@ class Erp implements Serializable {
     private Map <Integer, Company> _companies;
     private Map <Integer, Product> _products;
     private Map <String, Client> _clients;  //! AO PROCURAR E INSERIR POR email.toLowerCase()
+
+    private Map <Integer, Purchase> _purchases;
+    private Map <String, TransportMethod> _transportMethods;
     //todo RITA OS TEUS ATRIBUTOS
 
     private Map <String, ProductFactory> _productFactories;
@@ -159,6 +162,7 @@ class Erp implements Serializable {
         if (product == null){
             throw new UnknownProductException(productId);
         }
+        return product;
     }
 
     public Client getClient(String email) throws UnknownClientException{
