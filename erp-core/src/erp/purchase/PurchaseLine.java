@@ -61,12 +61,17 @@ public class PurchaseLine implements Serializable {
         return false;
     }
 
-    //@Override 
-    //TODO VER
-    //public String toString(){
-    //}
+    @Override 
+    public String toString(){
+        String string = "";
 
-    public double CalcTotalLineCost(){
+        string += ("  " + _product.getID() + " - " + _product.getName() + " - " + _quantity + " - "
+                        + String.format("%.2f", _salePrice) + " - " + String.format("%.2f", calcTotalLineCost()));
+        
+        return string;
+    }
+
+    public double calcTotalLineCost(){
         return (double) _quantity * _salePrice;
     }
 }

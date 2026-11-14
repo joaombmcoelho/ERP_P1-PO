@@ -40,7 +40,7 @@ class Erp implements Serializable {
     private Map <Integer, Company> _companies;
     private Map <Integer, Product> _products;
     private Map <String, Client> _clients;  //! AO PROCURAR E INSERIR POR email.toLowerCase()
-    //todo RITA OS TEUSA ATRIBUTOS
+    //todo RITA OS TEUS ATRIBUTOS
 
     // --- text file import --------------------------------------------------
 
@@ -64,19 +64,51 @@ class Erp implements Serializable {
 
         try{
             switch (lineContent[0]) {
-                case "RATE"         ->  registerTransportMethod(lineContent[1], lineContent[2], lineContent[3]);
-                case "COMPANY"      ->  registerCompany(lineContent[1]);
-                case "CLIENT"       ->  registerClient(lineContent[1], lineContent[2]);
-                case "NATIONAL"     ->  { //factory
-                                        registerNationalProduct(lineContent[1], lineContent[2], lineContent[3], lineContent[4]);
+                case "RATE"     ->  {
+                                        String key = lineContent[1];
+                                        int shippingFee = Integer.parseInt(lineContent[2]);
+                                        int shippingTime = Integer.parseInt(lineContent[3]);
+                                        addTransportMethod(key, shippingFee, shippingTime);
+                                    }
+                case "COMPANY"  ->  {
+                                        String name = lineContent[1];
+                                        registerCompany(name);
+                                    }
+                case "CLIENT"   ->  {
+                                        String email = lineContent[1];
+                                        String name = lineContent[2];
+                                        registerClient(email, name);
+                                    }
+                case "NATIONAL" ->  { 
+                                        String type = lineContent[0];   /** nacional */
+                                        String name = lineContent[1];
+                                        int basePrice = Integer.parseInt(lineContent[2]);
+                                        String Category = lineContent[3];   //!category eh string???
+                                        int baseShippingTime = Integer.parseInt(lineContent[4]);
 
-                                        }
-                case "IMPORTED"     ->  {   //factory
-                                        registerImportedProduct(lineContent[1], lineContent[2], lineContent[3], lineContent[4], lineContent[5], lineContent[6]);
-                                        }
-                case "SUPPLY"       ->  registerProductInCompany(lineContent[1], lineContent[2], lineContent[3], lineContent[4]);
-                
-                default             ->  throw new UnrecognizedEntryException(line);
+                                        registerProduct();
+                                    }
+                case "IMPORTED" ->  {   
+                                        String type = lineContent[0];   /** nacional */
+                                        String name = lineContent[1];
+                                        int basePrice = Integer.parseInt(lineContent[2]);
+                                        String Category = lineContent[3];   //!category eh string???
+                                        int baseShippingTime = Integer.parseInt(lineContent[4]);
+                                        String OriginCountry = lineContent[5];
+                                        double tax = Double.parseDouble(lineContent[6]);
+
+                                        registerProduct();
+                                    }
+                case "SUPPLY"   ->  {   
+                                        int companyId = Integer.parseInt(lineContent[1]);
+                                        int productId = Integer.parseInt(lineContent[2]);
+                                        int quantityToChange = Integer.parseInt(lineContent[3]);
+                                        double factor = Double.parseDouble(lineContent[4]);
+
+                                        changeInventory(companyId, productId, quantityToChange, factor);
+                                    }
+
+                default         ->  throw new UnrecognizedEntryException(line);
             }
         }
         catch (Exception e) {   //TODO SEE WHAT EXCEPTION
@@ -164,7 +196,7 @@ class Erp implements Serializable {
     }
 
     /** just used for import file */
-    public void setTransportMethod(String key, int shippingFee, int shippingTime){
+    public void addTransportMethod(String key, int shippingFee, int shippingTime){
         TransportMethod tm = new TransportMethod(key, shippingFee, shippingTime);
 
         _transportMethods.put(key.toLowerCase(), tm);

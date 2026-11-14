@@ -8,7 +8,7 @@ public abstract class Product implements Serializable, Comparable<Product>{
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
 
-    protected int _id;
+    protected int _id;      //! see if its private
     protected String _name;
     protected Category _category;
     protected int _basePrice;

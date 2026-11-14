@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import erp.client.Client;
 import erp.purchase.OrderSplit;
-import erp.purchase.SingleOrderSplit;
+import erp.purchase.SingleSplit;
 import erp.purchase.TransportMethod;
 import erp.company.Company;
 import erp.purchase.AdditionalService;
@@ -104,15 +104,19 @@ public class Basket implements Serializable {
         if (tm == null){
             /** if there is no transport method set yet, print "SEM TRANSPORTE" */
             tmString = "SEM TRANSPORTE";
+            return tmString;
         }
         else{
             tmString = tm.getKey();
         }
 
         /** build additional services part of the description */
-        String addServicesString = "";
 
-        for (AdditionalService aS: _additionalServices){
+        /** reverse the additional services from last to first in a copy*/
+        List<AdditionalService> addServicesSorted = _additionalServices.reversed();
+        
+        String addServicesString = "";
+        for (AdditionalService aS: addServicesSorted){
             addServicesString += "+" + aS.getKey();
         }
         return tmString + addServicesString;
@@ -268,7 +272,7 @@ public class Basket implements Serializable {
         for(List<PurchaseLine> OrderPurchaseLines: splitOrders){
             
             // get each order after the split
-            Order order = new Order(purchaseId, purchaseDate, OrderPurchaseLines, getTransportMethod(), getAdditionalServices()); //todo purchase id e purchase date no erp??
+            Order order = new Order(purchaseId, purchaseDate, OrderPurchaseLines, getAdditionalServices(), getTransportMethod()); //todo purchase id e purchase date no erp??
 
             // save them in the final purchase
             purchase.addOrder(order);
@@ -308,6 +312,7 @@ public class Basket implements Serializable {
         /** basket lines */
         /** ␣␣idProduto - nome - quantidade - preço unitário - total da linha */
         for(Map.Entry<Product, Integer> entry : getAllBasketLines().entrySet()) {
+            
             Product product = entry.getKey();
 
             int quantity = entry.getValue();
