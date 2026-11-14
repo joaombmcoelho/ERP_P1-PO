@@ -4,7 +4,6 @@ import erp.exceptions.*;
 
 //my imports:
 import java.io.IOException;
-import java.io.Serializable;
 import java.io.ObjectOutputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
@@ -14,19 +13,11 @@ import java.io.FileInputStream;
 
 import erp.purchase.Purchase;
 //import this to use
-import erp.purchase.TransportMethod;
 import erp.company.Company;
-import erp.company.InventoryStatus;
 import erp.client.Client;
 import erp.product.Product;
-import erp.product.ProductFactory;
 import erp.basket.AddToBasketStatus;
 import erp.basket.Basket;
-import erp.basket.CheckoutStatus;
-import erp.product.Category;
-import erp.product.NationalProductFactory;
-import erp.product.ImportedProductFactory;
-
 //FIXME maybe import classes
 
 /**
