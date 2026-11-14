@@ -257,7 +257,7 @@ class Erp implements Serializable {
 
     //todo RITA SHOW COMPANY PRODUCTS
     
-    //todo RITA SHOW COMPANY CLIENTS
+    //todo RITA SHOW COMPANY CLIENTS /** FAZ NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
 
     /******************** PRODUCTS MENU *********************/
 
@@ -335,17 +335,17 @@ class Erp implements Serializable {
         return true;
     }
 
-    //todo RITA SHOW CLIENT
+    //todo RITA SHOW CLIENT 
 
     //todo RITA SHOW ALL CLIENTS
 
-    //todo RITA SHOW CLIENT NOTIFICATIONS
+    //todo RITA SHOW CLIENT NOTIFICATIONS   /** FAZ NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
 
     /******************** PURCHASE MENU *********************/
 
-    //todo RITA SHOW PURCHASE
+    //todo RITA SHOW PURCHASE   /** FAZ NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
 
-    //todo RITA SHOW ALL PURCHASES
+    //todo RITA SHOW ALL PURCHASES  /** FAZ NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
 
     /******************** BASKET MENU *********************/
 
