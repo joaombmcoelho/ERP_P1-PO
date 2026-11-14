@@ -1,14 +1,31 @@
 package erp;
 
 import erp.exceptions.*;
-import java.io.*;
+
 //my imports:
+import java.io.IOException;
+import java.io.Serializable;
 import java.io.ObjectOutputStream;
 import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+
+import erp.purchase.Purchase;
+//import this to use
+import erp.purchase.TransportMethod;
+import erp.company.Company;
+import erp.company.InventoryStatus;
+import erp.client.Client;
+import erp.product.Product;
+import erp.product.ProductFactory;
+import erp.basket.AddToBasketStatus;
+import erp.basket.Basket;
+import erp.basket.CheckoutStatus;
+import erp.product.Category;
+import erp.product.NationalProductFactory;
+import erp.product.ImportedProductFactory;
 
 //FIXME maybe import classes
 
@@ -20,11 +37,17 @@ import java.io.FileInputStream;
  */
 public class ErpManager {
 
+    //! ver como funciona flags de alteracoes dirty/changed no manager
+
     /** The object doing all the actual work. */
     private Erp _erp = new Erp();
     private String _filename = "";  /** added for save */
 
-    //FIXME maybe define constructors
+    //!FIXME maybe define constructors
+    public ErpManager(){
+        _erp = new Erp();
+        _filename = "";  /** added for save */
+    }
 
     // --- persistence -------------------------------------------------------
 
@@ -87,5 +110,114 @@ public class ErpManager {
     }
 
     //FIXME implement other methods
+
+    /******************** GETTERS *********************/
+
+    public int getCurrentDate(){
+        return _erp.getCurrentDate();
+    }
+
+    public Company getCompany(int companyId) throws UnknownCompanyException{
+        return _erp.getCompany(companyId);
+    }
+
+    public Product getProduct(int productId) throws UnknownProductException{
+        return _erp.getProduct(productId);
+    }
+
+    public Client getClient(String email) throws UnknownClientException{
+        return _erp.getClient(email);
+    }
+
+    public Purchase getPurchase(int purchaseId) throws UnknownPurchaseException{
+        return _erp.getPurchase(purchaseId);
+    }
+
+    public Basket getBasket(String email, int companyId)
+                        throws UnknownClientException, UnknownCompanyException{
+        return _erp.getBasket(email, companyId);
+    }
+
+    public void advanceDate(int daysToAdvance){
+        _erp.advanceDate(daysToAdvance);
+    }
+
+    /******************** COMPANIES MENU *********************/
+
+    public boolean registerCompany(String name){
+        return _erp.registerCompany(name);
+    }
+
+    public String showCompany(int companyId) throws UnknownCompanyException{
+        return _erp.showCompany(companyId);
+    }
+
+    //todo RITA SHOW ALL COMPANIES
+
+    public boolean changeInventory (int company_id, int product_id, 
+                                    int quantityToChange, double newRPFactor)
+                                    throws UnknownCompanyException, UnknownProductException{
+        return _erp.changeInventory(company_id, product_id, quantityToChange, newRPFactor);
+    }
+
+    //todo RITA SHOW COMPANY PRODUCTS
+    
+    //todo RITA SHOW COMPANY CLIENTS
+
+    /******************** PRODUCTS MENU *********************/
+
+    public boolean registerProduct(String type, String name, int basePrice, String category,
+                                    int baseShippingTime, String[] extraArgs){
+        return _erp.registerProduct(type, name, basePrice, category, baseShippingTime, extraArgs);
+    }
+
+    //todo RITA SHOW PRODUCT
+
+    //todo RITA SHOW ALL PRODUCTS
+
+    //todo RITA SEARCH
+
+    /******************** CLIENTS MENU *********************/
+
+    public boolean registerClient(String email, String name){
+        return _erp.registerClient(email, name);
+    }
+
+    //todo RITA SHOW CLIENT
+
+    //todo RITA SHOW ALL CLIENTS
+
+    //todo RITA SHOW CLIENT NOTIFICATIONS
+
+    /******************** PURCHASE MENU *********************/
+
+    //todo RITA SHOW PURCHASE
+
+    //todo RITA SHOW ALL PURCHASES
+
+    /******************** BASKET MENU *********************/
+
+    public AddToBasketStatus changeProductInBasket(Basket basket, int productId, int quantityToChange)
+                                                    throws UnknownProductException{
+        return _erp.changeProductInBasket(basket, productId, quantityToChange);
+    }
+
+    public String showBasket(Basket basket){
+        return _erp.showBasket(basket);
+    }
+
+    //todo RITA SET ORDER SPLIT
+
+    //todo RITA SET TRANSPORT METHOD
+
+    //todo RITA ADD ADDITIONAL SERVICE
+
+    /** finalizar compra do enunciado */
+    public Purchase checkout(Basket basket) throws InsufficientInventoryException{
+        return _erp.checkout(basket);
+    }
+
+    //todo RITA todos os lists keys em baixo
+
 
 }

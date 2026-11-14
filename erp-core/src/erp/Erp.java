@@ -9,8 +9,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import erp.purchase.Purchase;
 //import this to use
@@ -20,7 +21,6 @@ import erp.company.InventoryStatus;
 import erp.client.Client;
 import erp.product.Product;
 import erp.product.ProductFactory;
-import erp.company.ProductInventory;
 import erp.basket.AddToBasketStatus;
 import erp.basket.Basket;
 import erp.basket.CheckoutStatus;
@@ -132,11 +132,15 @@ class Erp implements Serializable {
         _nextCompanyId = 1;
         _nextProductId = 1;
         _nextPurchaseId = 1;
-        _companies = new HashMap<>();
-        _products = new HashMap<>();
-        _clients = new HashMap<>();
+        _companies = new TreeMap<>();
+        _products = new TreeMap<>();
+        _clients = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        _purchases = new TreeMap<>();   /** sort by key */
+        _transportMethods = new LinkedHashMap<>();/** Sort by insertion order */
 
         //todo RITAAAAAAAA DPS POE AQUI OS ATRIBUTOS Q ACRESCENTASTE EM CIMA
+
+        _productFactories = new LinkedHashMap<>();
         registerProductFactory(new NationalProductFactory());
         registerProductFactory(new ImportedProductFactory());
     }
@@ -208,7 +212,7 @@ class Erp implements Serializable {
     }
 
     /** just used for import file */
-    public void addTransportMethod(String key, int shippingFee, int shippingTime){
+    private void addTransportMethod(String key, int shippingFee, int shippingTime){
         TransportMethod tm = new TransportMethod(key, shippingFee, shippingTime);
 
         _transportMethods.put(key.toLowerCase(), tm);
@@ -258,12 +262,12 @@ class Erp implements Serializable {
     /******************** PRODUCTS MENU *********************/
 
     /** auxiliar */
-    public void registerProductFactory(ProductFactory pf){
+    private void registerProductFactory(ProductFactory pf){
         _productFactories.put(pf.getKey(), pf);
     }
 
     // todo convert category into map probabilly
-    public boolean categoryExists(String category){
+    private boolean categoryExists(String category){
         for(Category c: Category.values()){
             if (category.equalsIgnoreCase(c.name())){
                 return true;
@@ -339,8 +343,6 @@ class Erp implements Serializable {
 
     /******************** PURCHASE MENU *********************/
 
-    //! EFETUAR COMPRA ABRE MENU DE CABAZ VER ESSA FUNCAO
-
     //todo RITA SHOW PURCHASE
 
     //todo RITA SHOW ALL PURCHASES
@@ -370,17 +372,29 @@ class Erp implements Serializable {
     //todo RITA ADD ADDITIONAL SERVICE
 
     /** finalizar compra do enunciado */
-    public boolean checkout(Basket basket){
+    public Purchase checkout(Basket basket) throws InsufficientInventoryException{
 
-        if(basket == null || basket.canCheckout() != CheckoutStatus.SUCCESS){
-            return false;
+        if(basket == null){
+            return null;
         }
+
+        CheckoutStatus status = basket.canCheckout();
+        /** NOT_ENOUGH_INVENTORY */
+        if (status == CheckoutStatus.NOT_ENOUGH){
+            throw new InsufficientInventoryException();
+        }
+
+        /** CANT_CHECKOUT_EMPTY_BASKET, NO_TRANSPORT_METHOD */
+        if (status != CheckoutStatus.SUCCESS){
+            return null;  
+        }
+
         /** create the new purchase that results of basket checkout */
         Purchase purchase = basket.checkout(_nextPurchaseId, getCurrentDate());
         _purchases.put(_nextPurchaseId, purchase);
         _nextPurchaseId++;
 
-        return true;
+        return purchase;
     }
 
     //todo RITA todos os lists keys em baixo

@@ -3,6 +3,7 @@
 merge:
 git pull --no-rebase origin main
 
+!!!!! ver linked hash map, hash map e tree map
 
 VER SERIALIZAVEIS INTERFACES
 
