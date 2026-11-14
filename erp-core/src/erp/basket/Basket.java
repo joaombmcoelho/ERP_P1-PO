@@ -40,7 +40,6 @@ public class Basket implements Serializable {
     private Client _client;
     private Company _company;
     private OrderSplit _orderSplit;
-    private OrderSplit _defaultSplit;
     private TransportMethod _transportMethod;
     private List<AdditionalService> _additionalServices;
     
@@ -52,7 +51,6 @@ public class Basket implements Serializable {
         _client = client;
         _company = company;
         _orderSplit = orderSplit;
-        _defaultSplit = defaultSplit;
         _transportMethod = transportMethod;
         _additionalServices = additionalServices;
         _basketLines = new TreeMap<>(); /** sorts automatically by product id */
@@ -62,8 +60,7 @@ public class Basket implements Serializable {
         
         _client = client;
         _company = company;
-        _orderSplit = new SingleOrderSplit();
-        _defaultSplit = new SingleOrderSplit(); //todo remove
+        _orderSplit = new SingleSplit();
         _transportMethod = null;    //todo set later
         _additionalServices = new ArrayList<>();
         _basketLines = new TreeMap<>();
@@ -159,8 +156,7 @@ public class Basket implements Serializable {
             return (_client.equals(b.getClient()) && 
                     _company.equals(b.getCompany()) &&
                     _orderSplit.equals(b.getOrderSplit()) &&
-                    //todo transprot method can be null
-                    _transportMethod.equals(b.getTransportMethod()) &&
+                    (_transportMethod != null && _transportMethod.equals(b.getTransportMethod())) &&
                     _additionalServices.equals(b.getAdditionalServices()) &&
                     _basketLines.equals(b.getAllBasketLines()));
         }
@@ -220,7 +216,7 @@ public class Basket implements Serializable {
         _basketLines.clear();
         _transportMethod = null;
         _additionalServices.clear();
-        _orderSplit = _defaultSplit; // order split goes back to default (single)
+        _orderSplit = new SingleSplit(); // order split goes back to default (single)
     }
 
     public CheckoutStatus canCheckout(){
