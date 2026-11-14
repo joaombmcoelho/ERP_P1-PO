@@ -112,13 +112,50 @@ public class Purchase implements Serializable{
         return false;
     }
 
-    /** 
     @Override
     public String toString(){
-        return 
+        return _id + " - " + _client.getEmail() + " - " + _company.getId() + " - " +
+               String.format("%.2f", calcItemsCost()) + " - " + 
+               String.format("%.2f", calcOrdersCost()) + " - " + 
+               String.format("%.2f", calcTotalCost());
     }
-    */
+
+   public double calcItemsCost(){
+        double itemsCost = 0;
+
+        for (Order ord: _orders){
+            itemsCost += ord.calcItemsCost();
+        }
+
+        return itemsCost;
+   }
+
+   public double calcOrdersCost(){
+        double ordersCost = 0;
+
+        for (Order ord: _orders){
+            ordersCost += ord.calcOrderCost();
+        }
+
+        return ordersCost;
+   }
 
    public double calcTotalCost(){
+        double totalCost = 0;
+
+        for (Order ord: _orders){
+            totalCost += ord.calcTotalCost();
+        }
+
+        return totalCost;
    }
+
+    //! acabar -> erp
+   public List<Orders> getSortedOrders(){
+        List<Order> sortedOrders = _orders;
+
+        return sortedOrders;
+   }
+
+   public abstract String toDetailedString();
 }

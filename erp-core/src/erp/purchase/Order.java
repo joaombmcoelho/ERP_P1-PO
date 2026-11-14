@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import erp.product.Product;
+
 
 public class Order implements Serializable{
     
@@ -94,35 +96,100 @@ public class Order implements Serializable{
 
     @Override
     public String toString(){
-        return _purchaseID + " - " + doTransportDescription() + calcDeliveryDate() + " - " +
-               calcProcessingCost() + " - " /** + lista ids prods */;
+        return _purchaseID + " - " + doTransportDescription() + " - " + calcDeliveryDate() + " - " +
+               String.format("%.2f",calcProcessingCost())  + " -" + getProductsIdString();
     }
 
+    /** Calculates the total value of purchase lines in this order */
+    public double calcItemsCost(){
+        double itemsCost = 0;
+
+        for (PurchaseLine pL: _purchaseLines){
+            itemsCost += pL.calcTotalLineCost();
+        }
+        return  itemsCost;
+    }
+
+    /** If the products in the order have a value > 50, processing cost = 0. Otherwise, equals 5. */
     public double calcProcessingCost(){
-        int acc = 0;
 
-        for (AdditionalService aS: _additionalServices){
-            acc += aS.getAdditionalCost();
+        double itemsCost = calcItemsCost();
+
+        if (itemsCost() > 50){
+            return 0.00;
         }
-        return acc + _transportMethod.getShippingFee();
+        else{
+            return 5.00;
+        }
     }
 
-    public int calcDeliveryDate(){
-        int acc = 0;
+    /** Calculates processingCost + all additional services cost + transport shippingFee */
+    public double calcOrderCost(){
+        double orderCost = calcProcessingCost();
 
         for (AdditionalService aS: _additionalServices){
-            acc += aS.getAdditionalTime();
+            orderCost += aS.getAdditionalCost();
         }
-        return acc + _transportMethod.getShippingTime();
+
+        orderCost += _transportMethod.getShippingFee();
+
+        return orderCost;
+    }
+    
+    public double calcTotalCost(){
+        return calcOrderCost() + calcItemsCost();
+    }
+
+    /** Delivery date = _purchaseDate + biggest base shipping time + transport shipping + addservices time */
+    public int calcDeliveryDate(){
+        int aSCost = 0;
+        int bigBaseShipping = 0;
+
+        for (AdditionalService aS: _additionalServices){
+            aSCost += aS.getAdditionalTime();
+        }
+
+        for (PurchaseLine pL: _purchaseLines){
+            if (pL.getProduct().getBaseShippingTime() > bigBaseShipping){
+                bigBaseShipping = pL.getProduct().getBaseShippingTime();
+            }
+        }
+        
+        return _purchaseDate + bigBaseShipping + _transportMethod.getBaseShippingTime() + aSCost;
+    }
+
+    public List<Integer> getProductsIdList(){
+        List<Integer> productsID = new ArrayList<>();
+
+        for (PurchaseLine pL: _purchaseLines){
+           productsID.add(pL.getProduct().getID());
+        }
+
+        Collections.sort(productsID);
+        return productsID;
+    }
+
+    public String getProductsIdString(){
+        String productsID = "";
+
+        //! todo-> traço ou nao entre ids
+        for (Integer pID: getProductsIdList()){
+            productsID += "  " + pID;
+        }
+
+        return productsID;
     }
 
     public String doTransportDescription(){
+        List<AdditionalService> addS = _additionalServices.reversed();
         String addS = "";
 
         for (AdditionalService aS: _additionalServices){
-            addS += aS.getKey() + " - ";
+            addS += "+" + aS.getKey();
         }
-        return _transportMethod.getKey() + " - " + addS;
+        return _transportMethod.getKey() + addS;
     }
     
+    //! acabar -> erp
+    public abstract String getDetailedString();
 }
