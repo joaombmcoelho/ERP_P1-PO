@@ -1,5 +1,5 @@
 --- /work/tests/auto-tests/expected/A-07-03-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/.test-work/A-07-03-M-ok.outhyp	2026-11-14 19:45:07.183275695 +0000
++++ /work/tests/.test-work/A-07-03-M-ok.outhyp	2026-11-14 19:55:17.792660385 +0000
 @@ -16,8 +16,15 @@
  5 - Mostrar produtos de uma empresa
  6 - Mostrar clientes de uma empresa

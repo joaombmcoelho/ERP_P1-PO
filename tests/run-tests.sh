@@ -5,7 +5,9 @@
 #
 # Uso:  ./tests/run-tests.sh [opções] [filtro ...]
 #   filtro        prefixo/substring do nome do teste (ex.: A-02  ou  A-13-05)
-#   -v            mostrar input/esperado/obtido também dos testes que passam
+#   (omissão)     para cada falha: input + 1ª divergência (esperado vs obtido) + causas comuns
+#   -f            detalhe completo (input/esperado/obtido/diff) só dos que falham
+#   -v            detalhe completo de todos os testes, também dos que passam
 #   -q            só o resumo (sem detalhes dos que falham)
 #   -s            comparação estrita (distingue maiúsculas/minúsculas; ignora só espaços)
 #   -n            não compilar (usa os .jar já existentes)
@@ -23,7 +25,7 @@ HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"   # pasta tests/
 ROOT="$(cd "$HERE/.." && pwd)"                         # pasta base do projeto
 cd "$ROOT" || exit 1
 
-VERBOSE=0; QUIET=0; STRICT=0; BUILD=1; STOP=0
+VERBOSE=0; FULL=0; QUIET=0; STRICT=0; BUILD=1; STOP=0
 TESTS_DIR="$HERE/auto-tests"; UILIB=""; FILTERS=()
 
 # caminhos relativos passados em -t/-j são relativos a onde o comando foi corrido
@@ -31,10 +33,10 @@ abspath() { case "$1" in /*) echo "$1" ;; *) echo "$CALLER_PWD/$1" ;; esac; }
 
 while [ $# -gt 0 ]; do
   case "$1" in
-    -v) VERBOSE=1 ;; -q) QUIET=1 ;; -s) STRICT=1 ;; -n) BUILD=0 ;; -x) STOP=1 ;;
+    -v) VERBOSE=1 ;; -f) FULL=1 ;; -q) QUIET=1 ;; -s) STRICT=1 ;; -n) BUILD=0 ;; -x) STOP=1 ;;
     -t) TESTS_DIR="$(abspath "$2")"; shift ;;
     -j) UILIB="$(abspath "$2")"; shift ;;
-    -h|--help) sed -n '2,20p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    -h|--help) sed -n '2,24p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
     -*) echo "Opção desconhecida: $1 (usa -h)"; exit 2 ;;
     *) FILTERS+=("$1") ;;
   esac
@@ -84,6 +86,49 @@ show_block() { # título, ficheiro
   echo "${B}--- $1 ---${N}"; sed 's/^/    /' "$2"; [ -n "$(tail -c1 "$2")" ] && echo; echo
 }
 
+
+# 1ª divergência palavra a palavra. 1ª linha = assinatura (para agrupar), restantes = ecrã
+first_diff() { # esperado, obtido
+  norm "$1" | tr ' ' '\n' > "$WORK/.a"; norm "$2" | tr ' ' '\n' > "$WORK/.b"
+  awk -v R="$R" -v G="$G" -v D="$D" -v N="$N" '
+    NR==FNR { a[FNR]=$0; na=FNR; next }
+    { b[FNR]=$0; nb=FNR }
+    END {
+      n=(na>nb?na:nb); d=1
+      for(i=1;i<=n;i++) if (a[i]!=b[i]) { d=i; break }
+      s=d-6; if (s<1) s=1
+      ctx=""; for(i=s;i<d;i++) ctx=ctx a[i] " "
+      ea=""; for(i=d;i<d+12 && i<=na;i++) ea=ea a[i] " "
+      ob=""; for(i=d;i<d+12 && i<=nb;i++) ob=ob b[i] " "
+      if (ea=="") ea="(fim do output esperado)"
+      if (ob=="") ob="(output terminou aqui)"
+      sig=""; for(i=d;i<d+6 && i<=nb;i++) sig=sig b[i] " "
+      if (sig=="") sig="(output terminou aqui)"
+      print sig
+      printf "    %sesperado:%s %s…%s%s%s\n", D, N, ctx, R, ea, N
+      printf "    %sobtido:  %s %s…%s%s%s\n",  D, N, ctx, G, ob, N
+    }' "$WORK/.a" "$WORK/.b"
+}
+
+full_details() {
+  echo "${D}  ------------------------------------------------------------${N}"
+  [ -f "$WORK/$name.import" ] && show_block "IMPORT ($name.import)" "$WORK/$name.import"
+  show_block "INPUT ($name.in)" "$inf"
+  [ -f "$exp" ] && show_block "ESPERADO" "$exp"
+  if [ -f "$hyp" ]; then show_block "OBTIDO" "$hyp"
+    if [ "$status" = "FAIL" ]; then
+      echo "${B}--- DIFF (- esperado / + obtido) ---${N}"
+      diff -u --label esperado --label obtido -B -w "$exp" "$hyp" | tail -n +3 | sed \
+        -e "s/^-/${R}-/" -e "s/^+/${G}+/" -e "s/\$/${N}/" | sed 's/^/    /'
+      echo
+    fi
+  fi
+  if [ -s "$err" ]; then
+    echo "${Y}--- STDERR / excepções Java ---${N}"; head -25 "$err" | sed 's/^/    /'; echo
+  fi
+  echo "${D}  ------------------------------------------------------------${N}"
+}
+
 PASS=0; FAIL=0; NOOUT=0; TOTAL=0; FAILED_LIST=()
 shopt -s nullglob
 for inf in "$TESTS_DIR"/*.in; do
@@ -120,32 +165,36 @@ for inf in "$TESTS_DIR"/*.in; do
   [ -s "$err" ] || rm -f "$err"
 
   # detalhes no ecrã
-  if [ $QUIET -eq 0 ] && { [ "$status" != "PASS" ] || [ $VERBOSE -eq 1 ]; }; then
-    echo "${D}  ------------------------------------------------------------${N}"
-    [ -f "$WORK/$name.import" ] && show_block "IMPORT ($name.import)" "$WORK/$name.import"
-    show_block "INPUT ($name.in)" "$inf"
-    [ -f "$exp" ] && show_block "ESPERADO" "$exp"
-    if [ -f "$hyp" ]; then show_block "OBTIDO" "$hyp"
-      if [ "$status" = "FAIL" ]; then
-        echo "${B}--- DIFF (- esperado / + obtido) ---${N}"
-        diff -u --label esperado --label obtido -B -w "$exp" "$hyp" | tail -n +3 | sed \
-          -e "s/^-/${R}-/" -e "s/^+/${G}+/" -e "s/\$/${N}/" | sed 's/^/    /'
-        echo
-      fi
+  if [ $QUIET -eq 0 ]; then
+    if [ $VERBOSE -eq 1 ] || { [ $FULL -eq 1 ] && [ "$status" != "PASS" ]; }; then
+      full_details
+    elif [ "$status" = "FAIL" ]; then
+      echo "    ${D}input:${N} $(tr '\n' ' ' < "$inf" | cut -c1-110)"
+      out="$(first_diff "$exp" "$hyp")"
+      printf '%s\t%s\n' "$(echo "$out" | head -1)" "$name" >> "$WORK/.sigs"
+      echo "$out" | tail -n +2
+      [ -s "$err" ] && { echo "    ${Y}stderr:${N} $(head -3 "$err" | tr '\n' ' ' | cut -c1-140)"; }
+    elif [ "$status" = "NOOUT" ] && [ -s "$err" ]; then
+      echo "    ${Y}stderr:${N} $(head -3 "$err" | tr '\n' ' ' | cut -c1-140)"
     fi
-    if [ -s "$err" ]; then
-      echo "${Y}--- STDERR / excepções Java ---${N}"; head -25 "$err" | sed 's/^/    /'; echo
-    fi
-    echo "${D}  ------------------------------------------------------------${N}"
   fi
   [ $STOP -eq 1 ] && [ "$status" != "PASS" ] && break
 done
+
+if [ $QUIET -eq 0 ] && [ -s "$WORK/.sigs" ] && [ "$FAIL" -gt 1 ]; then
+  echo
+  echo "${BD}Divergências mais comuns (o que o programa escreveu em vez do esperado):${N}"
+  cut -f1 "$WORK/.sigs" | sort | uniq -c | sort -rn | head -8 | while read -r c sig; do
+    printf "  %3s×  %s\n" "$c" "$sig"
+  done
+fi
 
 echo
 echo "${BD}================ RESUMO ================${N}"
 echo "Total: $TOTAL   ${G}Passaram: $PASS${N}   ${R}Falharam: $((FAIL+NOOUT))${N}"
 if [ ${#FAILED_LIST[@]} -gt 0 ]; then
   echo "${R}Falhados:${N}"; for f in "${FAILED_LIST[@]}"; do echo "  - $f"; done
+  echo "${D}Detalhe completo: ./tests/run-tests.sh -f <teste>   (ou -v)${N}"
   echo "${D}Diffs e outputs guardados em: tests/test-results/<teste>.diff|.obtained|.stderr${N}"
 fi
 [ $TOTAL -gt 0 ] && printf "Nota (%% de testes): %s%%\n" "$(( PASS * 100 / TOTAL ))"

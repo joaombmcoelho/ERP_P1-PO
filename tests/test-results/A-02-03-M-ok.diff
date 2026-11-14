@@ -1,5 +1,5 @@
 --- /work/tests/auto-tests/expected/A-02-03-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/.test-work/A-02-03-M-ok.outhyp	2026-11-14 19:45:06.728955357 +0000
++++ /work/tests/.test-work/A-02-03-M-ok.outhyp	2026-11-14 19:55:17.240600809 +0000
 @@ -14,13 +14,14 @@
  3 - Mostrar todos os clientes
  4 - Mostrar notificações de cliente
