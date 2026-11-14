@@ -2,8 +2,8 @@ package erp.product;
 
 import java.io.Serializable;
 
-
-public abstract class Product implements Serializable{
+                                             /** so it sorts maps by product id */
+public abstract class Product implements Serializable, Comparable<Product>{
 
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
@@ -75,6 +75,11 @@ public abstract class Product implements Serializable{
 
     public void addToTotalUnits(int unitsToAdd){
         _totalUnitsAvailable += unitsToAdd;
+    }
+
+    @Override
+    public int compareTo(Product otherProduct) {
+        return Integer.compare(_id, otherProduct.getID());
     }
 
     public abstract double getRecommendedPrice();

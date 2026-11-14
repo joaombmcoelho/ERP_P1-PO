@@ -1,5 +1,7 @@
 *******************JOAO**********************
 
+ACABAR FABRICA DE PRODUTOS E TO STRING DE BASKET; ERP MANAGER;
+ERP APP
 
 merge:
 git pull --no-rebase origin main
@@ -9,6 +11,11 @@ VER SERIALIZAVEIS INTERFACES
 
 VER ORIGIN SEARCH APENAS TRATA DE IMPROTADOS E SE EH PRECIOS DIZER ALGO SE FOR NAICONAL
 
-ACABAR AS 3 FUNCOES CHATAS DO ERP
-ERP MANAGER
-ERP APP
+VER SE SE PODIA JUNTAR ADDIITONAL SERIVES COM TRANSPORT METHOD NUMA CLASSE PARA AJUDAR ou se n vale a pena
+Opção 1: Criar uma classe DeliveryMethod (ou ShippingDetails) — A mais orientada a objetos
+Tanto um cabaz como uma encomenda têm exatamente o mesmo par de dados de envio: uma modalidade de transporte (TransportMethod) e uma lista de serviços adicionais (List<AdditionalService>).
+Se encapsulares esse par numa pequena classe DeliveryMethod (ou ShippingInfo):
+O Basket tem um atributo _deliveryMethod (inicializado com transporte null e lista vazia).
+Quando finalizas o cabaz (checkout), cada Order criada recebe uma cópia dessa configuração (ou o seu próprio DeliveryMethod com a modalidade e os serviços do cabaz, já que o enunciado pede que "o modelo deve permitir que cada encomenda seja enviada utilizando uma modalidade diferente" e "tenha os seus próprios serviços").
+O método toString() (ou getDescription()) vive uma única vez dentro de DeliveryMethod:
+

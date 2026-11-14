@@ -5,12 +5,13 @@ import java.io.Serializable;
 
 import java.util.Map;
 import java.util.Collections;
-import java.util.HashMap;
+import java.util.TreeMap;
 import java.util.List;
 import java.util.ArrayList;
 
 import erp.client.Client;
 import erp.purchase.OrderSplit;
+import erp.purchase.SingleOrderSplit;
 import erp.purchase.TransportMethod;
 import erp.company.Company;
 import erp.purchase.AdditionalService;
@@ -54,7 +55,7 @@ public class Basket implements Serializable {
         _defaultSplit = defaultSplit;
         _transportMethod = transportMethod;
         _additionalServices = additionalServices;
-        _basketLines = new HashMap<>();
+        _basketLines = new TreeMap<>(); /** sorts automatically by product id */
     }
 
     public Basket (Client client, Company company){                   
@@ -65,7 +66,7 @@ public class Basket implements Serializable {
         _defaultSplit = new SingleOrderSplit(); //todo remove
         _transportMethod = null;    //todo set later
         _additionalServices = new ArrayList<>();
-        _basketLines = new HashMap<>();
+        _basketLines = new TreeMap<>();
     }
 
     /** GETTERS */
@@ -90,7 +91,7 @@ public class Basket implements Serializable {
         return Collections.unmodifiableList(_additionalServices);
     }
 
-    public Map<Product, Integer> getBasketLines() {
+    public Map<Product, Integer> getAllBasketLines() {
         return Collections.unmodifiableMap(_basketLines);
     }
 
@@ -117,19 +118,20 @@ public class Basket implements Serializable {
         return tmString + addServicesString;
     }
 
-    public double getLineTotalCost(Product product, int quantity){
+    public double getTotalLineCost(Product product, int quantity){
         return (_company.getProductSellPrice(product) * quantity);
     }
 
     public double getAllLinesTotalCost(){
 
-        double TotalCost = 0;
+        double totalCost = 0;
+        
         for(Map.Entry<Product, Integer> entry : _basketLines.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
-            TotalCost += getLineTotalCost(product, quantity);
+            totalCost += getTotalLineCost(product, quantity);
         }
-        return TotalCost;
+        return totalCost;
     }
 
     /** SETTERS */
@@ -153,9 +155,10 @@ public class Basket implements Serializable {
             return (_client.equals(b.getClient()) && 
                     _company.equals(b.getCompany()) &&
                     _orderSplit.equals(b.getOrderSplit()) &&
+                    //todo transprot method can be null
                     _transportMethod.equals(b.getTransportMethod()) &&
                     _additionalServices.equals(b.getAdditionalServices()) &&
-                    _basketLines.equals(b.getBasketLines()));
+                    _basketLines.equals(b.getAllBasketLines()));
         }
         return false;
     }
@@ -229,9 +232,9 @@ public class Basket implements Serializable {
         }
 
         // problem if the company doesnt all the required quantities of products
-        for (Product product: _basketLines.keySet()){
-            int quantity = _basketLines.get(product);
-            
+        for(Map.Entry<Product, Integer> entry : _basketLines.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
             if (_company.getProductUnitsAvailable(product) < quantity){
                 return CheckoutStatus.NOT_ENOUGH;
             }
@@ -245,8 +248,9 @@ public class Basket implements Serializable {
         List <PurchaseLine> purchaseLines = new ArrayList<>();
 
         // iterate each product in the basket
-        for (Product product: _basketLines.keySet()){
-            int quantity = _basketLines.get(product);
+        for(Map.Entry<Product, Integer> entry : _basketLines.entrySet()) {
+            Product product = entry.getKey();
+            int quantity = entry.getValue();
 
             // lock sale price in the purchase lines
             double salePrice = _company.getProductSellPrice(product);
@@ -295,14 +299,29 @@ public class Basket implements Serializable {
     public String toString(){
 
         String string = "";
+        
         /** 1st line */
-
         /** emailCliente - idEmpresa - estratégia - descrição do transporte e serviços - preço total dos itens */
         string += (getClient().getEmail() + " - " + getCompany().getId() + " - " + getOrderSplit().getKey()
                     + " - " + getTransportDescription() + " - " + String.format("%.2f", getAllLinesTotalCost()));
+        
         /** basket lines */
         /** ␣␣idProduto - nome - quantidade - preço unitário - total da linha */
-        //todo print basket lines
+        for(Map.Entry<Product, Integer> entry : getAllBasketLines().entrySet()) {
+            Product product = entry.getKey();
+
+            int quantity = entry.getValue();
+            int productId = product.getID();
+            String productName = product.getName();
+            double unitPrice = _company.getProductSellPrice(product);
+            double totalLineCost = getTotalLineCost(product, quantity);
+
+            string += ("\n  " + productId + " - " + productName + " - " + quantity + " - "
+                        + String.format("%.2f", unitPrice) + " - " + String.format("%.2f", totalLineCost));
+        }
+        
+        return string;
+
     }
 }
 
