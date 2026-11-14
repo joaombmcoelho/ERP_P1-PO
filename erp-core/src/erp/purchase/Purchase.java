@@ -115,12 +115,12 @@ public class Purchase implements Serializable{
     @Override
     public String toString(){
         return _id + " - " + _client.getEmail() + " - " + _company.getId() + " - " +
-               String.format("%.2f", calcItemsCost()) + " - " + 
-               String.format("%.2f", calcOrdersCost()) + " - " + 
-               String.format("%.2f", calcTotalCost());
+                String.format("%.2f", calcItemsCost()) + " - " + 
+                String.format("%.2f", calcOrdersCost()) + " - " + 
+                String.format("%.2f", calcTotalCost());
     }
 
-   public double calcItemsCost(){
+    public double calcItemsCost(){
         double itemsCost = 0;
 
         for (Order ord: _orders){
@@ -128,9 +128,9 @@ public class Purchase implements Serializable{
         }
 
         return itemsCost;
-   }
+    }
 
-   public double calcOrdersCost(){
+    public double calcOrdersCost(){
         double ordersCost = 0;
 
         for (Order ord: _orders){
@@ -138,9 +138,9 @@ public class Purchase implements Serializable{
         }
 
         return ordersCost;
-   }
+    }
 
-   public double calcTotalCost(){
+    public double calcTotalCost(){
         double totalCost = 0;
 
         for (Order ord: _orders){
@@ -148,14 +148,17 @@ public class Purchase implements Serializable{
         }
 
         return totalCost;
-   }
+    }
 
     //! acabar -> erp
-   public List<Orders> getSortedOrders(){
+    public List<Order> getSortedOrders(){
         List<Order> sortedOrders = _orders;
 
         return sortedOrders;
-   }
+    }
 
-   public abstract String toDetailedString();
+    //! acabar -> erp
+    public String toDetailedString(){
+        return "";
+    }
 }

@@ -97,7 +97,7 @@ public class Order implements Serializable{
     @Override
     public String toString(){
         return _purchaseID + " - " + doTransportDescription() + " - " + calcDeliveryDate() + " - " +
-               String.format("%.2f",calcProcessingCost())  + " -" + getProductsIdString();
+                String.format("%.2f",calcProcessingCost())  + " - " + getProductsIdString();
     }
 
     /** Calculates the total value of purchase lines in this order */
@@ -115,7 +115,7 @@ public class Order implements Serializable{
 
         double itemsCost = calcItemsCost();
 
-        if (itemsCost() > 50){
+        if (itemsCost > 50){
             return 0.00;
         }
         else{
@@ -155,14 +155,14 @@ public class Order implements Serializable{
             }
         }
         
-        return _purchaseDate + bigBaseShipping + _transportMethod.getBaseShippingTime() + aSCost;
+        return _purchaseDate + bigBaseShipping + _transportMethod.getShippingTime() + aSCost;
     }
 
     public List<Integer> getProductsIdList(){
         List<Integer> productsID = new ArrayList<>();
 
         for (PurchaseLine pL: _purchaseLines){
-           productsID.add(pL.getProduct().getID());
+            productsID.add(pL.getProduct().getID());
         }
 
         Collections.sort(productsID);
@@ -181,15 +181,17 @@ public class Order implements Serializable{
     }
 
     public String doTransportDescription(){
-        List<AdditionalService> addS = _additionalServices.reversed();
+        List<AdditionalService> addSReversed = _additionalServices.reversed();
         String addS = "";
 
-        for (AdditionalService aS: _additionalServices){
+        for (AdditionalService aS: addSReversed){
             addS += "+" + aS.getKey();
         }
         return _transportMethod.getKey() + addS;
     }
     
     //! acabar -> erp
-    public abstract String getDetailedString();
+    public String getDetailedString(){
+        return "";
+    }
 }
