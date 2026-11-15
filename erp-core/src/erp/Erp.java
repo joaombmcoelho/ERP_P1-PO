@@ -104,7 +104,12 @@ class Erp implements Serializable {
 
     private void parseCompany(String[] lineContent){
         String name = lineContent[1];
-        registerCompany(name);
+        try {
+            registerCompany(name);
+        }
+        catch (InvalidCompanyNameException e){
+            /** never happens in files, ignore */
+        }
     }
 
     private void parseClient(String[] lineContent){
@@ -217,9 +222,15 @@ class Erp implements Serializable {
 
     /******************** SETTERS *********************/
 
-    public void advanceDate(int daysToAdvance){
-        _date += daysToAdvance;
-        // todo se if we raise exception for negative days
+    public boolean advanceDate(int daysToAdvance){
+
+        if (daysToAdvance <= 0){
+            return false;
+        }
+        else{
+            _date += daysToAdvance;
+            return true;
+        }
     }
 
     /** just used for import file */
@@ -231,23 +242,23 @@ class Erp implements Serializable {
 
     /******************** COMPANIES MENU *********************/
 
-    public boolean registerCompany(String name){
+    public int registerCompany(String name) throws InvalidCompanyNameException{
 
         /** problem if name is an empty String */
         if (name.trim().isEmpty()){
-            return false;
+            throw new InvalidCompanyNameException();
         }
 
         Company company = new Company(_nextCompanyId, name);
         _companies.put(_nextCompanyId, company);
 
         _nextCompanyId++;
-        return true;
+        return company.getId(); /** the app needs it for a message */
     }
 
     public String showCompany(int companyId) throws UnknownCompanyException{
 
-        Company company = getCompany(companyId);
+        Company company = getCompany(companyId); /** throws exception already */
         
         return company.toString();
     }
@@ -264,11 +275,11 @@ class Erp implements Serializable {
     }
 
 
-    public boolean changeInventory(int company_id, int product_id, int quantityToChange, double newRPFactor)
+    public boolean changeInventory(int companyId, int productId, int quantityToChange, double newRPFactor)
                     throws UnknownCompanyException, UnknownProductException{
 
-        Company company = getCompany(company_id);
-        Product product = getProduct(product_id);
+        Company company = getCompany(companyId); /** throws exception already */
+        Product product = getProduct(productId); /** throws exception already */
 
         if (company.changeInventory(product, quantityToChange, newRPFactor) != InventoryStatus.SUCCESS){
             return false;
@@ -430,13 +441,15 @@ class Erp implements Serializable {
     /******************** BASKET MENU *********************/
 
     public AddToBasketStatus changeProductInBasket(Basket basket, int productId, int quantityToChange) 
-        throws UnknownProductException{
+        throws UnknownProductException, ProductNotSuppliedException{
 
-        Product product = getProduct(productId);
+        Product product = getProduct(productId); /** throws exception already */
 
         AddToBasketStatus message = basket.addToBasket(product, quantityToChange);
         
-        // todo nao esquecer throwar product not supplied na app
+        if(message == AddToBasketStatus.NOT_SUPPLIED){
+            throw new ProductNotSuppliedException();
+        }
 
         return message;
     }

@@ -136,10 +136,12 @@ public class ErpManager {
     }
 
     public boolean advanceDate(int daysToAdvance){
-        _erp.advanceDate(daysToAdvance);
-        _fileChanged = true;
-        //! ver post it
-        return true;    //! -< mudar
+        boolean status = _erp.advanceDate(daysToAdvance);
+        
+        if (status){
+            _fileChanged = true;
+        }
+        return status;
     }
 
     public boolean hasUnsavedChanges(){
@@ -148,13 +150,11 @@ public class ErpManager {
 
     /******************** COMPANIES MENU *********************/
 
-    public boolean registerCompany(String name){
-        boolean status = _erp.registerCompany(name);
-        
-        if(status){
-            _fileChanged = true;
-        }
-        return status;
+    public int registerCompany(String name) throws InvalidCompanyNameException{
+
+        int companyId = _erp.registerCompany(name); /** already throws exception */
+        _fileChanged = true;
+        return companyId;
     }
 
     public String showCompany(int companyId) throws UnknownCompanyException{
@@ -221,9 +221,8 @@ public class ErpManager {
 
     /******************** BASKET MENU *********************/
 
-    //! passar esta logica apra o erp e throwar excecao e ver file changed aqui dps
     public AddToBasketStatus changeProductInBasket(Basket basket, int productId, int quantityToChange)
-                                                    throws UnknownProductException{
+                                                    throws UnknownProductException, ProductNotSuppliedException{
         AddToBasketStatus message = _erp.changeProductInBasket(basket, productId, quantityToChange);
         
         if(message == AddToBasketStatus.ADDED | message == AddToBasketStatus.REMOVED){

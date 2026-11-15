@@ -7,9 +7,13 @@ public class ProductNotSuppliedException extends Exception {
 
     private int _productID;
 
-    public ProductNotSuppliedException(int id){
-        super("Product Not Supplied:" + id);
-        _productID = id;
+    // public ProductNotSuppliedException(int id){
+    //     super("Product Not Supplied:" + id);
+    //     _productID = id;
+    // }
+
+    public ProductNotSuppliedException(){
+        super();
     }
 
     public int getProductID(){
