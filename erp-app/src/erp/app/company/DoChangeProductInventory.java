@@ -34,7 +34,7 @@ class DoChangeProductInventory extends Command<ErpManager> {
     protected final void execute() throws CommandException {
         int companyId = integerField("companyId");
         int productId = integerField("productId");
-        int amountToUpdate = integerField("ammountToUpdate");
+        int amountToUpdate = integerField("amountToUpdate");
         double priceFactor = realField("priceFactor");
 
         try{

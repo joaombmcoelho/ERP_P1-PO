@@ -23,7 +23,7 @@ class DoShowClient extends Command<ErpManager> {
     protected final void execute() throws CommandException {
         String email = stringField("email");
         try {
-            _receiver.showClient(email);
+            _display.popup(_receiver.showClient(email));
         }
         catch (UnknownClientException e){
             throw new UnknownClientKeyException(email);

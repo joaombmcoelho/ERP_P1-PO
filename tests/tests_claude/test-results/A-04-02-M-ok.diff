@@ -1,6 +1,6 @@
 --- /work/tests/tests_claude/auto-tests/expected/A-04-02-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/tests_claude/.test-work/A-04-02-M-ok.outhyp	2026-11-15 21:05:05.108137093 +0000
-@@ -14,11 +14,7 @@
++++ /work/tests/tests_claude/.test-work/A-04-02-M-ok.outhyp	2026-11-15 21:51:06.204572059 +0000
+@@ -14,10 +14,11 @@
  3 - Mostrar todos os clientes
  4 - Mostrar notificações de cliente
  0 - Sair
@@ -8,8 +8,11 @@
 -han@millenium.falcon.org - Han Solo - 0.00
 -luke@jedi.org - Luke Skywalker - 0.00
 -obiwan@jedi.org - Obi-Wan Kenobi - 0.00
--Menu de Gestão de Clientes
-+Escolha uma opção: Menu de Gestão de Clientes
++Escolha uma opção: 
++ahsoka@jedi.org - Ahsoka Tano - 0.0
++han@millenium.falcon.org - Han Solo - 0.0
++luke@jedi.org - Luke Skywalker - 0.0
++obiwan@jedi.org - Obi-Wan Kenobi - 0.0
+ Menu de Gestão de Clientes
  1 - Registar cliente
  2 - Mostrar cliente
- 3 - Mostrar todos os clientes

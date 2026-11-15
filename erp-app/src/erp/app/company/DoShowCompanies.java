@@ -16,7 +16,7 @@ class DoShowCompanies extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
-        _receiver.showAllCompanies();
+        _display.popup(_receiver.showAllCompanies());
     }
 
 }

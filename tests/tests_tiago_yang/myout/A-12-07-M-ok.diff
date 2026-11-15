@@ -1,6 +1,6 @@
 --- /work/tests/tests_tiago_yang/auto-tests/expected/A-12-07-M-ok.out	2026-11-06 20:11:20.000000000 +0000
-+++ /work/tests/tests_tiago_yang/myout/A-12-07-M-ok.myout	2026-11-15 21:05:19.410180900 +0000
-@@ -16,12 +16,7 @@
++++ /work/tests/tests_tiago_yang/myout/A-12-07-M-ok.myout	2026-11-15 21:51:26.751237268 +0000
+@@ -16,11 +16,12 @@
  5 - Mostrar produtos de uma empresa
  6 - Mostrar clientes de uma empresa
  0 - Sair
@@ -9,8 +9,12 @@
 -1 - 3 - 20 - 1.0 - 58.50
 -1 - 4 - 30 - 1.0 - 2.60
 -1 - 5 - 40 - 1.0 - 3.90
--Menu de Gestão de Empresas
-+Escolha uma opção: Introduza o número da empresa: Menu de Gestão de Empresas
++Escolha uma opção: Introduza o número da empresa: 
++1 - 1 - 10 - 1.0 - 13.5
++1 - 3 - 20 - 1.0 - 40.5
++1 - 5 - 40 - 1.0 - 2.7
++1 - 4 - 30 - 1.0 - 1.8
++1 - 2 - 10 - 1.0 - 180.0
+ Menu de Gestão de Empresas
  1 - Registar empresa
  2 - Mostrar empresa
- 3 - Mostrar todas as empresas

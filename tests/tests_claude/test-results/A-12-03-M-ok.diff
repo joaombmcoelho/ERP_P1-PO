@@ -1,12 +1,12 @@
 --- /work/tests/tests_claude/auto-tests/expected/A-12-03-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/tests_claude/.test-work/A-12-03-M-ok.outhyp	2026-11-15 21:05:05.833302749 +0000
-@@ -16,8 +16,7 @@
++++ /work/tests/tests_claude/.test-work/A-12-03-M-ok.outhyp	2026-11-15 21:51:04.571099564 +0000
+@@ -16,7 +16,8 @@
  5 - Mostrar produtos de uma empresa
  6 - Mostrar clientes de uma empresa
  0 - Sair
 -Escolha uma opção: Introduza o número da empresa: 1 - 3 - 10 - 1.0 - 58.50
--Menu de Gestão de Empresas
-+Escolha uma opção: Introduza o número da empresa: Menu de Gestão de Empresas
++Escolha uma opção: Introduza o número da empresa: 
++1 - 3 - 10 - 1.0 - 40.5
+ Menu de Gestão de Empresas
  1 - Registar empresa
  2 - Mostrar empresa
- 3 - Mostrar todas as empresas

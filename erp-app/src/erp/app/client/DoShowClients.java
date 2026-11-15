@@ -16,6 +16,6 @@ class DoShowClients extends Command<ErpManager> {
 
     @Override
     protected final void execute() {
-        _receiver.showAllClients();
+        _display.popup(_receiver.showAllClients());
     }
 }

@@ -1,5 +1,5 @@
 --- /work/tests/tests_claude/auto-tests/expected/A-02-02-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/tests_claude/.test-work/A-02-02-M-ok.outhyp	2026-11-15 21:05:04.736917988 +0000
++++ /work/tests/tests_claude/.test-work/A-02-02-M-ok.outhyp	2026-11-15 21:51:05.299378516 +0000
 @@ -8,7 +8,8 @@
  7 - Menu de gestão de clientes
  8 - Menu de gestão de compras

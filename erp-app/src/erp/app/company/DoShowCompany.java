@@ -24,7 +24,7 @@ class DoShowCompany extends Command<ErpManager> {
         int companyId = integerField("companyId");
 
         try{
-            _receiver.showCompany(companyId);
+            _display.popup(_receiver.showCompany(companyId));
         }
         catch (UnknownCompanyException e){
             throw new UnknownCompanyKeyException(companyId);

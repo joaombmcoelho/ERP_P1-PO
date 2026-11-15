@@ -1,5 +1,5 @@
 --- /work/tests/tests_claude/auto-tests/expected/A-09-02-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/tests_claude/.test-work/A-09-02-M-ok.outhyp	2026-11-15 21:05:05.561422013 +0000
++++ /work/tests/tests_claude/.test-work/A-09-02-M-ok.outhyp	2026-11-15 21:51:05.366599533 +0000
 @@ -14,18 +14,47 @@
  3 - Mostrar todos os produtos
  4 - Efectuar pesquisa de produtos
