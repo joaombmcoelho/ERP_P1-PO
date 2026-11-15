@@ -1,5 +1,5 @@
 --- /work/tests/auto-tests/expected/A-11-01-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/.test-work/A-11-01-M-ok.outhyp	2026-11-14 19:55:18.076098381 +0000
++++ /work/tests/.test-work/A-11-01-M-ok.outhyp	2026-11-15 12:50:42.654908038 +0000
 @@ -20,18 +20,32 @@
  3 - Mostrar todos os produtos
  4 - Efectuar pesquisa de produtos

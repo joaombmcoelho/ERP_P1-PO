@@ -12,12 +12,12 @@ class DoDisplayDate extends Command<ErpManager> {
 
     DoDisplayDate(ErpManager receiver) {
         super(Label.DISPLAY_DATE, receiver);
-	//FIXME maybe define fields
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        int date = _receiver.getCurrentDate();
+        _display.popup(Message.currentDate(date));
     }
 
 }

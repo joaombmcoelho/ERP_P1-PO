@@ -1,6 +1,7 @@
 package erp.app.company;
 
 import erp.ErpManager;
+
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 //FIXME maybe import classes
@@ -17,12 +18,29 @@ class DoChangeProductInventory extends Command<ErpManager> {
 
     DoChangeProductInventory(ErpManager receiver) {
         super(Label.CHANGE_PRODUCT_INVENTORY, receiver);
-        //FIXME maybe define fields
+
+        addIntegerField("companyId", Prompt.companyId());
+        addIntegerField("productId", erp.app.product.Prompt.productId());
+        addIntegerField("amountToUpdate", Prompt.amountToUpdate());
+        addRealField("priceFactor", Prompt.priceFactor());
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        int companyId = integerField("companyId");
+        int productId = integerField("productId");
+        int amountToUpdate = integerField("ammountToUpdate");
+        double priceFactor = realField("priceFactor");
+
+        if(_receiver.changeInventory(companyId, productId, 
+                                        amountToUpdate, priceFactor)){
+            /** inventory change successful */
+            _display.popup(Message.supplySuccessful(companyId, productId));
+        }
+        else {
+            /** error case */
+            _display.popup(Message.cannotChangeInventory(productId));
+        }
     }
 
 }

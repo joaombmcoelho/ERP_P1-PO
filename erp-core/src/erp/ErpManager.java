@@ -28,7 +28,7 @@ import erp.basket.Basket;
  */
 public class ErpManager {
 
-    //! ver como funciona flags de alteracoes dirty/changed no manager
+    private boolean _fileChanged = false;
 
     /** The object doing all the actual work. */
     private Erp _erp = new Erp();
@@ -54,6 +54,7 @@ public class ErpManager {
                                         new FileOutputStream(_filename)))){
             oos.writeObject(_erp);
         }
+        _fileChanged = false;
     }
 
     public void saveAs(String filename) throws MissingFileAssociationException, IOException {
@@ -69,6 +70,8 @@ public class ErpManager {
         } catch (MissingFileAssociationException e){
             e.printStackTrace();
         }
+
+        _fileChanged = false;
     }
 
     public void load(String filename) throws UnavailableFileException {
@@ -89,6 +92,7 @@ public class ErpManager {
             throw new UnavailableFileException(filename);
         }
 
+        _fileChanged = false;
     }
 
     public void importFile(String filename) throws ImportFileException {
@@ -98,6 +102,8 @@ public class ErpManager {
         } catch (IOException | UnrecognizedEntryException /* FIXME maybe other exceptions */ e) {
             throw new ImportFileException(filename, e);
         }
+
+        _fileChanged = false;
     }
 
     //FIXME implement other methods
@@ -129,14 +135,26 @@ public class ErpManager {
         return _erp.getBasket(email, companyId);
     }
 
-    public void advanceDate(int daysToAdvance){
+    public boolean advanceDate(int daysToAdvance){
         _erp.advanceDate(daysToAdvance);
+        _fileChanged = true;
+        //! ver post it
+        return true;    //! -< mudar
+    }
+
+    public boolean hasUnsavedChanges(){
+        return _fileChanged;
     }
 
     /******************** COMPANIES MENU *********************/
 
     public boolean registerCompany(String name){
-        return _erp.registerCompany(name);
+        boolean status = _erp.registerCompany(name);
+        
+        if(status){
+            _fileChanged = true;
+        }
+        return status;
     }
 
     public String showCompany(int companyId) throws UnknownCompanyException{
@@ -145,10 +163,15 @@ public class ErpManager {
 
     //todo RITA SHOW ALL COMPANIES
 
-    public boolean changeInventory (int company_id, int product_id, 
+    public boolean changeInventory (int companyId, int productId, 
                                     int quantityToChange, double newRPFactor)
                                     throws UnknownCompanyException, UnknownProductException{
-        return _erp.changeInventory(company_id, product_id, quantityToChange, newRPFactor);
+        boolean status =  _erp.changeInventory(companyId, productId, quantityToChange, newRPFactor);
+        
+        if(status){
+            _fileChanged = true;
+        }
+        return status;
     }
 
     //todo RITA SHOW COMPANY PRODUCTS
@@ -159,7 +182,12 @@ public class ErpManager {
 
     public boolean registerProduct(String type, String name, int basePrice, String category,
                                     int baseShippingTime, String[] extraArgs){
-        return _erp.registerProduct(type, name, basePrice, category, baseShippingTime, extraArgs);
+        boolean status = _erp.registerProduct(type, name, basePrice, category, baseShippingTime, extraArgs);
+
+        if(status){
+            _fileChanged = true;
+        }
+        return status;
     }
 
     //todo RITA SHOW PRODUCT
@@ -171,7 +199,12 @@ public class ErpManager {
     /******************** CLIENTS MENU *********************/
 
     public boolean registerClient(String email, String name){
-        return _erp.registerClient(email, name);
+        boolean status = _erp.registerClient(email, name);
+
+        if(status){
+            _fileChanged = true;
+        }
+        return status;
     }
 
     //todo RITA SHOW CLIENT
@@ -188,9 +221,16 @@ public class ErpManager {
 
     /******************** BASKET MENU *********************/
 
+    //! passar esta logica apra o erp e throwar excecao e ver file changed aqui dps
     public AddToBasketStatus changeProductInBasket(Basket basket, int productId, int quantityToChange)
                                                     throws UnknownProductException{
-        return _erp.changeProductInBasket(basket, productId, quantityToChange);
+        AddToBasketStatus message = _erp.changeProductInBasket(basket, productId, quantityToChange);
+        
+        if(message == AddToBasketStatus.ADDED | message == AddToBasketStatus.REMOVED){
+            _fileChanged = true;
+        }
+
+        return message;
     }
 
     public String showBasket(Basket basket){
@@ -204,8 +244,12 @@ public class ErpManager {
     //todo RITA ADD ADDITIONAL SERVICE
 
     /** finalizar compra do enunciado */
-    public Purchase checkout(Basket basket) throws InsufficientInventoryException{
-        return _erp.checkout(basket);
+    public Purchase checkout(Basket basket) throws InsufficientInventoryException {
+        Purchase purchase = _erp.checkout(basket);
+
+        /** only mark change file if passed exception */
+        _fileChanged = true;
+        return purchase;
     }
 
     //todo RITA todos os lists keys em baixo

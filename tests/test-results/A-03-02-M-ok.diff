@@ -1,14 +1,6 @@
 --- /work/tests/auto-tests/expected/A-03-02-M-ok.out	2026-11-14 18:16:41.000000000 +0000
-+++ /work/tests/.test-work/A-03-02-M-ok.outhyp	2026-11-14 19:55:17.364295099 +0000
-@@ -14,17 +14,15 @@
- 3 - Mostrar todos os clientes
- 4 - Mostrar notificações de cliente
- 0 - Sair
--Escolha uma opção: Introduza o nome do cliente: Introduza o endereço de correio do cliente: Novo cliente criado: pal@star.uni.
--Menu de Gestão de Clientes
-+Escolha uma opção: Menu de Gestão de Clientes
- 1 - Registar cliente
- 2 - Mostrar cliente
++++ /work/tests/.test-work/A-03-02-M-ok.outhyp	2026-11-15 12:50:41.819204959 +0000
+@@ -21,10 +21,7 @@
  3 - Mostrar todos os clientes
  4 - Mostrar notificações de cliente
  0 - Sair
@@ -16,8 +8,6 @@
 -obiwan@jedi.org - Obi-Wan Kenobi - 0.00
 -pal@star.uni - Palpatine - 0.00
 -Menu de Gestão de Clientes
-+Escolha uma opção: Número inválido!
-+Escolha uma opção: Número inválido!
 +Escolha uma opção: Menu de Gestão de Clientes
  1 - Registar cliente
  2 - Mostrar cliente

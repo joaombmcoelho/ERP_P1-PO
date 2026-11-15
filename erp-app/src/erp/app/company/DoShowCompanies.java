@@ -12,12 +12,11 @@ class DoShowCompanies extends Command<ErpManager> {
 
     DoShowCompanies(ErpManager receiver) {
         super(Label.SHOW_COMPANIES, receiver);
-        //FIXME maybe define fields
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        _receiver.showAllCompanies();
     }
 
 }

@@ -16,7 +16,6 @@ class DoShowClients extends Command<ErpManager> {
 
     @Override
     protected final void execute() {
-        //FIXME implement command
+        _receiver.showAllClients();
     }
-
 }

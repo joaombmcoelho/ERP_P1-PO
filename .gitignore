@@ -5,7 +5,7 @@
 *.jar
 
 ####### VS Code #######
-.vscode/
+#.vscode/                      ## for uilib to work
 *.code-workspace
 
 ####### macOS #######

@@ -1,6 +1,10 @@
 package erp.app.company;
 
 import erp.ErpManager;
+import erp.exceptions.UnknownCompanyException;
+
+import erp.app.exceptions.UnknownCompanyKeyException;
+
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 //FIXME maybe import classes
@@ -13,12 +17,19 @@ class DoShowCompanyClients extends Command<ErpManager> {
 
     DoShowCompanyClients(ErpManager receiver) {
         super(Label.SHOW_COMPANY_CLIENTS, receiver);
-        //FIXME maybe define fields
+        addIntegerField("companyId", Prompt.companyId());
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        int companyId = integerField("companyId");
+
+        try{
+            _receiver.showCompanyClients(companyId);
+        }
+        catch (UnknownCompanyException e){
+            throw new UnknownCompanyKeyException(companyId);
+        }
     }
 
 }

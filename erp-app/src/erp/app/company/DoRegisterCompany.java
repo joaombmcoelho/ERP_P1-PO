@@ -1,9 +1,13 @@
 package erp.app.company;
 
 import erp.ErpManager;
+import erp.exceptions.InvalidCompanyNameException;
+
+import erp.app.exceptions.CompanyRegistrationFailedException;
+
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-//FIXME maybe import classes
+
 
 /**
  * Registers a company; its identifier is assigned automatically.
@@ -12,12 +16,21 @@ class DoRegisterCompany extends Command<ErpManager> {
 
     DoRegisterCompany(ErpManager receiver) {
         super(Label.REGISTER_COMPANY, receiver);
-        //FIXME maybe define fields
+        addStringField("name", Prompt.companyName());
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        String companyName = stringField("name");
+
+        try{
+            int idCompany = _receiver.registerCompany();
+            _display.popup(Message.registrationSuccessful(idCompany));
+        }
+        catch (InvalidCompanyNameException e){
+            /** if name is an empty string */
+            throw new CompanyRegistrationFailedException(companyName);
+        }
     }
 
 }

@@ -1,9 +1,9 @@
 package erp.app.main;
 
 import erp.ErpManager;
+
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-//FIXME maybe import classes
 
 /**
  * Advances the current date by a number of days, raising the delivery
@@ -13,12 +13,24 @@ class DoAdvanceDate extends Command<ErpManager> {
 
     DoAdvanceDate(ErpManager receiver) {
         super(Label.ADVANCE_DATE, receiver);
-        //FIXME maybe define fields
+        addIntegerField("days", Prompt.daysToAdvance());
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        int daysToAdvance = integerField("days");
+
+        if(!(_receiver.advanceDate(daysToAdvance))){
+            /** daysToAdvance <= 0,  operacao sem efeito */
+        }
+        else {
+            /** if success, advance date and do nothing */
+        }
     }
+
+    //todo
+    //! o sistema deve desenrolar as notificacoes correspondentes a cada um dos
+    //! dias percorridos (ver gestao de tempo) Note-se que a situacao de uma
+    //! encomenda (entregue ou nao) nao eh guardada: deriva da data actual
 
 }
