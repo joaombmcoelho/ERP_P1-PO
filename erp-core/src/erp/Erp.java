@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.Arrays;
@@ -16,11 +17,15 @@ import java.util.LinkedHashMap;
 import erp.purchase.Purchase;
 //import this to use
 import erp.purchase.TransportMethod;
+import erp.purchase.AdditionalService;
+import erp.purchase.OrderSplit;
 import erp.company.Company;
 import erp.company.InventoryStatus;
+import erp.company.ProductInventory;
 import erp.client.Client;
 import erp.product.Product;
 import erp.product.ProductFactory;
+import erp.product.Search;
 import erp.basket.AddToBasketStatus;
 import erp.basket.Basket;
 import erp.basket.CheckoutStatus;
@@ -48,7 +53,10 @@ class Erp implements Serializable {
 
     private Map <Integer, Purchase> _purchases;
     private Map <String, TransportMethod> _transportMethods;
-    //todo RITA OS TEUS ATRIBUTOS
+    // todo added
+    private Map <String, OrderSplit> _orderSplit;
+    private Map <String, AdditionalService> _services;
+    private Map <String, Search> _productSearch;
 
     private Map <String, ProductFactory> _productFactories;
 
@@ -138,7 +146,10 @@ class Erp implements Serializable {
         _purchases = new TreeMap<>();   /** sort by key */
         _transportMethods = new LinkedHashMap<>();/** Sort by insertion order */
 
-        //todo RITAAAAAAAA DPS POE AQUI OS ATRIBUTOS Q ACRESCENTASTE EM CIMA
+        //todo added: not sure product search TreeMap or LinkedHash
+        _orderSplit = new LinkedHashMap<>();
+        _services = new LinkedHashMap<>();
+        _productSearch = new LinkedHashMap<>();
 
         _productFactories = new LinkedHashMap<>();
         registerProductFactory(new NationalProductFactory());
@@ -242,6 +253,16 @@ class Erp implements Serializable {
     }
 
     //todo RITA SHOW ALL COMPANIES
+    public String showAllCompanies(){
+        String _companiesString = "";
+
+        for(Company c: _companies.values()){
+            _companiesString += "\n" + c.toString();
+        }
+
+        return _companiesString;
+    }
+
 
     public boolean changeInventory(int company_id, int product_id, int quantityToChange, double newRPFactor)
                     throws UnknownCompanyException, UnknownProductException{
@@ -255,7 +276,21 @@ class Erp implements Serializable {
         return true;
     }
 
-    //todo RITA SHOW COMPANY PRODUCTS
+    //! todo not sure verificar!!!!!!
+    public String showCompanyProducts(int companyID) throws UnknownCompanyException {
+        Company company = getCompany(companyID);
+        String companyProdString = "";
+
+        if (company == null){
+            throw new UnknownCompanyException(companyID);
+        }
+
+        for(ProductInventory i: company.getAllInventory().values()) {
+            companyProdString += "\n" + company.getId() + " - " + i.toString();
+        }
+
+        return companyProdString;
+    }
     
     //todo RITA SHOW COMPANY CLIENTS /** FAZ NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
 
@@ -310,10 +345,36 @@ class Erp implements Serializable {
     }
 
     //todo RITA SHOW PRODUCT
+    public String showProduct(int productID) throws UnknownProductException{
+        Product product = getProduct(productID);
+
+        if (product == null){
+            throw new UnknownProductException(productID);
+        }
+        return product.toString();
+    }
 
     //todo RITA SHOW ALL PRODUCTS
+    public String showAllProducts(){
+        String _productsString = "";
 
-    //todo RITA SEARCH
+        for(Product p: _products.values()){
+            _productsString += "\n" + p.toString();
+        }
+
+        return _productsString;
+    }
+
+    //todo VERRRRRRRRRRRRRRRRR
+    public String Search(String filter, String key){
+        String search = "";
+
+        // for (Product p: _products.values()){
+
+        // }
+
+        return "";
+        }
 
     /******************** CLIENTS MENU *********************/
 
@@ -336,8 +397,27 @@ class Erp implements Serializable {
     }
 
     //todo RITA SHOW CLIENT 
+    public String showClient(String email) throws UnknownClientException{
+        Client client = _clients.get(email.toLowerCase());
+
+        if (client == null){
+            throw new UnknownClientException(email);
+        }
+
+        return client.toString();
+    }
 
     //todo RITA SHOW ALL CLIENTS
+    public String showAllClients(){
+         String _clientsString = "";
+
+        for(Client c: _clients.values()){
+            _clientsString += "\n" + c.toString();
+        }
+
+        return _clientsString;
+    }
+    
 
     //todo RITA SHOW CLIENT NOTIFICATIONS   /** FAZ NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
 
@@ -366,10 +446,19 @@ class Erp implements Serializable {
     }
 
     //todo RITA SET ORDER SPLIT
+    public void addOrderSplit(OrderSplit newOrderSplit){
+        _orderSplit.put(newOrderSplit.getKey(), newOrderSplit);
+    }
 
     //todo RITA SET TRANSPORT METHOD
+    public void addTransportMethod(TransportMethod newTransportMethod){
+        _transportMethods.put(newTransportMethod.getKey(), newTransportMethod);
+    }
 
     //todo RITA ADD ADDITIONAL SERVICE
+    public void addAdditionalService(AdditionalService newAdditionalService){
+        _services.put(newAdditionalService.getKey(), newAdditionalService);
+    }
 
     /** finalizar compra do enunciado */
     public Purchase checkout(Basket basket) throws InsufficientInventoryException{
@@ -398,16 +487,63 @@ class Erp implements Serializable {
     }
 
     //todo RITA todos os lists keys em baixo
+    public List<String> listProductTypeKeys(){
+        List<String> productTypeKeys = new ArrayList<>();
 
+        for(Product p: _products.values()){
+            productTypeKeys.add(p.getType());
+        }
+
+        return productTypeKeys;
+    }
+
+    public List<String> listCategoryKeys(){
+        List<String> categoryKeys = new ArrayList<>();
+
+        for(Product p: _products.values()){
+            categoryKeys.add(p.getCategory().name());
+        }
+
+        return categoryKeys;
+    }
+
+    public List<String> searchFilterKeys(){
+        List<String> searchFilterKeys = new ArrayList<>();
+
+        for(Search s: _productSearch.values()){
+            searchFilterKeys.add(s.getKey());
+        }
+
+        return searchFilterKeys;
+    }
+
+    public List<String> listOrderSplitKeys(){
+        List<String> orderSplitKeys = new ArrayList<>();
+
+        for(OrderSplit oS: _orderSplit.values()){
+            orderSplitKeys.add(oS.getKey());
+        }
+
+        return orderSplitKeys;
+    }
+
+    public List<String> listTransportMethodsKeys(){
+        List<String> transportKeys = new ArrayList<>();
+
+        for(TransportMethod tM: _transportMethods.values()){
+            transportKeys.add(tM.getKey());
+        }
+
+        return transportKeys;
+    }
+
+    public List<String> listAdditionalServicesKeys(){
+        List<String> servicesKeys = new ArrayList<>();
+
+        for(AdditionalService aS: _services.values()){
+            servicesKeys.add(aS.getKey());
+        }
+
+        return servicesKeys;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
