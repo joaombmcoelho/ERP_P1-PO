@@ -1,0 +1,89 @@
+--- /work/tests/tests_claude/auto-tests/expected/A-09-04-M-ok.out	2026-11-14 18:16:41.000000000 +0000
++++ /work/tests/tests_claude/.test-work/A-09-04-M-ok.outhyp	2026-11-15 21:05:05.627912981 +0000
+@@ -14,32 +14,82 @@
+ 3 - Mostrar todos os produtos
+ 4 - Efectuar pesquisa de produtos
+ 0 - Sair
+-Escolha uma opção: Introduza o tipo de produto: Introduza o nome do produto: Introduza o preço base: Introduza a categoria: Introduza o prazo de entrega base: Novo produto criado com o número 3.
++Escolha uma opção: Menu de Gestão de Produtos
++1 - Registar produto
++2 - Mostrar produto
++3 - Mostrar todos os produtos
++4 - Efectuar pesquisa de produtos
++0 - Sair
++Escolha uma opção: Número inválido!
++Escolha uma opção: Número inválido!
++Escolha uma opção: Opção inválida!
++Menu de Gestão de Produtos
++1 - Registar produto
++2 - Mostrar produto
++3 - Mostrar todos os produtos
++4 - Efectuar pesquisa de produtos
++0 - Sair
++Escolha uma opção: Número inválido!
++Escolha uma opção: Opção inválida!
+ Menu de Gestão de Produtos
+ 1 - Registar produto
+ 2 - Mostrar produto
+ 3 - Mostrar todos os produtos
+ 4 - Efectuar pesquisa de produtos
+ 0 - Sair
+-Escolha uma opção: Introduza o tipo de produto: Introduza o nome do produto: Introduza o preço base: Introduza a categoria: Introduza o prazo de entrega base: Introduza o país de origem: Introduza a taxa alfandegária: Novo produto criado com o número 4.
++Escolha uma opção: Menu de Gestão de Produtos
++1 - Registar produto
++2 - Mostrar produto
++3 - Mostrar todos os produtos
++4 - Efectuar pesquisa de produtos
++0 - Sair
++Escolha uma opção: Número inválido!
++Escolha uma opção: Número inválido!
++Escolha uma opção: Opção inválida!
+ Menu de Gestão de Produtos
+ 1 - Registar produto
+ 2 - Mostrar produto
+ 3 - Mostrar todos os produtos
+ 4 - Efectuar pesquisa de produtos
+ 0 - Sair
+-Escolha uma opção: Introduza o número do produto: 3 - NACIONAL - batata - ALIMENTAR - 12.00 - 15.60 - 12 - 0
++Escolha uma opção: Número inválido!
++Escolha uma opção: Opção inválida!
+ Menu de Gestão de Produtos
+ 1 - Registar produto
+ 2 - Mostrar produto
+ 3 - Mostrar todos os produtos
+ 4 - Efectuar pesquisa de produtos
+ 0 - Sair
+-Escolha uma opção: Introduza o número do produto: 4 - IMPORTADO - imported - VESTUARIO - 13.00 - 14.56 - 123 - 0 - UK - 12.0
++Escolha uma opção: Número inválido!
++Escolha uma opção: Opção inválida!
+ Menu de Gestão de Produtos
+ 1 - Registar produto
+ 2 - Mostrar produto
+ 3 - Mostrar todos os produtos
++4 - Efectuar pesquisa de produtos
++0 - Sair
++Escolha uma opção: Menu de Gestão de Produtos
++1 - Registar produto
++2 - Mostrar produto
++3 - Mostrar todos os produtos
++4 - Efectuar pesquisa de produtos
++0 - Sair
++Escolha uma opção: Menu de Gestão de Produtos
++1 - Registar produto
++2 - Mostrar produto
++3 - Mostrar todos os produtos
++4 - Efectuar pesquisa de produtos
++0 - Sair
++Escolha uma opção: Menu de Gestão de Produtos
++1 - Registar produto
++2 - Mostrar produto
++3 - Mostrar todos os produtos
++4 - Efectuar pesquisa de produtos
++0 - Sair
++Escolha uma opção: Menu de Gestão de Produtos
++1 - Registar produto
++2 - Mostrar produto
++3 - Mostrar todos os produtos
+ 4 - Efectuar pesquisa de produtos
+ 0 - Sair
+ Escolha uma opção: Menu Principal

@@ -1,6 +1,11 @@
 package erp.app.company;
 
 import erp.ErpManager;
+import erp.exceptions.UnknownCompanyException;
+import erp.exceptions.UnknownProductException;
+
+import erp.app.exceptions.UnknownCompanyKeyException;
+import erp.app.exceptions.UnknownProductKeyException;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
@@ -32,14 +37,24 @@ class DoChangeProductInventory extends Command<ErpManager> {
         int amountToUpdate = integerField("ammountToUpdate");
         double priceFactor = realField("priceFactor");
 
-        if(_receiver.changeInventory(companyId, productId, 
-                                        amountToUpdate, priceFactor)){
-            /** inventory change successful */
-            _display.popup(Message.supplySuccessful(companyId, productId));
+        try{
+            boolean hasChanged = _receiver.changeInventory(companyId, productId, 
+                                                            amountToUpdate, priceFactor);
+            
+            if(hasChanged){
+                /** inventory change successful */
+                _display.popup(Message.supplySuccessful(companyId, productId));
+            }
+            else {
+                /** error case */
+                _display.popup(Message.cannotChangeInventory(productId));
+            }
         }
-        else {
-            /** error case */
-            _display.popup(Message.cannotChangeInventory(productId));
+        catch (UnknownCompanyException e1){
+            throw new UnknownCompanyKeyException(companyId);
+        }
+        catch (UnknownProductException e2){
+            throw new UnknownProductKeyException(productId);
         }
     }
 

@@ -1,0 +1,23 @@
+--- /work/tests/tests_claude/auto-tests/expected/A-02-02-M-ok.out	2026-11-14 18:16:41.000000000 +0000
++++ /work/tests/tests_claude/.test-work/A-02-02-M-ok.outhyp	2026-11-15 21:05:04.736917988 +0000
+@@ -8,7 +8,8 @@
+ 7 - Menu de gestão de clientes
+ 8 - Menu de gestão de compras
+ 0 - Sair
+-Escolha uma opção: Ficheiro a abrir: Menu Principal
++Escolha uma opção: Ficheiro a abrir: Abrir ficheiro: Operação inválida: Problema ao abrir ficheiro: Erro a processar ficheiro produtos.dat
++Menu Principal
+ 1 - Abrir ficheiro
+ 2 - Guardar ficheiro
+ 3 - Ver data
+@@ -24,9 +25,7 @@
+ 3 - Mostrar todos os produtos
+ 4 - Efectuar pesquisa de produtos
+ 0 - Sair
+-Escolha uma opção: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 0
+-2 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 0 - China - 30.0
+-Menu de Gestão de Produtos
++Escolha uma opção: Menu de Gestão de Produtos
+ 1 - Registar produto
+ 2 - Mostrar produto
+ 3 - Mostrar todos os produtos

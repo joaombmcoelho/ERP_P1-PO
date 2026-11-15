@@ -24,7 +24,7 @@ class DoRegisterCompany extends Command<ErpManager> {
         String companyName = stringField("name");
 
         try{
-            int idCompany = _receiver.registerCompany();
+            int idCompany = _receiver.registerCompany(companyName);
             _display.popup(Message.registrationSuccessful(idCompany));
         }
         catch (InvalidCompanyNameException e){
