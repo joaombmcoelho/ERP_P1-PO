@@ -11,7 +11,15 @@ import java.io.ObjectInputStream;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 
+//Added 
+import java.util.List;
+
 import erp.purchase.Purchase;
+import erp.purchase.TransportMethod;
+import erp.purchase.OrderSplit;
+import erp.purchase.AdditionalService;
+// till here
+
 //import this to use
 import erp.company.Company;
 import erp.client.Client;
@@ -162,6 +170,9 @@ public class ErpManager {
     }
 
     //todo RITA SHOW ALL COMPANIES
+    public String showAllCompanies(){
+        return _erp.showAllCompanies();
+    }
 
     public boolean changeInventory (int companyId, int productId, 
                                     int quantityToChange, double newRPFactor)
@@ -175,8 +186,14 @@ public class ErpManager {
     }
 
     //todo RITA SHOW COMPANY PRODUCTS
+    public String showCompanyProducts(int companyID) throws UnknownCompanyException {
+        return _erp.showCompanyProducts(companyID);
+    }
     
     //todo RITA SHOW COMPANY CLIENTS
+    public String showCompanyClients(int companyID) throws UnknownCompanyException {
+        return _erp.showCompanyClients(companyID);
+    }
 
     /******************** PRODUCTS MENU *********************/
 
@@ -191,10 +208,19 @@ public class ErpManager {
     }
 
     //todo RITA SHOW PRODUCT
+    public String showProduct(int productID) throws UnknownProductException {
+        return _erp.showProduct(productID);
+    }
 
     //todo RITA SHOW ALL PRODUCTS
+    public String showAllProducts(){
+        return _erp.showAllProducts();
+    }
 
     //todo RITA SEARCH
+    public String Search(String filter, String key) {
+        return "";
+    }
 
     /******************** CLIENTS MENU *********************/
 
@@ -208,16 +234,31 @@ public class ErpManager {
     }
 
     //todo RITA SHOW CLIENT
+    public String showClient(String email) throws UnknownClientException {
+        return _erp.showClient(email);
+    }
 
     //todo RITA SHOW ALL CLIENTS
+    public String showAllClients(){
+        return _erp.showAllClients();
+    }
 
     //todo RITA SHOW CLIENT NOTIFICATIONS
+    public String showClientNotifications(){
+        return "";
+    }
 
     /******************** PURCHASE MENU *********************/
 
     //todo RITA SHOW PURCHASE
+    public String showPurchase(int purchaseID) throws UnknownPurchaseException {
+        return "";
+    }
 
     //todo RITA SHOW ALL PURCHASES
+    public String showAllPurchases(){
+        return "";
+    }
 
     /******************** BASKET MENU *********************/
 
@@ -237,10 +278,20 @@ public class ErpManager {
     }
 
     //todo RITA SET ORDER SPLIT
+    public void addOrderSplit(OrderSplit newOrderSplit){
+        _erp.addOrderSplit(newOrderSplit);
+    }
 
     //todo RITA SET TRANSPORT METHOD
+    public void addTransportMethod(TransportMethod newTransport){
+        _erp.addTransportMethod(newTransport);
+    }
 
     //todo RITA ADD ADDITIONAL SERVICE
+    public void addAdditionalService(AdditionalService newService){
+        _erp.addAdditionalService(newService);
+    }
+
 
     /** finalizar compra do enunciado */
     public Purchase checkout(Basket basket) throws InsufficientInventoryException {
@@ -252,6 +303,28 @@ public class ErpManager {
     }
 
     //todo RITA todos os lists keys em baixo
+    public List<String> listProductTypeKeys(){
+        return _erp.listProductTypeKeys();
+    }
 
+    public List<String> listCategoryKeys(){
+        return _erp.listCategoryKeys();
+    }
+
+    public List<String> searchFilterKeys(){
+        return _erp.searchFilterKeys();
+    }
+
+    public List<String> listOrderSplitKeys(){
+        return _erp.listOrderSplitKeys();
+    }
+
+    public List<String> listTransportMethodsKeys(){
+        return _erp.listTransportMethodsKeys();
+    }
+
+    public List<String> listAdditionalServicesKeys(){
+        return _erp.listAdditionalServicesKeys();
+    }
 
 }

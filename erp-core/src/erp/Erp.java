@@ -303,7 +303,21 @@ class Erp implements Serializable {
         return companyProdString;
     }
     
-    //todo RITA SHOW COMPANY CLIENTS /** FAZ NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
+    //todo RITA SHOW COMPANY CLIENTS (n necessario na entrega)
+    public String showCompanyClients (int companyID) throws UnknownCompanyException {
+        Company company = getCompany(companyID);
+        String companyClientString = "";
+
+        if (company == null){
+            throw new UnknownCompanyException(companyID);
+        }
+
+        for(Client c: company.getAllClients()) {
+            companyClientString += "\n" + company.getId() + " - " + c.toString();
+        }
+
+        return companyClientString;
+    }
 
     /******************** PRODUCTS MENU *********************/
 
