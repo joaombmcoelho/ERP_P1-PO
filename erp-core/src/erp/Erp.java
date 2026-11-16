@@ -129,7 +129,12 @@ class Erp implements Serializable {
         int baseShippingTime = Integer.parseInt(lineContent[4]);
         String[] extraArgs = Arrays.copyOfRange(lineContent, 5, lineContent.length);
 
-        registerProduct(type, name, basePrice, Category, baseShippingTime, extraArgs);
+        try{
+            registerProduct(type, name, basePrice, Category, baseShippingTime, extraArgs);
+        }
+        catch (InvalidProductFieldsException e){
+            /** never happens in files, ignore */
+        }
     }
                                                             /** never happens */    /** never happens */
     private void parseSupply (String[] lineContent) throws UnknownCompanyException, UnknownProductException{
@@ -343,22 +348,22 @@ class Erp implements Serializable {
         return false;
     }
 
-    public boolean registerProduct(String type, String name, int basePrice, String category,
-                                    int baseShippingTime, String[] extraArgs){
+    public int registerProduct(String type, String name, int basePrice, String category,
+                                int baseShippingTime, String[] extraArgs) throws InvalidProductFieldsException {
         
         /** problem if type is not registered in the system (never happens) */
         if (!(_productFactories.containsKey(type))){
-            return false;
+            throw new InvalidProductFieldsException();
         }
 
         /** problem if arguments are invalid */
         if (name.trim().isEmpty() | basePrice <= 0 | baseShippingTime <= 0){
-            return false;
+            throw new InvalidProductFieldsException();
         }
 
         /** problem if category doesnt exist */
-        if (! categoryExists(category)){
-            return false;
+        if (!categoryExists(category)){
+            throw new InvalidProductFieldsException();
         }
 
         ProductFactory pf = _productFactories.get(type);
@@ -368,11 +373,11 @@ class Erp implements Serializable {
                                         baseShippingTime, extraArgs);
             _products.put(product.getID(), product);
             _nextProductId++;
-            return true;
+            return product.getID();
         }
         /** if extraArgs are invalid, verified in the factory */
         catch (InvalidProductException e){
-            return false;
+            throw new InvalidProductFieldsException();
         }
     }
 

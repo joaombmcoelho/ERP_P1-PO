@@ -197,14 +197,16 @@ public class ErpManager {
 
     /******************** PRODUCTS MENU *********************/
 
-    public boolean registerProduct(String type, String name, int basePrice, String category,
-                                    int baseShippingTime, String[] extraArgs){
-        boolean status = _erp.registerProduct(type, name, basePrice, category, baseShippingTime, extraArgs);
+    public int registerProduct(String type, String name, int basePrice, String category,
+                                    int baseShippingTime, String[] extraArgs) 
+                                    throws InvalidProductFieldsException{
+        
+        /** already throws exception */
+        int productId = _erp.registerProduct(type, name, basePrice, category, 
+                                                baseShippingTime, extraArgs);
 
-        if(status){
-            _fileChanged = true;
-        }
-        return status;
+        _fileChanged = true;
+        return productId;
     }
 
     //todo RITA SHOW PRODUCT
