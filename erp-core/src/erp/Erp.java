@@ -437,7 +437,7 @@ class Erp implements Serializable {
          String _clientsString = "";
 
         for(Client c: _clients.values()){
-            _clientsString += "\n" + c.toString();
+            _clientsString += c.toString() + "\n";
         }
 
         return _clientsString;

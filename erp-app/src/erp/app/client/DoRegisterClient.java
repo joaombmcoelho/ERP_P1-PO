@@ -21,7 +21,7 @@ class DoRegisterClient extends Command<ErpManager> {
         String name = stringField("name");
         String email = stringField("email");
 
-        if(!_receiver.registerClient(name, email)){
+        if(!_receiver.registerClient(email, name)){
             throw new ClientRegistrationFailedException(name, email);
         }
 

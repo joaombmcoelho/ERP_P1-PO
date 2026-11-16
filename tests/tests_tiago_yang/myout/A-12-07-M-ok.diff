@@ -1,5 +1,5 @@
 --- /work/tests/tests_tiago_yang/auto-tests/expected/A-12-07-M-ok.out	2026-11-06 20:11:20.000000000 +0000
-+++ /work/tests/tests_tiago_yang/myout/A-12-07-M-ok.myout	2026-11-15 21:51:26.751237268 +0000
++++ /work/tests/tests_tiago_yang/myout/A-12-07-M-ok.myout	2026-11-16 11:00:52.602746592 +0000
 @@ -16,11 +16,12 @@
  5 - Mostrar produtos de uma empresa
  6 - Mostrar clientes de uma empresa

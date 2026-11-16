@@ -111,7 +111,7 @@ public class ErpManager {
             throw new ImportFileException(filename, e);
         }
 
-        _fileChanged = false;
+        _fileChanged = true;
     }
 
     //FIXME implement other methods
