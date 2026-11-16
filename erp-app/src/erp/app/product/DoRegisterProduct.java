@@ -48,7 +48,7 @@ class DoRegisterProduct extends Command<ErpManager> {
 
         try {
             int productId = _receiver.registerProduct(productType, productName, basePrice,
-                                                      productCategory, baseDelay, extraArgs);
+                                                        productCategory, baseDelay, extraArgs);
             _display.popup(Message.registrationSuccessful(productId));
         }
 

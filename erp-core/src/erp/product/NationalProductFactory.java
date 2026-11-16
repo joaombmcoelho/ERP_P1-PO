@@ -20,6 +20,6 @@ public class NationalProductFactory implements ProductFactory{
 
     @Override
     public String getKey() {
-        return "NATIONAL";
+        return "NACIONAL";
     }
 }

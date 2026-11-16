@@ -59,7 +59,7 @@ public class NationalProduct extends Product {
     //todo put in the main class and see equals
     @Override 
     public String toString(){
-        return _id + " - " + getType() + " - "+ _name + " - " + _category + " - " + _basePrice + " - " +
-         String.format("%.2f", getRecommendedPrice()) + " - " + _baseShippingTime + " - " + _totalUnitsAvailable + " - " + getAdditionalInfo() ;
+        return _id + " - " + getType() + " - "+ _name + " - " + _category + " - " + String.format("%.2f",(double)_basePrice) + " - " +
+         String.format("%.2f", getRecommendedPrice()) + " - " + _baseShippingTime + " - " + _totalUnitsAvailable;
     }
 }   

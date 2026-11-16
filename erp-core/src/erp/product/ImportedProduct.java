@@ -51,7 +51,7 @@ public class ImportedProduct extends Product{
     
     @Override 
     public String toString(){
-        return _id + " - " + getType() + " - "+ _name + " - " + _category + " - " + _basePrice + " - " +
+        return _id + " - " + getType() + " - "+ _name + " - " + _category + " - " + String.format("%.2f",(double)_basePrice) + " - " +
          String.format("%.2f", getRecommendedPrice()) + " - " + _baseShippingTime + " - " + _totalUnitsAvailable + " - " + getAdditionalInfo() ;
     }
 

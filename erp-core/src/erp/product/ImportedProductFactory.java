@@ -34,6 +34,6 @@ public class ImportedProductFactory implements ProductFactory{
 
     @Override
     public String getKey() {
-        return "IMPORTED";
+        return "IMPORTADO";
     }
 }

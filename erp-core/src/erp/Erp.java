@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
+
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 
@@ -351,6 +352,14 @@ class Erp implements Serializable {
     public int registerProduct(String type, String name, int basePrice, String category,
                                 int baseShippingTime, String[] extraArgs) throws InvalidProductFieldsException {
         
+        /** convert to portuguese, because files handle it in english, but user dont */
+        if (type.equals("NATIONAL")) {
+            type = "NACIONAL";
+        }
+        else if (type.equals("IMPORTED")) {
+            type = "IMPORTADO";
+        }
+        
         /** problem if type is not registered in the system (never happens) */
         if (!(_productFactories.containsKey(type))){
             throw new InvalidProductFieldsException();
@@ -408,12 +417,16 @@ class Erp implements Serializable {
     }
 
     //todo SEARCH
-    public List<String> search(String filter) throws InvalidSearchFilterException{
-        Search s = _productSearch.get(filter.toUpperCase());
+    public List<String> search(String filter, String term) throws InvalidSearchFilterException{
+        Search s = _productSearch.get(filter/**.toUpperCase()*/);   //public test only accepts uppercase
+
+        if (s == null){
+            throw new InvalidSearchFilterException();
+        }
         List<String> searchList = new ArrayList<>();
 
         for (Product p: _products.values()) {
-            if(s.search(p, s.getKey())) {
+            if(s.search(p, term)) {
                 searchList.add(p.toString());
             }
         }
@@ -423,7 +436,8 @@ class Erp implements Serializable {
         }
 
         return searchList;
-        }
+        
+    }
 
     /******************** CLIENTS MENU *********************/
 
