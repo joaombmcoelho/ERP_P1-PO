@@ -7,6 +7,9 @@ import erp.product.Product;
 
 public class DeliveryDateSplit implements OrderSplit {
     
+    @java.io.Serial
+    private static final long serialVersionUID = 202608261200L;
+
     public double calcMeanProductShippingTime(List <PurchaseLine> purchaseLines){
 
         int shippingTimeSum = 0;

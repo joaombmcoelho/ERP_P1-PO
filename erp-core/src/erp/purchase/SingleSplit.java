@@ -5,6 +5,9 @@ import java.util.List;
 
 public class SingleSplit implements OrderSplit {
     
+    @java.io.Serial
+    private static final long serialVersionUID = 202608261200L;
+
     @Override 
     public List<List<PurchaseLine>> split(List <PurchaseLine> purchaseLines){
         

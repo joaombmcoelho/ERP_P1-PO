@@ -1,6 +1,9 @@
 package erp.product;
 
 public class ImportedProduct extends Product{
+    
+    @java.io.Serial
+    private static final long serialVersionUID = 202608261200L;
 
     private String _country;
     private double _TAX;

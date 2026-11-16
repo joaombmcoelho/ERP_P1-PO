@@ -2,6 +2,9 @@ package erp.purchase;
 
 public class GiftCard implements AdditionalService{
 
+    @java.io.Serial
+    private static final long serialVersionUID = 202608261200L;
+
     @Override 
     public int getAdditionalCost(){
         return 1;

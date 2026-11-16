@@ -2,6 +2,9 @@ package erp.product;
 
 public class CategorySearch implements Search{
 
+    @java.io.Serial
+    private static final long serialVersionUID = 202608261200L;
+
     @Override 
     public boolean search(Product product, String term){
         

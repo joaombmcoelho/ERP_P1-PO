@@ -14,7 +14,7 @@ import erp.product.Product;
 // import erp.purchase.Purchase;
 
 public interface Search extends Serializable{
-    
+
     public boolean search(Product product, String term);
 
     public String getKey();

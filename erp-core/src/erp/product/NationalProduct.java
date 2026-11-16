@@ -21,6 +21,9 @@ import java.util.List;
 
 public class NationalProduct extends Product {
 
+    @java.io.Serial
+    private static final long serialVersionUID = 202608261200L;
+
     public NationalProduct(int id, String name,Category category, int basePrice, int baseShippingTime){
         super(id, name, category, basePrice, baseShippingTime);
     }
