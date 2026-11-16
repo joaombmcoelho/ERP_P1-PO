@@ -218,8 +218,8 @@ public class ErpManager {
     }
 
     //todo RITA SEARCH
-    public String Search(String filter, String key) {
-        return "";
+    public List<String> Search(String filter) {
+        return _erp.Search(filter);
     }
 
     /******************** CLIENTS MENU *********************/

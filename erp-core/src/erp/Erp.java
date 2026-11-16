@@ -30,6 +30,9 @@ import erp.basket.AddToBasketStatus;
 import erp.basket.Basket;
 import erp.basket.CheckoutStatus;
 import erp.product.Category;
+import erp.product.OriginSearch;
+import erp.product.NameSearch;
+import erp.product.CategorySearch;
 import erp.product.NationalProductFactory;
 import erp.product.ImportedProductFactory;
 
@@ -154,7 +157,11 @@ class Erp implements Serializable {
         //todo added: not sure product search TreeMap or LinkedHash
         _orderSplit = new LinkedHashMap<>();
         _services = new LinkedHashMap<>();
+
         _productSearch = new LinkedHashMap<>();
+        registerProductSearch(new OriginSearch());
+        registerProductSearch(new NameSearch());
+        registerProductSearch(new CategorySearch());
 
         _productFactories = new LinkedHashMap<>();
         registerProductFactory(new NationalProductFactory());
@@ -287,7 +294,7 @@ class Erp implements Serializable {
         return true;
     }
 
-    //! todo not sure verificar!!!!!!
+    //! SHOW COMPANY PRODDUCTS todo not sure verificar!!!!!!
     public List<String> showCompanyProducts(int companyID) throws UnknownCompanyException {
         Company company = getCompany(companyID);
         List<String> companyProdString = new ArrayList<>();
@@ -390,15 +397,22 @@ class Erp implements Serializable {
         return _productsString;
     }
 
+    /** Auxiliar  */
+    private void registerProductSearch(Search search){
+        _productSearch.put(search.getKey(), search);
+    }
+
     //todo VERRRRRRRRRRRRRRRRR
-    public String Search(String filter, String key){
-        String search = "";
+    public List<String> Search(String filter){
+        Search s = _productSearch.get(filter.toUpperCase());
+        List<String> searchList = new ArrayList<>();
 
-        // for (Product p: _products.values()){
-
-        // }
-
-        return "";
+        for (Product p: _products.values()) {
+            if(s.search(p, s.getKey())) {
+                searchList.add(p.toString());
+            }
+        }
+        return searchList;
         }
 
     /******************** CLIENTS MENU *********************/
