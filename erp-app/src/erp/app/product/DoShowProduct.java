@@ -1,6 +1,10 @@
 package erp.app.product;
 
 import erp.ErpManager;
+import erp.exceptions.UnknownProductException;
+
+import erp.app.exceptions.UnknownProductKeyException;
+
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 //FIXME maybe import classes
@@ -12,12 +16,19 @@ class DoShowProduct extends Command<ErpManager> {
 
     DoShowProduct(ErpManager receiver) {
         super(Label.SHOW_PRODUCT, receiver);
-        //FIXME maybe define fields
+        addIntegerField("productId", Prompt.productId());
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        int productId = integerField("productId");
+
+        try{
+            _display.popup(_receiver.showProduct(productId));
+        }
+        catch (UnknownProductException e){
+            throw new UnknownProductKeyException(productId);
+        }
     }
 
 }

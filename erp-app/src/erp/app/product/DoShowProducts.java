@@ -12,12 +12,11 @@ class DoShowProducts extends Command<ErpManager> {
 
     DoShowProducts(ErpManager receiver) {
         super(Label.SHOW_PRODUCTS, receiver);
-	//FIXME maybe define fields
     }
 
     @Override
     protected final void execute() {
-        //FIXME implement command
+        _display.popup(_receiver.showAllProducts());
     }
 
 }

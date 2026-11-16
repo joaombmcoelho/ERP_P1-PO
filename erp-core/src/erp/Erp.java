@@ -407,8 +407,8 @@ class Erp implements Serializable {
         _productSearch.put(search.getKey(), search);
     }
 
-    //todo VERRRRRRRRRRRRRRRRR
-    public List<String> Search(String filter){
+    //todo SEARCH
+    public List<String> search(String filter) throws InvalidSearchFilterException{
         Search s = _productSearch.get(filter.toUpperCase());
         List<String> searchList = new ArrayList<>();
 
@@ -417,6 +417,11 @@ class Erp implements Serializable {
                 searchList.add(p.toString());
             }
         }
+
+        if (searchList.isEmpty()){
+            throw new InvalidSearchFilterException();
+        }
+
         return searchList;
         }
 

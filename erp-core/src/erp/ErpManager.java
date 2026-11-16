@@ -220,8 +220,8 @@ public class ErpManager {
     }
 
     //todo RITA SEARCH
-    public List<String> Search(String filter) {
-        return _erp.Search(filter);
+    public List<String> search(String filter) throws InvalidSearchFilterException {
+        return _erp.search(filter);
     }
 
     /******************** CLIENTS MENU *********************/

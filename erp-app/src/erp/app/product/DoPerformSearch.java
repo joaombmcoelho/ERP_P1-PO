@@ -1,6 +1,8 @@
 package erp.app.product;
 
 import erp.ErpManager;
+import erp.exceptions.InvalidSearchFilterException;
+
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 //FIXME maybe import classes
@@ -10,12 +12,17 @@ class DoPerformSearch extends Command<ErpManager> {
 
     DoPerformSearch(ErpManager receiver) {
         super(Label.PERFORM_SEARCH, receiver);
-        //FIXME maybe define fields
+        addStringField("criterion", Prompt.searchCriterion());
     }
 
     @Override
     protected final void execute() throws CommandException {
-        //FIXME implement command
+        String criterion = stringField("criterion");
+
+        try{
+        _display.popup(_receiver.search(criterion));
+        }
+        catch (InvalidSearchFilterException e){}
     }
 
 }
