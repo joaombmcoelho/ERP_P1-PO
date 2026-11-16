@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 import java.util.List;
 
 import erp.basket.Basket;
@@ -32,8 +33,8 @@ public class Company implements Serializable{
     public Company(int id, String name){
         _id = id;
         _name = name;
-        _inventory = new HashMap<>();
-        _purchases = new HashMap<>();
+        _inventory = new TreeMap<>();
+        _purchases = new TreeMap<>();
         _clients = new ArrayList<>();
     }
 
