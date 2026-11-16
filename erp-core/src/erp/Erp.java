@@ -264,11 +264,11 @@ class Erp implements Serializable {
     }
 
     //todo RITA SHOW ALL COMPANIES
-    public String showAllCompanies(){
-        String _companiesString = "";
+    public List<String> showAllCompanies(){
+        List<String> _companiesString = new ArrayList<>();
 
         for(Company c: _companies.values()){
-            _companiesString += "\n" + c.toString();
+            _companiesString.add(c.toString());
         }
 
         return _companiesString;
@@ -288,32 +288,32 @@ class Erp implements Serializable {
     }
 
     //! todo not sure verificar!!!!!!
-    public String showCompanyProducts(int companyID) throws UnknownCompanyException {
+    public List<String> showCompanyProducts(int companyID) throws UnknownCompanyException {
         Company company = getCompany(companyID);
-        String companyProdString = "";
+        List<String> companyProdString = new ArrayList<>();
 
         if (company == null){
             throw new UnknownCompanyException(companyID);
         }
 
         for(ProductInventory i: company.getAllInventory().values()) {
-            companyProdString += "\n" + company.getId() + " - " + i.toString();
+            companyProdString.add(companyID + " - " + i.toString());
         }
 
         return companyProdString;
     }
     
     //todo RITA SHOW COMPANY CLIENTS (n necessario na entrega)
-    public String showCompanyClients (int companyID) throws UnknownCompanyException {
+    public List<String> showCompanyClients (int companyID) throws UnknownCompanyException {
         Company company = getCompany(companyID);
-        String companyClientString = "";
+        List<String> companyClientString = new ArrayList<>();
 
         if (company == null){
             throw new UnknownCompanyException(companyID);
         }
 
         for(Client c: company.getAllClients()) {
-            companyClientString += "\n" + company.getId() + " - " + c.toString();
+            companyClientString.add(companyID + " - " + c.toString());
         }
 
         return companyClientString;
@@ -380,11 +380,11 @@ class Erp implements Serializable {
     }
 
     //todo RITA SHOW ALL PRODUCTS
-    public String showAllProducts(){
-        String _productsString = "";
+    public List<String> showAllProducts(){
+        List<String> _productsString = new ArrayList<>();
 
         for(Product p: _products.values()){
-            _productsString += "\n" + p.toString();
+            _productsString.add(p.toString());
         }
 
         return _productsString;
@@ -433,11 +433,11 @@ class Erp implements Serializable {
     }
 
     //todo RITA SHOW ALL CLIENTS
-    public String showAllClients(){
-         String _clientsString = "";
+    public List<String> showAllClients(){
+        List<String> _clientsString = new ArrayList<>();
 
         for(Client c: _clients.values()){
-            _clientsString += c.toString() + "\n";
+            _clientsString.add(c.toString());
         }
 
         return _clientsString;

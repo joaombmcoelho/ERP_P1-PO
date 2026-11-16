@@ -170,7 +170,7 @@ public class ErpManager {
     }
 
     //todo RITA SHOW ALL COMPANIES
-    public String showAllCompanies(){
+    public List<String> showAllCompanies(){
         return _erp.showAllCompanies();
     }
 
@@ -186,12 +186,12 @@ public class ErpManager {
     }
 
     //todo RITA SHOW COMPANY PRODUCTS
-    public String showCompanyProducts(int companyID) throws UnknownCompanyException {
+    public List<String> showCompanyProducts(int companyID) throws UnknownCompanyException {
         return _erp.showCompanyProducts(companyID);
     }
     
     //todo RITA SHOW COMPANY CLIENTS
-    public String showCompanyClients(int companyID) throws UnknownCompanyException {
+    public List<String> showCompanyClients(int companyID) throws UnknownCompanyException {
         return _erp.showCompanyClients(companyID);
     }
 
@@ -213,7 +213,7 @@ public class ErpManager {
     }
 
     //todo RITA SHOW ALL PRODUCTS
-    public String showAllProducts(){
+    public List<String> showAllProducts(){
         return _erp.showAllProducts();
     }
 
@@ -239,7 +239,7 @@ public class ErpManager {
     }
 
     //todo RITA SHOW ALL CLIENTS
-    public String showAllClients(){
+    public List<String> showAllClients(){
         return _erp.showAllClients();
     }
 
