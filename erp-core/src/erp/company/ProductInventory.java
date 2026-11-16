@@ -47,27 +47,28 @@ public class ProductInventory implements Serializable {
         _product = newProduct;
     }
 
-   @Override
-   public boolean equals(Object o){
+    @Override
+    public boolean equals(Object o){
         if (o instanceof ProductInventory){
             ProductInventory pi = (ProductInventory) o;
                 return(_unitsAvailable == pi.getUnitsAvailable() &&
-                       _rpFactor ==pi.getRPFactor() &&
-                       _product.equals(pi.getProduct()));
+                        _rpFactor ==pi.getRPFactor() &&
+                        _product.equals(pi.getProduct()));
         }
         return false;
-   }
+    }
 
-   @Override
-   public String toString(){
-        return _product.getID()+ " - " + _unitsAvailable + " - " + _rpFactor + " - " + calcSellPrice();
-   }
+    @Override
+    public String toString(){
+        return _product.getID()+ " - " + _unitsAvailable + " - " + _rpFactor + " - " 
+                                            + String.format("%.2f", calcSellPrice());
+    }
 
     public void addUnits(int quantity){
         _unitsAvailable += quantity;
     }
 
-   public double calcSellPrice(){
+    public double calcSellPrice(){
         return Math.round(_product.getRecommendedPrice()*_rpFactor * 100)/100.0;  /** Arredondar para duas casas decimais  */
-   }
+    }
 }

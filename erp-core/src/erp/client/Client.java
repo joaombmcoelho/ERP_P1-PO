@@ -79,6 +79,6 @@ public class Client implements Serializable {
 
     @Override 
     public String toString(){
-        return _email + " - " + _name + " - " + _totalSpent;
+        return _email + " - " + _name + " - " + String.format("%.2f", _totalSpent);
     }
 }

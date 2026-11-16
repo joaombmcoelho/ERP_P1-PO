@@ -36,7 +36,7 @@ public class NationalProduct extends Product {
             recommendedPrice = (0.90 * getBasePrice());
         }
         else if(getTotalUnitsAvailable() < 100){
-            recommendedPrice = (0.90 * getBasePrice());
+            recommendedPrice = (1.30 * getBasePrice());
         }
 
         return recommendedPrice;

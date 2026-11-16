@@ -1,5 +1,5 @@
 --- /work/tests/tests_tiago_yang/auto-tests/expected/A-10-01-M-ok.out	2026-11-06 20:11:20.000000000 +0000
-+++ /work/tests/tests_tiago_yang/myout/A-10-01-M-ok.myout	2026-11-16 11:00:52.302188500 +0000
++++ /work/tests/tests_tiago_yang/myout/A-10-01-M-ok.myout	2026-11-16 12:15:39.644681885 +0000
 @@ -14,22 +14,19 @@
  3 - Mostrar todos os produtos
  4 - Efectuar pesquisa de produtos
