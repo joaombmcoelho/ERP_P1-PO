@@ -1,6 +1,6 @@
 package erp.product;
 
-import erp.exceptions.InvalidProductException;
+import erp.exceptions.InvalidProductFieldsException;
 
 public class ImportedProductFactory implements ProductFactory{
 
@@ -9,7 +9,8 @@ public class ImportedProductFactory implements ProductFactory{
 
     @Override
     public Product create(int id, String name, String category, int basePrice, 
-                    int baseShippingTime, String[] extraArgs) throws InvalidProductException{
+                    int baseShippingTime, String[] extraArgs) 
+                    throws InvalidProductFieldsException{
         
         /** get the imported products extra args */
         String country = extraArgs[0];
@@ -17,12 +18,12 @@ public class ImportedProductFactory implements ProductFactory{
 
         /** problem if country is empty */
         if (country.trim().isEmpty()){
-            throw new InvalidProductException();
+            throw new InvalidProductFieldsException();
         }
 
         /** problem if tax not positive */
         if (tax <= 0){
-            throw new InvalidProductException();
+            throw new InvalidProductFieldsException();
         }
 
         Category productCategory = Category.valueOf(category);
