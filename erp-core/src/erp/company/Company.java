@@ -303,7 +303,8 @@ public class Company implements Serializable{
     }
 
     /**
-    * String representation of the company: presents the id and name.
+    * String representation of a company: 
+    * companyId - companyName
     * 
     * @return a string representation of the company.
     */

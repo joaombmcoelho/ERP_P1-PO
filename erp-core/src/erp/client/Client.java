@@ -140,8 +140,8 @@ public class Client implements Serializable {
     }
 
     /**    
-     * String representation of a client: presents the email, name and 
-     * total spent value.
+     * String representation of a client: 
+     * email - name - totalSpent
      * 
      * @return a string representation of the client.
      */
