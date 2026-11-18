@@ -1,21 +1,26 @@
 package erp.product;
 
 import java.io.Serializable;
-// import java.util.ArrayList;
-// import java.util.Collections;
-// import java.util.HashMap;
-// import java.util.Map;
-// import java.util.List;
 
-// import erp.basket.Basket;
-// import erp.client.Client;
-// import erp.company.ProductInventory;
 import erp.product.Product;
-// import erp.purchase.Purchase;
 
+/**
+ * Defines a search method by matching the product with the given
+ * search term.
+ */
 public interface Search extends Serializable{
 
+    /**
+     * Tells if a product is compatible with the search term.
+     * 
+     * @param product product to match.
+     * @param term term to match.
+     * @return true if so, false otherwise.
+     */
     public boolean search(Product product, String term);
 
+    /**
+     * @return name of the search chriterion.
+     */
     public String getKey();
 }

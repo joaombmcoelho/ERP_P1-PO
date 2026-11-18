@@ -1,65 +1,95 @@
 package erp.product;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.HashMap;
 
 import erp.basket.Basket;
 import erp.client.Client;
 
-import java.util.List;
-
-// import erp.basket.Basket;
-// import erp.client.Client;
-// import erp.company.ProductInventory;
-// import erp.product.Product;
-// import erp.purchase.Purchase;
-
-
-
+/**
+ * Class for national products registered in the ERP system.
+ * Calculates the recommended price through the global stock of the 
+ * product in the whole system.
+ */
 public class NationalProduct extends Product {
 
+    /** Serial number for serialization. */
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
 
-    public NationalProduct(int id, String name,Category category, int basePrice, int baseShippingTime){
+    /**
+     * Constructor.
+     * @param id
+     * @param name
+     * @param category
+     * @param basePrice
+     * @param baseShippingTime base delay.
+     */
+    public NationalProduct(int id, String name,Category category, 
+                            int basePrice, int baseShippingTime) {
         super(id, name, category, basePrice, baseShippingTime);
     }
 
-    //! ver padroes de desenho aqui
+    /**
+     * Calculates the product recommended price according with:
+     * (1) If the global stock is > 10 000: price = 90% base price.
+     * (2) If the global stock is < 100: price = 130% base price.
+     * (3) Otherwise: recommended price = base price.
+     * 
+     * @return the calculated recommended price.
+     */
     @Override
     public double getRecommendedPrice(){
 
-        /* 100 <= totalUnits <= 10000 */
-        double recommendedPrice = getBasePrice();
+        double recommendedPrice;
 
-        if (getTotalUnitsAvailable() > 10000){
+        /** (1) TotalUnits > 10 000 */
+        if (getTotalUnitsAvailable() > 10000) {
             recommendedPrice = (0.90 * getBasePrice());
         }
-        else if(getTotalUnitsAvailable() < 100){
+        /** (2) TotalUnits < 100 */
+        else if(getTotalUnitsAvailable() < 100) {
             recommendedPrice = (1.30 * getBasePrice());
+        }
+        /** (3) 100 <= totalUnits <= 10000 */
+        else {
+            recommendedPrice = getBasePrice();
         }
 
         return recommendedPrice;
-        // todo ver se é para aopresentar 58.5 ou 58.50 onde produtos nacionais enunciado
     }
 
+    /**
+     * @return type of the product.
+     */
     @Override 
     public String getType(){
         return "NACIONAL";
     }
 
-    @Override //todo see if it makes sense
+    /**
+     * @return the additional info (national products dont have that).
+     */
+    @Override
     public String getAdditionalInfo(){
         return "";
     }
 
-    //todo put in the main class and see equals
+    /**
+    * String representation of a national product:
+    * id - type - name - catg. - base prc. - recmm. prc. - base delay - t.units
+    * 
+    * @return a string representation of the national product.
+    */
     @Override 
     public String toString(){
-        return _id + " - " + getType() + " - "+ _name + " - " + _category + " - " + String.format("%.2f",(double)_basePrice) + " - " +
-         String.format("%.2f", getRecommendedPrice()) + " - " + _baseShippingTime + " - " + _totalUnitsAvailable;
+        return _id + " - " + getType() + " - "+ _name + " - " + _category 
+                + " - " + String.format("%.2f",(double)_basePrice) + " - " 
+                + String.format("%.2f", getRecommendedPrice()) + " - " 
+                + _baseShippingTime + " - " + _totalUnitsAvailable;
     }
 }   
