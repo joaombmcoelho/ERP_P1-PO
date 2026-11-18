@@ -1,9 +1,9 @@
 package erp.app.main;
 
 import erp.ErpManager;
+
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-//FIXME maybe import classes
 
 /**
  * Shows the current date of the system.
@@ -17,6 +17,7 @@ class DoDisplayDate extends Command<ErpManager> {
     @Override
     protected final void execute() throws CommandException {
         int date = _receiver.getCurrentDate();
+        
         _display.popup(Message.currentDate(date));
     }
 

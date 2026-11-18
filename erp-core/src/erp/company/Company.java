@@ -233,44 +233,44 @@ public class Company implements Serializable{
     public InventoryStatus changeInventory(Product product, int quantityToAdd, 
                                                 double newRPFactor) {
 
-        /** flag that tells if company is adding a new product
+        /* flag that tells if company is adding a new product
          * or just updating its stock and/or RP factor.
         */
         boolean newProduct = true;
 
-        /** check if user wants to add a entire new product or just 
+        /* check if user wants to add a entire new product or just 
          * change inventory */
         if (providesProduct(product)){
             newProduct = false;
         }
 
-        /** problem if RP factor not positive */
+        /* problem if RP factor not positive */
         if(newRPFactor <= 0){
             return InventoryStatus.INVALID_RP_FACTOR;
         }
 
         /** Case (1) - Add a new product */
         if(newProduct){
-            /** problem if quantityToAdd not positive
+            /* problem if quantityToAdd not positive
              *  because if its a new product quantity has to be >= 1. 
              */
             if (quantityToAdd <= 0){
                 return InventoryStatus.ERROR_ADD_0_UNITS;
             }
-            /** Change is valid, put the product in the inventory */
+            /* Change is valid, put the product in the inventory */
             _inventory.put(product, new ProductInventory(product, 
                                         quantityToAdd, newRPFactor));
-            /** Update product counter of global stock */
+            /* Update product counter of global stock */
             product.addToTotalUnits(quantityToAdd);
             return InventoryStatus.SUCCESS; /** SUCCESS! */
         }
-        /** Case (2) - Update existing product */
+        /* Case (2) - Update existing product */
         else {
             int currentInventory = getInventory(product).getUnitsAvailable();
             int resultingQuantity = currentInventory + quantityToAdd; 
 
-            /** problem if user wants to remove more products than 
-             *  the stock the companiy has.
+            /* problem if user wants to remove more products than 
+             * the stock the companiy has.
              */
             if(resultingQuantity < 0){
                 return InventoryStatus.NOT_ENOUGH_TO_REMOVE;
@@ -283,8 +283,7 @@ public class Company implements Serializable{
     }
 
     /**
-    * Two companies are considered equal when they have the same name,
-    * inventory, register of purchases and same clients.
+    * Two companies are considered equal when they have the same id.
     * 
     * @param o company to compare
     * @return true if companies are equals, false otherwise.
@@ -293,11 +292,7 @@ public class Company implements Serializable{
     public boolean equals (Object o){
         if (o instanceof Company){
             Company c = (Company) o;
-            return (_id == c.getId() && 
-                    _name.equals(c.getName()) &&
-                    _inventory.equals(c.getAllInventory()) &&
-                    _purchases.equals(c.getAllPurchases()) &&
-                    _clients.equals(c.getAllClients()));
+            return (_id == c.getId());
         }
         return false;
     }

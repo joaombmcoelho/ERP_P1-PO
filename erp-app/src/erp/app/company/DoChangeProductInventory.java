@@ -9,15 +9,13 @@ import erp.app.exceptions.UnknownProductKeyException;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-//FIXME maybe import classes
-
 /**
  * Changes what a company holds of a product — the amount is added to its
  * inventory and the factor replaces the previous one — starting the supply if
  * the company did not offer the product yet.
  *
- * <p>Reaching zero units only makes the product unavailable at that company: the
- * product itself stays in the system.</p>
+ * Reaching zero units only makes the product unavailable at that company: 
+ * the product itself stays in the system.
  */
 class DoChangeProductInventory extends Command<ErpManager> {
 
@@ -38,15 +36,16 @@ class DoChangeProductInventory extends Command<ErpManager> {
         double priceFactor = realField("priceFactor");
 
         try{
-            boolean hasChanged = _receiver.changeInventory(companyId, productId, 
-                                                            amountToUpdate, priceFactor);
+            boolean hasChanged = _receiver.changeInventory(companyId, 
+                                            productId, amountToUpdate, 
+                                            priceFactor);
             
             if(hasChanged){
-                /** inventory change successful */
+                /* inventory change successful */
                 _display.popup(Message.supplySuccessful(companyId, productId));
             }
             else {
-                /** error case */
+                /* error case */
                 _display.popup(Message.cannotChangeInventory(productId));
             }
         }

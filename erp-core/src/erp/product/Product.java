@@ -11,24 +11,23 @@ public abstract class Product implements Serializable, Comparable<Product>{
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
 
-    //! see if its private
     /** Product id */
-    protected int _id;  
+    private int _id;  
 
     /** Product name */
-    protected String _name;
+    private String _name;
 
     /** Product category */
-    protected Category _category;
+    private Category _category;
 
     /** Product base price */
-    protected int _basePrice;
+    private int _basePrice;
 
     /** Product base delay */
-    protected int _baseShippingTime;
+    private int _baseShippingTime;
 
     /** Product total unites available */
-    protected int _totalUnitsAvailable;
+    private int _totalUnitsAvailable;
 
     /**
      * Constructor.
@@ -42,7 +41,7 @@ public abstract class Product implements Serializable, Comparable<Product>{
     public Product(int id, String name,Category c, int basePrice, int baseShipping){
         _id = id;
         _name = name;
-        _category = c;     /** NOT SURE VERIFICAR DEPOIS */
+        _category = c;     /* NOT SURE VERIFICAR DEPOIS */
         _basePrice = basePrice;
         _baseShippingTime = baseShipping;
         _totalUnitsAvailable = 0;
@@ -92,6 +91,24 @@ public abstract class Product implements Serializable, Comparable<Product>{
         return _totalUnitsAvailable;
     }
 
+    /**
+     * @return nothing.
+     * By default a product doensnt have additional info.
+     */
+    public String getAdditionalInfo(){
+        return "";
+    }
+
+    /**
+     * Tells if a product is imported from the given country.
+     * False by default, only imported products have origin.
+     * 
+     * @param country country to compare
+     * @return false
+     */
+    public boolean isImportedFrom(String country){
+        return false;
+    }
 
     // --- setters --------------------------------------------------
 
@@ -151,6 +168,8 @@ public abstract class Product implements Serializable, Comparable<Product>{
         _totalUnitsAvailable += unitsToAdd;
     }
 
+    // --- methods ---------------------------------------------------
+
     /** Compares products by id.
      * 
      * @param otherProduct
@@ -161,6 +180,40 @@ public abstract class Product implements Serializable, Comparable<Product>{
     public int compareTo(Product otherProduct) {
         return Integer.compare(_id, otherProduct.getID());
     }
+
+    /**
+    * String representation of a product:
+    * id - type - name - catg. - base prc. - recmm. prc. - base delay -
+    * - t.units - AdditionalInfo
+    * 
+    * @return a string representation of the national product.
+    */
+    @Override 
+    public String toString(){
+        return getID() + " - " + getType() + " - "+ getName() + " - " 
+                + getCategory() + " - " 
+                + String.format("%.2f",(double)getBasePrice()) + " - " 
+                + String.format("%.2f", getRecommendedPrice()) + " - " 
+                + getBaseShippingTime() + " - " + getTotalUnitsAvailable()
+                + getAdditionalInfo();
+    }
+
+    /**
+    * Two products are considered equal when they have the same id.
+    * 
+    * @param o product to compare
+    * @return true if products are equals, false otherwise.
+    */
+    @Override
+    public boolean equals (Object o){
+        if (o instanceof Product){
+            Product p = (Product) o;
+            return (_id == p.getID());
+        }
+        return false;
+    }
+
+    // --- abstract methods ------------------------------------------
 
     /**
      * Calculates the product's recommended price.
@@ -174,8 +227,4 @@ public abstract class Product implements Serializable, Comparable<Product>{
      */
     public abstract String getType();
 
-    /**
-     * @return product additional information
-     */
-    public abstract String getAdditionalInfo();
 }

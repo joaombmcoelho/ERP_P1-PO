@@ -21,17 +21,8 @@ public class OriginSearch implements Search{
     @Override 
     public boolean search(Product product, String term){
         
-        /** Only works with imported products */
-        if (product.getType() != "IMPORTADO"){
-            return false;
-        }
-
-        /* Cast the product to imported product */
-        ImportedProduct importedProduct = (ImportedProduct) product;
-
-        String productOrigin = importedProduct.getCountry();
-
-        return term.equalsIgnoreCase(productOrigin);
+        /* Only works with imported products */
+        return product.isImportedFrom(term);
     }
 
     /**

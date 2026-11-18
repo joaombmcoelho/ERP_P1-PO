@@ -7,7 +7,6 @@ import erp.app.exceptions.UnknownCompanyKeyException;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-//FIXME maybe import classes
 
 /**
  * Shows one company, given its identifier.

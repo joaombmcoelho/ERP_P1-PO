@@ -68,7 +68,7 @@ public class Basket implements Serializable {
         _orderSplit = orderSplit;
         _transportMethod = transportMethod;
         _additionalServices = additionalServices;
-        _basketLines = new TreeMap<>(); /** sorts automatically by product id */
+        _basketLines = new TreeMap<>(); /* sorts automatically by product id */
     }
 
     /**
@@ -80,8 +80,8 @@ public class Basket implements Serializable {
         
         _client = client;
         _company = company;
-        _orderSplit = new SingleSplit(); /** the default split */
-        _transportMethod = null; /** a basket starts with no modality */
+        _orderSplit = new SingleSplit(); /* the default split */
+        _transportMethod = null; /* a basket starts with no modality */
         _additionalServices = new ArrayList<>();
         _basketLines = new TreeMap<>();
     }
@@ -140,10 +140,10 @@ public class Basket implements Serializable {
 
         TransportMethod tm = getTransportMethod();
 
-        /** (1) Build the transport method part of the description */
+        /* (1) Build the transport method part of the description */
         String tmString = "";
         if (tm == null){
-            /** if there is no transport method set yet, print "SEM TRANSPORTE" */
+            /* if there is no transport method set yet, print "SEM TRANSPORTE" */
             tmString = "SEM TRANSPORTE";
             return tmString;
         }
@@ -151,9 +151,9 @@ public class Basket implements Serializable {
             tmString = tm.getKey();
         }
 
-        /** (2) build additional services part of the description */
+        /* (2) build additional services part of the description */
 
-        /** reverse the additional services from last to first in a copy*/
+        /* reverse the additional services from last to first in a copy*/
         //todo check if it needs to be sorted like in the orders.
         List<AdditionalService> addServicesSorted = _additionalServices.reversed();
         
@@ -265,40 +265,40 @@ public class Basket implements Serializable {
 
         Integer currentQuantity = _basketLines.get(product);
 
-        /** Check if user is adding a new product */
+        /* Check if user is adding a new product */
         if(currentQuantity == null){
             currentQuantity = 0;
         }
 
-        /** Problem if user wants to add a product the company doesnt provide */
+        /* Problem if user wants to add a product the company doesnt provide */
         if (!(_company.providesProduct(product))){
             return AddToBasketStatus.NOT_SUPPLIED;
         }
 
-        /** Problem if user wants to remove a product that's not in basket */
+        /* Problem if user wants to remove a product that's not in basket */
         if(quantity <= 0 && currentQuantity == 0){
             return AddToBasketStatus.NOT_IN_BASKET;
         }
 
-        /** the resulting quantity after adding or removing */
+        /* the resulting quantity after adding or removing */
         int finalQuantity = currentQuantity + quantity;
 
-        /** Problem if user wants to add more quantity than inventory */
+        /* Problem if user wants to add more quantity than inventory */
         if (quantity > 0){
             if (finalQuantity > _company.getProductUnitsAvailable(product)){
                     return AddToBasketStatus.NOT_ENOUGH;
             }
         }
 
-        /** Passed all verifications, do the work */
+        /* Passed all verifications, do the work */
         
-        /** Case (1) - Remove a product completely */
+        /* Case (1) - Remove a product completely */
         if (finalQuantity <= 0 && currentQuantity > 0){
             _basketLines.remove(product);
             return AddToBasketStatus.REMOVED;
         }
 
-        /** Case (2) -  Add a new Product to the Basket 
+        /* Case (2) -  Add a new Product to the Basket 
          * or increase/decrease its quantity. */
         _basketLines.put(product, finalQuantity);
 
@@ -318,18 +318,18 @@ public class Basket implements Serializable {
      */
     public CheckoutStatus canCheckout(){
 
-        /** Problem if user wants to checkout empty basket */
+        /* Problem if user wants to checkout empty basket */
         if (isEmpty()){
             return CheckoutStatus.CANT_CHECKOUT_EMPTY_BASKET;
         }
 
-        /** Problem if user wants to checkout a basket without a set 
+        /* Problem if user wants to checkout a basket without a set 
          * transport method */
         else if (hasTransportMethod() == false){
             return CheckoutStatus.NO_TRANSPORT_METHOD;
         }
 
-        /** Problem if the company doesnt have, at the moment, all the 
+        /* Problem if the company doesnt have, at the moment, all the 
          * required quantities of all products. */
         for(Map.Entry<Product, Integer> entry : _basketLines.entrySet()) {
             Product product = entry.getKey();
@@ -339,7 +339,7 @@ public class Basket implements Serializable {
             }
         }
 
-        /** Passed all verifications */
+        /* Passed all verifications */
         return CheckoutStatus.SUCCESS;
     }
 
@@ -354,28 +354,28 @@ public class Basket implements Serializable {
 
         List <PurchaseLine> purchaseLines = new ArrayList<>();
 
-        /** (1) Build the purchase lines, from the basket lines */
+        /* (1) Build the purchase lines, from the basket lines */
         for(Map.Entry<Product, Integer> entry : _basketLines.entrySet()) {
             Product product = entry.getKey();
             int quantity = entry.getValue();
 
-            /** lock the sale price in the checkout */
+            /* lock the sale price in the checkout */
             double salePrice = _company.getProductSellPrice(product);
 
-            /** create the new purchase line */
+            /* create the new purchase line */
             PurchaseLine line = new PurchaseLine(product, quantity, salePrice);
             purchaseLines.add(line);
         }
 
-        /** (2) Create the purchase with the purchase lines */
+        /* (2) Create the purchase with the purchase lines */
         Purchase purchase = new Purchase(purchaseId, purchaseDate, _client, 
                                             _company, purchaseLines); 
 
-        /** (3) split the purchase in orders through ordersplit strategy */
+        /* (3) split the purchase in orders through ordersplit strategy */
         List<List<PurchaseLine>>  splitOrders;
         splitOrders = _orderSplit.split(purchaseLines); /** split work */
         
-        /** create each order after the split */
+        /* create each order after the split */
         for(List<PurchaseLine> oPLines: splitOrders){
             
             Order order = new Order(purchaseId, purchaseDate, oPLines, 
@@ -386,21 +386,21 @@ public class Basket implements Serializable {
             purchase.addOrder(order);
         }
 
-        /** (4) decrease company product invenory */
+        /* (4) decrease company product invenory */
         for (Product product: _basketLines.keySet()){
             int quantity = _basketLines.get(product);
             _company.addUnits(product, -quantity); /** removeUnits */
         }
 
-        /** (5) charge the client for the purchase */
+        /* (5) charge the client for the purchase */
         double TotalCost = purchase.calcTotalCost();
         _client.addToTotalSpent(TotalCost);
 
-        /** (6) company start following the client */
+        /* (6) company start following the client */
         _company.addClient(_client);
         _company.addPurchase(purchase);
 
-        /** (7) clear this client basket */
+        /* (7) clear this client basket */
         clearBasket();
 
         return purchase; /** finally, return the result of the checkout */
@@ -416,15 +416,15 @@ public class Basket implements Serializable {
 
         String string = "";
         
-        /** 1st line */
-        /** email - idCompany - strategy - transp. description - totalCost */
+        /* 1st line */
+        /* email - idCompany - strategy - transp. description - totalCost */
         string += (getClient().getEmail() + " - " + getCompany().getId() 
                     + " - " + getOrderSplit().getKey() 
                     + " - " + getTransportDescription() 
                     + " - " + String.format("%.2f", getAllLinesTotalCost()));
         
-        /** basket lines */
-        /** ␣␣idProduct - name - quantity - sellPrice - totalLineCost */
+        /* basket lines */
+        /* ␣␣idProduct - name - quantity - sellPrice - totalLineCost */
         for(Map.Entry<Product, Integer> entry : getAllBasketLines().entrySet()) {
             
             Product product = entry.getKey();

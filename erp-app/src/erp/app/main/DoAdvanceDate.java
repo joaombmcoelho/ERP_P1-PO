@@ -21,10 +21,10 @@ class DoAdvanceDate extends Command<ErpManager> {
         int daysToAdvance = integerField("days");
 
         if(!(_receiver.advanceDate(daysToAdvance))){
-            /** daysToAdvance <= 0,  operacao sem efeito */
+            /* daysToAdvance <= 0,  operacao sem efeito */
         }
         else {
-            /** if success, advance date and do nothing */
+            /* if success, advance date and do nothing */
         }
     }
 

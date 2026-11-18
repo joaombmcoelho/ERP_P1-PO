@@ -7,8 +7,6 @@ import erp.app.exceptions.UnknownCompanyKeyException;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-//FIXME maybe import classes
-
 /**
  * Shows the clients that have bought from a company, ordered by identifier
  * (their e-mail address).

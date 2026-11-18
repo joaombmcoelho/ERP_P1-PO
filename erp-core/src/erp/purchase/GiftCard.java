@@ -22,8 +22,8 @@ public class GiftCard implements AdditionalService{
 
     @Override
     public boolean equals(Object o){
-        if (o instanceof GiftCard){
-            GiftCard gC = (GiftCard) o;
+        if (o instanceof AdditionalService){
+            AdditionalService gC = (AdditionalService) o;
             return (getAdditionalCost() == gC.getAdditionalCost() &&
                     getAdditionalTime() == gC.getAdditionalTime() &&
                     getKey().equals(gC.getKey()));

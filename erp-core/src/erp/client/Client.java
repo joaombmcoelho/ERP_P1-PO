@@ -121,8 +121,7 @@ public class Client implements Serializable {
     // --- methods ---------------------------------------------------
 
     /**
-    * Two clients are considered equal when they have the same email,
-    * name, totalSpent and baskets.
+    * Two clients are considered equal when they have the same email.
     * 
     * @param o client to compare
     * @return true if the clients are equals, false otherwise.
@@ -131,10 +130,7 @@ public class Client implements Serializable {
     public boolean equals (Object o){
         if (o instanceof Client){
             Client c = (Client) o;
-            return (_email.equals(c.getEmail()) && 
-                    _name.equals(c.getName()) &&
-                    _totalSpent == c.getTotalSpent() &&
-                    _clientBaskets.equals(c.getAllBaskets()));
+            return (_email.equalsIgnoreCase(c.getEmail()));
         }
         return false;
     }

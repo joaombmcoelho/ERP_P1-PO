@@ -27,8 +27,8 @@ public class ImportedProduct extends Product{
      * @param tax product TAX.
      */
     public ImportedProduct(int id, String name,Category c,
-                           int basePrice, int baseShipping,
-                           String country, double tax){
+                            int basePrice, int baseShipping,
+                            String country, double tax){
         super(id, name, c, basePrice, baseShipping);
         _country = country;
         _TAX = tax;
@@ -48,6 +48,16 @@ public class ImportedProduct extends Product{
      */
     public double getTAX(){
         return _TAX;
+    }
+
+    /**
+     * Tells if a product is imported from the given country.
+     * 
+     * @param country country to compare
+     * @return true if so, false otherwise.
+     */
+    public boolean isImportedFrom(String country){
+        return this.getCountry().equalsIgnoreCase(country);
     }
 
     // --- setters --------------------------------------------------
@@ -70,47 +80,7 @@ public class ImportedProduct extends Product{
         _TAX = newTAX;
     }
 
-    // --- methods --------------------------------------------------
-
-    /**
-    * Two imported products are considered equal when they have the 
-    * same id, name, category, basePrice, baseShippingTime, country 
-    * and same TAX.
-    * 
-    * @param o imported product to compare
-    * @return true if products are equals, false otherwise.
-    */
-    @Override
-    public boolean equals(Object o){
-        if (o instanceof ImportedProduct){
-            ImportedProduct p = (ImportedProduct) o;
-            return (_id == p.getID() &&
-                    _name.equals(p.getName()) &&
-                    _category.equals(p.getCategory()) &&
-                    _basePrice == p.getBasePrice() &&
-                    _baseShippingTime == p.getBaseShippingTime() &&
-                    _country.equals(p.getCountry()) &&
-                    _TAX == p.getTAX() &&
-                    getType().equals("IMPORTADO"));
-        }
-        return false;
-    }
-
-    /**
-    * String representation of an imported product: 
-    * id - type - name - category - basePrice - baseDelay - totalUnits
-    * - additional info (country and TAX).
-    * 
-    * @return a string representation of the imported product.
-    */
-    @Override 
-    public String toString(){
-        return _id + " - " + getType() + " - "+ _name + " - " +
-        _category + " - " + String.format("%.2f",(double)_basePrice) 
-        + " - " + String.format("%.2f", getRecommendedPrice()) + " - "
-        + _baseShippingTime + " - " + _totalUnitsAvailable + " - " ~
-        + getAdditionalInfo() ;
-    }
+    // --- methods ---------------------------------------------------
 
     /**
      * Calculates the product reccomended price: 
@@ -120,7 +90,7 @@ public class ImportedProduct extends Product{
      */
     @Override
     public double getRecommendedPrice(){
-        return (_basePrice * (100 + _TAX))/100;  
+        return (getBasePrice() * (100 + _TAX))/100;  
     }
 
     /**
@@ -132,12 +102,13 @@ public class ImportedProduct extends Product{
     }
 
     /**
-     * Concatenates the product's country and TAX  into a String .
+     * Concatenates the product's country and TAX  into a String.
+     * Imported product Additional info: - country - tax;
      * 
      * @return product additional information.
      */
     @Override
     public String getAdditionalInfo(){
-        return _country + " - " +  _TAX;
+        return " - " + _country + " - " +  _TAX;
     }
 }

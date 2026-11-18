@@ -101,25 +101,6 @@ public class Purchase implements Serializable{
         _orders.add(newOrder);
     }
 
-    @Override
-    public boolean equals(Object o){
-        if (o instanceof Purchase){
-            Purchase p = (Purchase) o;
-            return (_id == p.getID() &&
-                    _purchaseDate == p.getPurchaseDate() &&
-                    _purchaseLines.equals(p.getPurchaseLines()));
-        }
-        return false;
-    }
-
-    @Override
-    public String toString(){
-        return _id + " - " + _client.getEmail() + " - " + _company.getId() + " - " +
-                String.format("%.2f", calcItemsCost()) + " - " + 
-                String.format("%.2f", calcOrdersCost()) + " - " + 
-                String.format("%.2f", calcTotalCost());
-    }
-
     public double calcItemsCost(){
         double itemsCost = 0;
 
@@ -161,4 +142,27 @@ public class Purchase implements Serializable{
     public String toDetailedString(){
         return "";
     }
+
+    /**    
+     * two purchases are equals if they have the same id.
+     * 
+     * @return
+     */
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof Purchase){
+            Purchase p = (Purchase) o;
+            return (_id == p.getID());
+        }
+        return false;
+    }
+
+    @Override
+    public String toString(){
+        return _id + " - " + _client.getEmail() + " - " + _company.getId() + " - " +
+                String.format("%.2f", calcItemsCost()) + " - " + 
+                String.format("%.2f", calcOrdersCost()) + " - " + 
+                String.format("%.2f", calcTotalCost());
+    }
+
 }

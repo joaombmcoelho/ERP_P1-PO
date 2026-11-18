@@ -7,7 +7,6 @@ import erp.app.exceptions.UnknownCompanyKeyException;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
-//FIXME maybe import classes
 
 /** Shows what a company supplies: units, price factor and selling price. */
 class DoShowCompanyProducts extends Command<ErpManager> {

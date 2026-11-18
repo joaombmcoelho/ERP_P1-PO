@@ -144,28 +144,28 @@ class Erp implements Serializable {
         try{
             switch (lineContent[0]) {
 
-                /** Import company to the system */
+                /* Import company to the system */
                 case "COMPANY"           ->  parseCompany(lineContent);
 
-                /** Import company product inventory to the system */
+                /* Import company product inventory to the system */
                 case "SUPPLY"            ->  parseSupply(lineContent);
 
-                /** Import product to the system */
+                /* Import product to the system */
                 case "NATIONAL", "IMPORTED" ->  parseProduct(lineContent);
 
-                /** Import client to the system */
+                /* Import client to the system */
                 case "CLIENT"            ->  parseClient(lineContent);
 
-                /** Import transport method to the system */
+                /* Import transport method to the system */
                 case "RATE"              ->  parseRate(lineContent);
 
-                /** Invalid line - never happens */
+                /* Invalid line - never happens */
                 default ->  throw new UnrecognizedEntryException(line);
             }
         }
         catch (InvalidCompanyNameException | InvalidProductFieldsException |
                 UnknownCompanyException | UnknownProductException e){
-            /** Never happens because imported files are all valid */
+            /* Never happens because imported files are all valid */
             throw new UnrecognizedEntryException(line, e);
         }
     }
@@ -176,7 +176,7 @@ class Erp implements Serializable {
      * @throws InvalidCompanyNameException if company name is empty.
      */
     private void parseCompany(String[] lineContent) 
-                                           /** never happens */
+                                           /* never happens */
                                 throws InvalidCompanyNameException {
         String name = lineContent[1];
         registerCompany(name);
@@ -314,13 +314,13 @@ class Erp implements Serializable {
     public Basket getBasket(String email, int companyId)
                     throws UnknownClientException, UnknownCompanyException {
         
-        /** clients map keys are set to lowercase */
+        /* clients map keys are set to lowercase */
         Client client = getClient(email.toLowerCase());
         Company company = getCompany(companyId);
 
         Basket basket = client.getBasket(companyId);
 
-        /** create a new basket if client doesnt have one for that company */
+        /* create a new basket if client doesnt have one for that company */
         if (basket == null){
             basket = new Basket(client, company);
             client.addBasket(companyId, basket);
@@ -372,7 +372,7 @@ class Erp implements Serializable {
     public int registerCompany(String name) 
                                 throws InvalidCompanyNameException {
 
-        /** problem if name is an empty String */
+        /* problem if name is an empty String */
         if (name.trim().isEmpty()){
             throw new InvalidCompanyNameException();
         }
@@ -381,7 +381,7 @@ class Erp implements Serializable {
         _companies.put(_nextCompanyId, company);
 
         _nextCompanyId++;
-        return company.getId(); /** the app needs it for a message */
+        return company.getId(); /* the app needs it for a message */
     }
 
     /**
@@ -392,7 +392,7 @@ class Erp implements Serializable {
      */
     public String showCompany(int companyId) throws UnknownCompanyException{
 
-        Company company = getCompany(companyId); /** throws exception already */
+        Company company = getCompany(companyId); /* throws exception already */
         return company.toString();
     }
 
@@ -421,12 +421,12 @@ class Erp implements Serializable {
                                     int quantityToChange, double newRPFactor)
                     throws UnknownCompanyException, UnknownProductException {
 
-        Company company = getCompany(companyId); /** throws exception already */
-        Product product = getProduct(productId); /** throws exception already */
+        Company company = getCompany(companyId); /* throws exception already */
+        Product product = getProduct(productId); /* throws exception already */
 
         if (company.changeInventory(product, quantityToChange, newRPFactor)
                                             != InventoryStatus.SUCCESS) {
-            /** ERROR, INVALID_RP_FACTOR, ERROR_ADD_0_UNITS
+            /* ERROR, INVALID_RP_FACTOR, ERROR_ADD_0_UNITS
              *  NOT_ENOUGH_TO_REMOVE
              */
             return false;
@@ -508,7 +508,7 @@ class Erp implements Serializable {
                                 String[] extraArgs) 
                                 throws InvalidProductFieldsException {
         
-        /** Convert to portuguese, because files handle it in english, 
+        /* Convert to portuguese, because files handle it in english, 
          * but user types in portuguese */
         if (type.equals("NATIONAL")) {
             type = "NACIONAL";
@@ -517,34 +517,34 @@ class Erp implements Serializable {
             type = "IMPORTADO";
         }
         
-        /** Problem if type is not registered in the system */
+        /* Problem if type is not registered in the system */
         if (!(_productFactories.containsKey(type))){
             throw new InvalidProductFieldsException();
             /** should never happen */
         }
 
-        /** Problem if arguments are invalid */
+        /* Problem if arguments are invalid */
         if (name.trim().isEmpty() | basePrice <= 0 | baseShippingTime <= 0){
             throw new InvalidProductFieldsException();
         }
 
-        /** Problem if category doesnt exist */
+        /* Problem if category doesnt exist */
         if (!categoryExists(category)){
             throw new InvalidProductFieldsException();
         }
 
-        /** get the factory of the given type */
+        /* get the factory of the given type */
         ProductFactory pf = _productFactories.get(type);
 
-        /** create the new product*/
-        /** if extraArgs are invalid, create throws exception */
+        /* create the new product*/
+        /* if extraArgs are invalid, create throws exception */
         Product product = pf.create(_nextProductId, name, category, 
                                     basePrice, baseShippingTime, 
                                     extraArgs);
         
         _products.put(product.getID(), product);
         _nextProductId++;
-        return product.getID(); /** the app needs it */
+        return product.getID(); /* the app needs it */
     }
 
     //todo RITA SHOW PRODUCT
@@ -568,15 +568,14 @@ class Erp implements Serializable {
         return _productsString;
     }
 
-    /** Auxiliar  */
+    /* Auxiliar  */
     private void registerProductSearch(Search search){
         _productSearch.put(search.getKey(), search);
     }
 
     //todo SEARCH
     public List<String> search(String filter, String term) throws InvalidSearchFilterException{
-        Search s = _productSearch.get(filter/**.toUpperCase()*/);   //public test only accepts uppercase
-
+        Search s = _productSearch.get(filter); /* only accepts uppercase */
         if (s == null){
             throw new InvalidSearchFilterException();
         }
@@ -606,18 +605,18 @@ class Erp implements Serializable {
      */
     public boolean registerClient(String email, String name){
 
-        /** problem if name or email are empty strings */
+        /* problem if name or email are empty strings */
         if (email.trim().isEmpty() | name.trim().isEmpty()){
             return false;
         }
 
-        /** problem if given email is already registered */
+        /* problem if given email is already registered */
         if(_clients.containsKey(email)){
             return false;
         }
 
         Client client = new Client(email, name);
-        /** clients map keys are set to lowercase */
+        /* clients map keys are set to lowercase */
         _clients.put(email.toLowerCase(), client);
         
         return true;
@@ -678,11 +677,11 @@ class Erp implements Serializable {
 
         Product product = getProduct(productId); /** throws exception already */
         
-        /** call the function that does all the work */
+        /* call the function that does all the work */
         AddToBasketStatus msg = basket.addToBasket(product, 
                                                     quantityToChange);
         
-        /** the app needs it */
+        /* the app needs it */
         if(msg == AddToBasketStatus.NOT_SUPPLIED){
             throw new ProductNotSuppliedException();
         }
@@ -737,20 +736,20 @@ class Erp implements Serializable {
         * SUCCESS, the checkout turned into a puchase.
         */
 
-        /** Check if the checkout is possible */
+        /* Check if the checkout is possible */
         CheckoutStatus status = basket.canCheckout();
 
         if (status == CheckoutStatus.NOT_ENOUGH){
             throw new InsufficientInventoryException();
         }
 
-        /** CANT_CHECKOUT_EMPTY_BASKET, NO_TRANSPORT_METHOD */
+        /* CANT_CHECKOUT_EMPTY_BASKET, NO_TRANSPORT_METHOD */
         if (status != CheckoutStatus.SUCCESS){
             return null;  //todo throw dedicated exception for each case
         }
 
-        /** the function that does all the work */
-        /** create the new purchase that results of basket checkout */
+        /* the function that does all the work */
+        /* create the new purchase that results of basket checkout */
         Purchase purchase = basket.checkout(_nextPurchaseId, getCurrentDate());
         _purchases.put(_nextPurchaseId, purchase);
         _nextPurchaseId++;

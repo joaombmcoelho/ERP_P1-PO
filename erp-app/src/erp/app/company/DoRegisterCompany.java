@@ -28,7 +28,7 @@ class DoRegisterCompany extends Command<ErpManager> {
             _display.popup(Message.registrationSuccessful(idCompany));
         }
         catch (InvalidCompanyNameException e){
-            /** if name is an empty string */
+            /* if name is an empty string */
             throw new CompanyRegistrationFailedException(companyName);
         }
     }

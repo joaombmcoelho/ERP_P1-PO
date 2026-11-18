@@ -11,11 +11,10 @@ import pt.tecnico.uilib.menus.CommandException;
 import pt.tecnico.uilib.forms.Form;
 
 import erp.app.exceptions.FileOpenFailedException;
-//FIXME maybe import classes
 
 /**
- * Replaces the current state of the application with the state previously saved to a
- * file. Asks for the file name.
+ * Replaces the current state of the application with the state previously 
+ * saved to a file. Asks for the file name.
  */
 class DoOpenFile extends Command<ErpManager> {
 
@@ -26,33 +25,33 @@ class DoOpenFile extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
-        /** get the fields the uilib stored  */
+        /* get the fields the uilib stored  */
         String fileToLoad = stringField("fileToLoad");
 
-        /** check if there is unsaved changes to save */
+        /* check if there is unsaved changes to save */
         if (_receiver.hasUnsavedChanges()){
-            /** ask user if he wants to save the file before loading a new one*/
+            /* ask user if he wants to save the file before loading a new one*/
             boolean saveUnsavedChanges = Form.confirm(Prompt.saveBeforeExit());
 
-            /** if yes, save the unsaved changes */
+            /* if yes, save the unsaved changes */
             if (saveUnsavedChanges){
-                /** ask user the filename */
+                /* ask user the destination filename */
                 String fileToSave = Form.requestString(Prompt.newSaveAs());
 
                 try {
                     _receiver.saveAs(fileToSave);
                 }
-                /**  problem if filename is valid or errors in saving */
+                /*  problem if filename is valid or errors in saving */
                 catch (MissingFileAssociationException | IOException e){
                     e.printStackTrace();
                 }
             }
             else {
-                /** user didnt want to save so do nothing, load the new file */
+                /* user didnt want to save so do nothing, load the new file */
             }
         }
 
-        /** open (load) the file */
+        /* open (load) the file */
         try {
             _receiver.load(fileToLoad);
         }

@@ -56,7 +56,7 @@ public class ErpManager {
             throw new MissingFileAssociationException();
         }
 
-        /** using try with resources */
+        /* using try with resources */
         try (ObjectOutputStream oos =   new ObjectOutputStream(
                                         new BufferedOutputStream(
                                         new FileOutputStream(_filename)))){
@@ -75,7 +75,7 @@ public class ErpManager {
     public void saveAs(String filename) 
                 throws MissingFileAssociationException, IOException {
         
-        /** empty filenames are invalid */
+        /* empty filenames are invalid */
         if (filename == null || filename.isEmpty()){
             throw new MissingFileAssociationException();
         }
@@ -94,20 +94,20 @@ public class ErpManager {
      */
     public void load(String filename) throws UnavailableFileException {
         
-        /** empty filenames dont exist */
+        /* empty filenames dont exist */
         if (filename == null || filename.isEmpty()){
             throw new UnavailableFileException(filename);
         }
 
-        /** using try with resources */
+        /* using try with resources */
         try (ObjectInputStream ois =    new ObjectInputStream(
                                         new BufferedInputStream(
                                         new FileInputStream(filename)))){
-            /** attatch the new filename and erp to the manager */
+            /* attatch the new filename and erp to the manager */
             _erp = (Erp) ois.readObject();
             _filename = filename;
         }
-        /** if error or file doenst exist */
+        /* if error or file doenst exist */
         catch(IOException | ClassNotFoundException e){
             throw new UnavailableFileException(filename);
         }
@@ -224,7 +224,7 @@ public class ErpManager {
      */
     public int registerCompany(String name) 
                                 throws InvalidCompanyNameException {
-        /** already throws exception */
+        /* already throws exception */
         int companyId = _erp.registerCompany(name);
 
         _fileChanged = true;
@@ -298,7 +298,7 @@ public class ErpManager {
                                 String[] extraArgs) 
                                 throws InvalidProductFieldsException {
         
-        /** already throws exception */
+        /* already throws exception */
         int productId = _erp.registerProduct(type, name, basePrice, 
                                                 category, baseShippingTime, 
                                                 extraArgs);

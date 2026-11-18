@@ -50,7 +50,7 @@ public class DeliveryDateSplit implements OrderSplit {
         
         List<List<PurchaseLine>> splitOrders = new ArrayList<>();
 
-        /** Initialize the order of the group <= mean */
+        /* Initialize the order of the group <= mean */
         List<PurchaseLine> firstOrder = new ArrayList<>();
         double mean = calcMeanProductShippingTime(listPL);
 
@@ -58,11 +58,11 @@ public class DeliveryDateSplit implements OrderSplit {
             Product product = purchaseLine.getProduct();
             double productShippingTime = product.getBaseShippingTime();
 
-            /** GROUP ALL ORDERS WITH SHIPPING <= MEAN */
+            /* GROUP ALL ORDERS WITH SHIPPING <= MEAN */
             if(productShippingTime <= mean){
                 firstOrder.add(purchaseLine);
             }
-            /** CREATE A NEW ORDER FOR EACH LINE WITH SHIPPING > MEAN */
+            /* CREATE A NEW ORDER FOR EACH LINE WITH SHIPPING > MEAN */
             else{
                 List<PurchaseLine> order = new ArrayList<>();
                 order.add(purchaseLine);
@@ -70,9 +70,9 @@ public class DeliveryDateSplit implements OrderSplit {
             }
         }
 
-        /** probabbly never empty */
+        /* probabbly never empty */
         if (!firstOrder.isEmpty()) {
-            splitOrders.add(0, firstOrder); /** put the fast order first */
+            splitOrders.add(0, firstOrder); /* put the fast order first */
         }
 
         return splitOrders;

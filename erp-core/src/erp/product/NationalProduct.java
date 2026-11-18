@@ -47,15 +47,15 @@ public class NationalProduct extends Product {
 
         double recommendedPrice;
 
-        /** (1) TotalUnits > 10 000 */
+        /* (1) TotalUnits > 10 000 */
         if (getTotalUnitsAvailable() > 10000) {
             recommendedPrice = (0.90 * getBasePrice());
         }
-        /** (2) TotalUnits < 100 */
+        /* (2) TotalUnits < 100 */
         else if(getTotalUnitsAvailable() < 100) {
             recommendedPrice = (1.30 * getBasePrice());
         }
-        /** (3) 100 <= totalUnits <= 10000 */
+        /* (3) 100 <= totalUnits <= 10000 */
         else {
             recommendedPrice = getBasePrice();
         }
@@ -79,17 +79,4 @@ public class NationalProduct extends Product {
         return "";
     }
 
-    /**
-    * String representation of a national product:
-    * id - type - name - catg. - base prc. - recmm. prc. - base delay - t.units
-    * 
-    * @return a string representation of the national product.
-    */
-    @Override 
-    public String toString(){
-        return _id + " - " + getType() + " - "+ _name + " - " + _category 
-                + " - " + String.format("%.2f",(double)_basePrice) + " - " 
-                + String.format("%.2f", getRecommendedPrice()) + " - " 
-                + _baseShippingTime + " - " + _totalUnitsAvailable;
-    }
 }   

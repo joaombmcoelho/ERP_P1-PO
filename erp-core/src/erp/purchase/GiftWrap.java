@@ -22,8 +22,8 @@ public class GiftWrap implements AdditionalService{
 
     @Override
     public boolean equals(Object o){
-        if (o instanceof GiftWrap){
-            GiftWrap gW = (GiftWrap) o;
+        if (o instanceof AdditionalService){
+            AdditionalService gW = (AdditionalService) o;
             return (getAdditionalCost() == gW.getAdditionalCost() &&
                     getAdditionalTime() == gW.getAdditionalTime() &&
                     getKey().equals(gW.getKey()));

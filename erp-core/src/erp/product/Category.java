@@ -1,7 +1,7 @@
 package erp.product;
 
 /**
- * Represents the possible product categorys
+ * Represents the possible product categories.
  */
 public enum Category {
     ALIMENTAR,

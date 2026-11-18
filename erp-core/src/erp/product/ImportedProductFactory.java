@@ -29,16 +29,16 @@ public class ImportedProductFactory implements ProductFactory{
                             int baseShippingTime, String[] extraArgs) 
                             throws InvalidProductFieldsException {
         
-        /** Get the imported products extra args */
+        /* Get the imported products extra args */
         String country = extraArgs[0];
         double tax = Double.parseDouble(extraArgs[1]);
 
-        /** Problem if country is empty */
+        /* Problem if country is empty */
         if (country.trim().isEmpty()){
             throw new InvalidProductFieldsException();
         }
 
-        /** Problem if tax not positive */
+        /* Problem if tax not positive */
         if (tax <= 0){
             throw new InvalidProductFieldsException();
         }

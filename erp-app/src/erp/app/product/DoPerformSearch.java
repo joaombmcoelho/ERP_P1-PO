@@ -6,7 +6,6 @@ import erp.exceptions.InvalidSearchFilterException;
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
 import pt.tecnico.uilib.forms.Form;
-//FIXME maybe import classes
 
 /** Searches the product registry by one of the criteria the core offers. */
 class DoPerformSearch extends Command<ErpManager> {
@@ -19,11 +18,11 @@ class DoPerformSearch extends Command<ErpManager> {
     protected final void execute() throws CommandException {
         String criterion = "";
 
-        /** need to ask the search Criterion until user gets it right */
+        /* need to ask the search Criterion until user gets it right */
         while (true) {
             criterion = Form.requestString(Prompt.searchCriterion());
             if (_receiver.searchFilterKeys().contains(criterion)) {
-                break;  /** found the right key, stop asking in loop */
+                break;  /* found the right key, stop asking in loop */
             }
         }
 
@@ -32,7 +31,8 @@ class DoPerformSearch extends Command<ErpManager> {
         try {
             _display.popup(_receiver.search(criterion, term));
         } catch (InvalidSearchFilterException e) {
-            /** never happens */
+            e.printStackTrace();
+            /* never happens */
         }
     }
 
