@@ -1,16 +1,32 @@
 package erp.client;
 
-// public class Default implements NotificationSystem {
+
+public class Default implements NotificationSystem {
     
-//     @Override 
-//     public NotType getNotType(){
-//     }
-//     @Override
-//     public void sendNot(Client c){
+    //! todo not implemented
+    /**
+     * @return notification type.
+     */
+    @Override 
+    public NotType getNotType(){
+        return NotType.ENTREGUE;
+    }
 
-//     }
-//     @Override
-//     public void showAllNotif (Client c){
+    /**
+     * Sends a default notification to a client.
+     * 
+     * @param c client.
+     */
+    @Override
+    public void sendNot(Client c){
+    }
 
-//     }
-// }
+    /**
+     * Shows all default notifications of a client.
+     * 
+     * @param c client.
+     */
+    @Override
+    public void showAllNotif (Client c){
+    }
+}

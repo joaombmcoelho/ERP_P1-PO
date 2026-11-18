@@ -1,5 +1,8 @@
 package erp.company;
 
+/**
+ * Represents the status of the inventory.
+ */
 public enum InventoryStatus {
     ERROR,
     INVALID_RP_FACTOR,

@@ -121,7 +121,7 @@ public class Company implements Serializable{
 
     /**
      * @param product
-     * @return Recommended price factor of this product.
+     * @return recommended price factor of this product.
      */
     public double getProductRPFactor(Product product){
         ProductInventory productInventory = getInventory(product);
@@ -131,7 +131,7 @@ public class Company implements Serializable{
 
     /**
      * @param product
-     * @return Sell Price of this product.
+     * @return sell Price of this product.
      */
     public double getProductSellPrice(Product product){
         ProductInventory productInventory = getInventory(product);
@@ -252,7 +252,7 @@ public class Company implements Serializable{
         /** Case (1) - Add a new product */
         if(newProduct){
             /* problem if quantityToAdd not positive
-             *  because if its a new product quantity has to be >= 1. 
+             * because if its a new product quantity has to be >= 1. 
              */
             if (quantityToAdd <= 0){
                 return InventoryStatus.ERROR_ADD_0_UNITS;

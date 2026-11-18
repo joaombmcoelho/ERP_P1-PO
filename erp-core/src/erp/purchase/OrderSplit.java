@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Defines a order split strategy dividing a list of purchase lines into
+ * Defines an order split strategy dividing a list of purchase lines into
  * a list of lists of purchase lines (list of orders).
  */
 public interface OrderSplit extends Serializable{

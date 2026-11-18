@@ -8,18 +8,36 @@ import java.util.Collections;
 
 import erp.product.Product;
 
-
+/**
+ * Class for orders registered in ERP.
+ */
 public class Order implements Serializable{
     
+    /** Serial number for serialization. */
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
 
+    /** purchase id */ 
     private int _purchaseID;
+
+    /** purchase date */
     private int _purchaseDate;
+
+    /** all purchase lines of the purchase */
     private List<PurchaseLine> _purchaseLines;
+
+    /** all additional services of the purchase  */
     private List<AdditionalService> _additionalServices;
+
+    /** purchase transport method */
     private TransportMethod _transportMethod;
 
+    /**
+     * Constructor.
+     * 
+     * @param id purchase id.
+     * @param name purchase date.
+     */
     public Order(int purchaseID, int purchaseDate){
         _purchaseID = purchaseID;
         _purchaseDate = purchaseDate;
@@ -28,6 +46,15 @@ public class Order implements Serializable{
         _transportMethod = null;
     }
 
+    /**
+     * Constructor.
+     * 
+     * @param id purchase id.
+     * @param name purchase date.
+     * @param purchaseLines  purchase lines.
+     * @param additionalServices purchase additional services.
+     * @param transportMethod purchase transport method.
+     */
     public Order(int purchaseID, int purchaseDate, List<PurchaseLine> purchaseLines, 
                 List<AdditionalService> additionalServices, TransportMethod transportMethod ){
         _purchaseID = purchaseID;
@@ -37,50 +64,98 @@ public class Order implements Serializable{
         _transportMethod = transportMethod;
     }
 
-    /** GETTERS */
+    // --- getters --------------------------------------------------
 
+    /**
+     * @return purchase id.
+     */
     public int getID(){
         return _purchaseID;
     }
 
+    /** 
+     * @return purchase date .
+     */
     public int getPurchaseDate(){
         return _purchaseDate;
     }
 
+    /**
+     * @return a copy of the purchase lines list.
+     */
     public List <PurchaseLine> getPurchaseLines(){
         return Collections.unmodifiableList(_purchaseLines);
     }
 
+    /**
+     * @return a copy of the additional services list.
+     */
     public List <AdditionalService> getAdditionalServices(){
         return Collections.unmodifiableList(_additionalServices);
     }
 
+    /**
+     * @return purchase transport method.
+     */
     public TransportMethod getTransportMethod(){
         return _transportMethod;
     }
 
-    /** SETTERS */
+    // --- setters --------------------------------------------------
 
+    /**
+     * Changes a purchase's id.
+     * 
+     * @param newID
+     */
     public void setID(int newID){
         _purchaseID = newID;
     }
 
+    /**
+     * Changes a purchase's date.
+     * 
+     * @param newDate
+     */
     public void setPurchaseDate(int newDate){
         _purchaseDate = newDate;
     }
 
+    /**
+     * Adds a purchase line to a purchase.
+     * 
+     * @param newLine
+     */
     public void addPurchaseLine(PurchaseLine newLine){    
         _purchaseLines.add(newLine);
     }
 
+    /**
+     * Adds an additional service to a purchase.
+     * 
+     * @param newService
+     */
     public void addAdditionalService(AdditionalService newService){   
         _additionalServices.add(newService);
     }
 
+    /**
+     * Changes a purchase's tranport method.
+     */
     public void setTransportMethod(TransportMethod newTransport){
         _transportMethod = newTransport;
     }
 
+    // --- methods --------------------------------------------------
+    
+    /**
+    * Two purchases are considered equal when they have the same id,
+    * date, purchase lines, additional services and transport
+    * methods.
+    * 
+    * @param o purchase to compare
+    * @return true if purchase are equals, false otherwise.
+    */
     @Override
     public boolean equals(Object o){
         if(o instanceof Order){
@@ -94,13 +169,24 @@ public class Order implements Serializable{
         return false;
     }
 
+    /**
+    * String representation of a purchase: 
+    * purchaseID - tranport method and additional services - delivery
+    * date - processing cost - list of products id in the purchase.
+    * 
+    * @return a string representation of the purchase.
+    */
     @Override
     public String toString(){
         return _purchaseID + " - " + doTransportDescription() + " - " + calcDeliveryDate() + " - " +
                 String.format("%.2f",calcProcessingCost())  + " -" + getProductsIdString();
     }
 
-    /** Calculates the total value of purchase lines in this order */
+    /** 
+     * Calculates the total value of purchase lines in this order .
+     * 
+     * @return sum of the cost of the items in a purchase.
+     */
     public double calcItemsCost(){
         double itemsCost = 0;
 
@@ -110,7 +196,13 @@ public class Order implements Serializable{
         return  itemsCost;
     }
 
-    /** If the products in the order have a value > 50, processing cost = 0. Otherwise, equals 5. */
+    /**
+     * Calculates the purchase processing cost. If the products in
+     * the order have a value > 50, processing cost = 0. Otherwise,
+     * equals 5. 
+     * 
+     * @return purchase processing cost.
+     */
     public double calcProcessingCost(){
 
         double itemsCost = calcItemsCost();
@@ -123,7 +215,12 @@ public class Order implements Serializable{
         }
     }
 
-    /** Calculates processingCost + all additional services cost + transport shippingFee */
+    /**
+     * Calculates an order cost. Order cost = processingCost +
+     * all additional services cost + transport shippingFee.
+     * 
+     * @return order cost.
+     */
     public double calcOrderCost(){
         double orderCost = calcProcessingCost();
 
@@ -136,11 +233,23 @@ public class Order implements Serializable{
         return orderCost;
     }
     
+    /**
+     * Calculates the total cost of a purchase.
+     * Total cost = order cost + items cost.
+     * 
+     * @return total cost.
+     */
     public double calcTotalCost(){
         return calcOrderCost() + calcItemsCost();
     }
 
-    /** Delivery date = _purchaseDate + biggest base shipping time + transport shipping + addservices time */
+    /** 
+     * Calculates a purchase delivery date.
+     * Delivery date = _purchaseDate + biggest base shipping time +
+     * transport shipping + addservices time .
+     * 
+     * @return purchase delivery date.
+     */
     public int calcDeliveryDate(){
         int aSCost = 0;
         int bigBaseShipping = 0;
@@ -158,6 +267,11 @@ public class Order implements Serializable{
         return _purchaseDate + bigBaseShipping + _transportMethod.getShippingTime() + aSCost;
     }
 
+    /**
+     * Creates a list of the ids of the products in a purchase.
+     * 
+     * @return a sorted list of the products' ids.
+     */
     public List<Integer> getProductsIdList(){
         List<Integer> productsID = new ArrayList<>();
 
@@ -169,10 +283,14 @@ public class Order implements Serializable{
         return productsID;
     }
 
+    /** 
+     * Transforms the product ids list into a string.
+     * 
+     * @return string of products' ids.
+     */
     public String getProductsIdString(){
         String productsID = "";
 
-        //! todo-> traço ou nao entre ids
         for (Integer pID: getProductsIdList()){
             productsID += "  " + pID;
         }
@@ -180,6 +298,12 @@ public class Order implements Serializable{
         return productsID;
     }
 
+    /** 
+     * Creates a purchase transport description: transport method + 
+     * the key of all additional services in the purchase.
+     * 
+     * @return string of the transport description.
+     */
     public String doTransportDescription(){
         List<AdditionalService> addSReversed = _additionalServices.reversed();
         String addS = "";
@@ -190,7 +314,7 @@ public class Order implements Serializable{
         return _transportMethod.getKey() + addS;
     }
     
-    //! acabar -> erp
+    //todo not complete 
     public String getDetailedString(){
         return "";
     }

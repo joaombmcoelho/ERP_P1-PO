@@ -11,22 +11,22 @@ public abstract class Product implements Serializable, Comparable<Product>{
     @java.io.Serial
     private static final long serialVersionUID = 202608261200L;
 
-    /** Product id */
+    /** product id */
     private int _id;  
 
-    /** Product name */
+    /** product name */
     private String _name;
 
-    /** Product category */
+    /** product category */
     private Category _category;
 
-    /** Product base price */
+    /** product base price */
     private int _basePrice;
 
-    /** Product base delay */
+    /** product base delay */
     private int _baseShippingTime;
 
-    /** Product total unites available */
+    /** product total unites available */
     private int _totalUnitsAvailable;
 
     /**
@@ -38,10 +38,11 @@ public abstract class Product implements Serializable, Comparable<Product>{
      * @param basePrice
      * @param baseShipping baseDelay.
      */
-    public Product(int id, String name,Category c, int basePrice, int baseShipping){
+    public Product(int id, String name,Category c, int basePrice,
+                   int baseShipping){
         _id = id;
         _name = name;
-        _category = c;     /* NOT SURE VERIFICAR DEPOIS */
+        _category = c;     
         _basePrice = basePrice;
         _baseShippingTime = baseShipping;
         _totalUnitsAvailable = 0;
@@ -186,7 +187,7 @@ public abstract class Product implements Serializable, Comparable<Product>{
     * id - type - name - catg. - base prc. - recmm. prc. - base delay -
     * - t.units - AdditionalInfo
     * 
-    * @return a string representation of the national product.
+    * @return a string representation of the product.
     */
     @Override 
     public String toString(){
