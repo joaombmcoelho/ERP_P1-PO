@@ -241,7 +241,11 @@ public class ErpManager {
         return _erp.showCompany(companyId);
     }
 
-    //todo RITA SHOW ALL COMPANIES
+    /**
+     * Creates a list of strings of all companies in the system.
+     * 
+     * @return list of strings of the companies.
+     */
     public List<String> showAllCompanies(){
         return _erp.showAllCompanies();
     }
@@ -268,12 +272,22 @@ public class ErpManager {
         return status;
     }
 
-    //todo RITA SHOW COMPANY PRODUCTS
+    /**
+     * Creates a list of strings of all the products of a company.
+     * @param companyID id of the company to show all products.
+     * @throws UnknownCompanyException if company doesnt exist.
+     * @return list of strings of the products.
+     */
     public List<String> showCompanyProducts(int companyID) throws UnknownCompanyException {
         return _erp.showCompanyProducts(companyID);
     }
     
-    //todo RITA SHOW COMPANY CLIENTS
+    /**
+     * Creates a list of strings of all the clients of a company.
+     * @param companyID id of the company to show all clients.
+     * @throws UnknownCompanyException if company doesnt exist.
+     * @return list of strings of the clients.
+     */
     public List<String> showCompanyClients(int companyID) throws UnknownCompanyException {
         return _erp.showCompanyClients(companyID);
     }
@@ -306,17 +320,33 @@ public class ErpManager {
         return productId;
     }
 
-    //todo RITA SHOW PRODUCT
+    /**
+     * Returns a string representation of a product.
+     * @param productID id of the product to show.
+     * @throws UnknownProductException if product doesnt exist.
+     * @return the product representation.
+     */
     public String showProduct(int productID) throws UnknownProductException {
         return _erp.showProduct(productID);
     }
 
-    //todo RITA SHOW ALL PRODUCTS
+    /**
+     * Creates a list of strings of all products in the system.
+     * 
+     * @return list of strings representation of the products.
+     */
     public List<String> showAllProducts(){
         return _erp.showAllProducts();
     }
 
-    //todo RITA SEARCH
+    /**
+     * Creates a list of strings of the products that match the 
+     * search criterion.
+     * @param filter search filter.
+     * @param term search term.
+     * @throws InvalidSearchFilterException if filter is not found.
+     * @return list of representation of products.
+     */
     public List<String> search(String filter, String term) throws InvalidSearchFilterException {
         return _erp.search(filter, term);
     }
@@ -338,29 +368,38 @@ public class ErpManager {
         return status;
     }
 
-    //todo RITA SHOW CLIENT
+    /**
+     * Returns a string representation of a client.
+     * @param email email of the client to show.
+     * @throws UnknownClientException if client doesnt exist.
+     * @return the client representation.
+     */
     public String showClient(String email) throws UnknownClientException {
         return _erp.showClient(email);
     }
 
-    //todo RITA SHOW ALL CLIENTS
+    /**
+     * Creates a list of strings of all clients in the system.
+     * 
+     * @return list of strings  representation of clients.
+     */
     public List<String> showAllClients(){
         return _erp.showAllClients();
     }
 
-    //todo RITA SHOW CLIENT NOTIFICATIONS
+    //todo 2nd delivery
     public String showClientNotifications(){
         return "";
     }
 
     // --- purchases -------------------------------------------------
 
-    //todo RITA SHOW PURCHASE
+    //todo 2nd delivery
     public String showPurchase(int purchaseID) throws UnknownPurchaseException {
         return "";
     }
 
-    //todo RITA SHOW ALL PURCHASES
+    //todo 2nd delivery
     public String showAllPurchases(){
         return "";
     }
@@ -405,17 +444,29 @@ public class ErpManager {
         return _erp.showBasket(basket);
     }
 
-    //todo RITA SET ORDER SPLIT
+    /**
+     * Adds an order split.
+     * 
+     * @param newOrderSplit.
+     */
     public void addOrderSplit(OrderSplit newOrderSplit){
         _erp.addOrderSplit(newOrderSplit);
     }
 
-    //todo RITA SET TRANSPORT METHOD
+    /**
+     * Adds a transport method.
+     * 
+     * @param newTransportMethod
+     */
     public void addTransportMethod(TransportMethod newTransport){
         _erp.addTransportMethod(newTransport);
     }
 
-    //todo RITA ADD ADDITIONAL SERVICE
+    /**
+     * Adds an additional service.
+     * 
+     * @param newAdditionalService
+     */
     public void addAdditionalService(AdditionalService newService){
         _erp.addAdditionalService(newService);
     }
@@ -436,27 +487,56 @@ public class ErpManager {
         return purchase;
     }
 
-    //todo RITA todos os lists keys em baixo
+    /**
+     * Creates a list of strings of product type keys.
+     * 
+     * @return list of strings of product type keys.
+     */
     public List<String> listProductTypeKeys(){
         return _erp.listProductTypeKeys();
     }
 
+    /**
+     * Creates a list of strings of category keys.
+     * 
+     * @return list of strings of category keys.
+     */
     public List<String> listCategoryKeys(){
         return _erp.listCategoryKeys();
     }
 
+    /**
+     * Creates a list of strings of search filter keys.
+     * 
+     * @return list of strings of search filter keys.
+     */
     public List<String> searchFilterKeys(){
         return _erp.searchFilterKeys();
     }
 
+    /**
+     * Creates a list of strings of order split keys.
+     * 
+     * @return list of strings of order split keys.
+     */
     public List<String> listOrderSplitKeys(){
         return _erp.listOrderSplitKeys();
     }
 
+    /**
+     * Creates a list of strings of transport method keys.
+     * 
+     * @return list of strings of transport method keys.
+     */
     public List<String> listTransportMethodsKeys(){
         return _erp.listTransportMethodsKeys();
     }
 
+    /**
+     * Creates a list of strings of additional services keys.
+     * 
+     * @return list of strings of additional services keys.
+     */
     public List<String> listAdditionalServicesKeys(){
         return _erp.listAdditionalServicesKeys();
     }

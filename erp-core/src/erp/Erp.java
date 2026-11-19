@@ -396,7 +396,11 @@ class Erp implements Serializable {
         return company.toString();
     }
 
-    //todo RITA SHOW ALL COMPANIES
+    /**
+     * Creates a list of strings of all companies in the system.
+     * 
+     * @return list of strings of the companies.
+     */
     public List<String> showAllCompanies(){
         List<String> _companiesString = new ArrayList<>();
 
@@ -427,7 +431,7 @@ class Erp implements Serializable {
         if (company.changeInventory(product, quantityToChange, newRPFactor)
                                             != InventoryStatus.SUCCESS) {
             /* ERROR, INVALID_RP_FACTOR, ERROR_ADD_0_UNITS
-             *  NOT_ENOUGH_TO_REMOVE
+             * NOT_ENOUGH_TO_REMOVE
              */
             return false;
         }
@@ -435,14 +439,16 @@ class Erp implements Serializable {
         return true;
     }
 
-    //! SHOW COMPANY PRODDUCTS todo not sure verificar!!!!!!
-    public List<String> showCompanyProducts(int companyID) throws UnknownCompanyException {
-        Company company = getCompany(companyID);
+    /**
+     * Creates a list of strings of all the products of a company.
+     * @param companyID id of the company to show all products.
+     * @throws UnknownCompanyException if company doesnt exist.
+     * @return list of strings of the products.
+     */
+    public List<String> showCompanyProducts(int companyID)
+                          throws UnknownCompanyException {
+        Company company = getCompany(companyID); /* throws exception already */
         List<String> companyProdString = new ArrayList<>();
-
-        if (company == null){
-            throw new UnknownCompanyException(companyID);
-        }
 
         for(ProductInventory i: company.getAllInventory().values()) {
             companyProdString.add(companyID + " - " + i.toString());
@@ -451,14 +457,16 @@ class Erp implements Serializable {
         return companyProdString;
     }
     
-    //todo RITA SHOW COMPANY CLIENTS (n necessario na entrega)
+    //todo finished? but 2nd delivery
+    /**
+     * Creates a list of strings of all the clients of a company.
+     * @param companyID id of the company to show all clients.
+     * @throws UnknownCompanyException if company doesnt exist.
+     * @return list of strings of the clients.
+     */
     public List<String> showCompanyClients (int companyID) throws UnknownCompanyException {
-        Company company = getCompany(companyID);
+        Company company = getCompany(companyID); /* throws exception already */
         List<String> companyClientString = new ArrayList<>();
-
-        if (company == null){
-            throw new UnknownCompanyException(companyID);
-        }
 
         for(Client c: company.getAllClients()) {
             companyClientString.add(companyID + " - " + c.toString());
@@ -547,17 +555,23 @@ class Erp implements Serializable {
         return product.getID(); /* the app needs it */
     }
 
-    //todo RITA SHOW PRODUCT
-    public String showProduct(int productID) throws UnknownProductException{
-        Product product = getProduct(productID);
+    /**
+     * Returns a string representation of a product.
+     * @param productID id of the product to show.
+     * @throws UnknownProductException if product doesnt exist.
+     * @return the product representation.
+     */
+    public String showProduct(int productID) throws UnknownProductException {
+        Product product = getProduct(productID); /* throws exception already */
 
-        if (product == null){
-            throw new UnknownProductException(productID);
-        }
         return product.toString();
     }
 
-    //todo RITA SHOW ALL PRODUCTS
+    /**
+     * Creates a list of strings of all products in the system.
+     * 
+     * @return list of strings representation of the products.
+     */
     public List<String> showAllProducts(){
         List<String> _productsString = new ArrayList<>();
 
@@ -572,13 +586,23 @@ class Erp implements Serializable {
     private void registerProductSearch(Search search){
         _productSearch.put(search.getKey(), search);
     }
-
-    //todo SEARCH
-    public List<String> search(String filter, String term) throws InvalidSearchFilterException{
+    
+    /**
+     * Does a search of products in the system with a given filter 
+     * and search term. Creates a list of strings of the products
+     * that match the search criterion.
+     * @param filter search filter.
+     * @param term search term.
+     * @throws InvalidSearchFilterException if filter is not found.
+     * @return list of representation of products.
+     */
+    public List<String> search(String filter, String term) 
+                      throws InvalidSearchFilterException{
         Search s = _productSearch.get(filter); /* only accepts uppercase */
         if (s == null){
             throw new InvalidSearchFilterException();
         }
+
         List<String> searchList = new ArrayList<>();
 
         for (Product p: _products.values()) {
@@ -587,12 +611,12 @@ class Erp implements Serializable {
             }
         }
 
+        /* if search list is empty, search invalid */
         if (searchList.isEmpty()){
             throw new InvalidSearchFilterException();
         }
 
-        return searchList;
-        
+        return searchList; 
     }
 
     // --- clients ---------------------------------------------------
@@ -622,7 +646,12 @@ class Erp implements Serializable {
         return true;
     }
 
-    //todo RITA SHOW CLIENT 
+    /**
+     * Returns a string representation of a client.
+     * @param email email of the client to show.
+     * @throws UnknownClientException if client doesnt exist.
+     * @return the client representation.
+     */
     public String showClient(String email) throws UnknownClientException{
         Client client = _clients.get(email.toLowerCase());
 
@@ -633,7 +662,11 @@ class Erp implements Serializable {
         return client.toString();
     }
 
-    //todo RITA SHOW ALL CLIENTS
+    /**
+     * Creates a list of strings of all clients in the system.
+     * 
+     * @return list of strings  representation of clients.
+     */
     public List<String> showAllClients(){
         List<String> _clientsString = new ArrayList<>();
 
@@ -644,14 +677,13 @@ class Erp implements Serializable {
         return _clientsString;
     }
     
-
-    //todo RITA SHOW CLIENT NOTIFICATIONS   /** FAZER NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
+    //todo show client notifications  2nd delivery
 
     // --- purchases -------------------------------------------------
 
-    //todo RITA SHOW PURCHASE   /** FAZER NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
+    //todo show purchase 2nd delivery
 
-    //todo RITA SHOW ALL PURCHASES  /** FAZER NO FIM - NAO OBRIGATORIO NESTA ENTREGA  */
+    //todo show all purchases 2nd delivery
 
     // --- basket ----------------------------------------------------
 
@@ -698,17 +730,29 @@ class Erp implements Serializable {
         return basket.toString();
     }
 
-    //todo RITA SET ORDER SPLIT
+    /**
+     * Adds an order split.
+     * 
+     * @param newOrderSplit.
+     */
     public void addOrderSplit(OrderSplit newOrderSplit){
         _orderSplit.put(newOrderSplit.getKey(), newOrderSplit);
     }
 
-    //todo RITA SET TRANSPORT METHOD
+    /**
+     * Adds a transport method.
+     * 
+     * @param newTransportMethod
+     */
     public void addTransportMethod(TransportMethod newTransportMethod){
         _transportMethods.put(newTransportMethod.getKey(), newTransportMethod);
     }
 
-    //todo RITA ADD ADDITIONAL SERVICE
+    /**
+     * Adds an additional service.
+     * 
+     * @param newAdditionalService
+     */
     public void addAdditionalService(AdditionalService newAdditionalService){
         _services.put(newAdditionalService.getKey(), newAdditionalService);
     }
@@ -757,7 +801,11 @@ class Erp implements Serializable {
         return purchase;
     }
 
-    //todo RITA todos os lists keys em baixo
+    /**
+     * Creates a list of strings of product type keys.
+     * 
+     * @return list of strings of product type keys.
+     */
     public List<String> listProductTypeKeys(){
         List<String> productTypeKeys = new ArrayList<>();
 
@@ -768,6 +816,11 @@ class Erp implements Serializable {
         return productTypeKeys;
     }
 
+    /**
+     * Creates a list of strings of category keys.
+     * 
+     * @return list of strings of category keys.
+     */
     public List<String> listCategoryKeys(){
         List<String> categoryKeys = new ArrayList<>();
 
@@ -778,6 +831,11 @@ class Erp implements Serializable {
         return categoryKeys;
     }
 
+    /**
+     * Creates a list of strings of search filter keys.
+     * 
+     * @return list of strings of search filter keys.
+     */
     public List<String> searchFilterKeys(){
         List<String> searchFilterKeys = new ArrayList<>();
 
@@ -788,6 +846,11 @@ class Erp implements Serializable {
         return searchFilterKeys;
     }
 
+    /**
+     * Creates a list of strings of order split keys.
+     * 
+     * @return list of strings of order split keys.
+     */
     public List<String> listOrderSplitKeys(){
         List<String> orderSplitKeys = new ArrayList<>();
 
@@ -798,6 +861,11 @@ class Erp implements Serializable {
         return orderSplitKeys;
     }
 
+    /**
+     * Creates a list of strings of transport method keys.
+     * 
+     * @return list of strings of transport method keys.
+     */
     public List<String> listTransportMethodsKeys(){
         List<String> transportKeys = new ArrayList<>();
 
@@ -808,6 +876,11 @@ class Erp implements Serializable {
         return transportKeys;
     }
 
+    /**
+     * Creates a list of strings of additional services keys.
+     * 
+     * @return list of strings of additional services keys.
+     */
     public List<String> listAdditionalServicesKeys(){
         List<String> servicesKeys = new ArrayList<>();
 
@@ -817,4 +890,5 @@ class Erp implements Serializable {
 
         return servicesKeys;
     }
+
 }
