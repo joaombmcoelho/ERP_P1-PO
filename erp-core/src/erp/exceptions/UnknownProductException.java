@@ -1,5 +1,9 @@
 package erp.exceptions;
 
+/**
+ * Represents an error when the given product id doenst match with any
+ * product registered in the system, because it doenst exist.
+ */
 public class UnknownProductException extends Exception {
 
     @java.io.Serial

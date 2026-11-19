@@ -1,0 +1,21 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+(cd src; jar cf ../erp-core.jar `find . -name \*.class -o -name \*.java`)
+Checking manager interface structure...
+rm -f erp-app.jar `find . -name \*.class`
+(cd src; javac -cp /usr/share/java/po-uilib.jar:../../erp-core/erp-core.jar -encoding UTF-8 `find . -name \*.java`)
+./erp/app/exceptions/FileSaveFailedException.java:11: error: cannot find symbol
+        super(Message.problemSavingFile(e), e);
+                     ^
+  symbol:   method problemSavingFile(Exception)
+  location: interface Message
+./erp/app/exceptions/UnknownSearchCriterionException.java:7: error: cannot find symbol
+        super(Message.unknownSearchCriterion(criterion));
+                     ^
+  symbol:   method unknownSearchCriterion(String)
+  location: interface Message
+2 errors
+make: *** [Makefile:6: all] Error 1
+

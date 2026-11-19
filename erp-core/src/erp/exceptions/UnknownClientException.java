@@ -1,5 +1,9 @@
 package erp.exceptions;
 
+/**
+ * Represents an error when the given client email (id) doenst match 
+ * with any client, because it doenst exist.
+ */
 public class UnknownClientException extends Exception {
 
     @java.io.Serial

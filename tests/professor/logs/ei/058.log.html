@@ -1,0 +1,562 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+(cd src; jar cf ../erp-core.jar `find . -name \*.class -o -name \*.java`)
+Checking manager interface structure...
+rm -f erp-app.jar `find . -name \*.class`
+(cd src; javac -cp /usr/share/java/po-uilib.jar:../../erp-core/erp-core.jar -encoding UTF-8 `find . -name \*.java`)
+(cd src; jar cf ../erp-app.jar `find . -name \*.class -o -name \*.java` )
+<font color='white' style='background: blue;'>---------------------------A-01-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-01-M-ok.in -Dout=$LOGS/A-01-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-02-M-ok.in -Dout=$LOGS/A-01-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-01-03-M-ok.import -Din=A-01-03-M-ok.in -Dout=$LOGS/A-01-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-01-04-M-ok.import -Din=A-01-04-M-ok.in -Dout=$LOGS/A-01-04-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-08-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-01-08-M-ok.import -Din=A-01-08-M-ok.in -Dout=$LOGS/A-01-08-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-09-M-ok.in -Dout=$LOGS/A-01-09-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-11-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-11-M-ok.in -Dout=$LOGS/A-01-11-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-02-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-02-01-M-ok.import -Din=A-02-01-M-ok.in -Dout=$LOGS/A-02-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-02-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-02-M-ok.in -Dout=$LOGS/A-02-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-02-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-03-M-ok.in -Dout=$LOGS/A-02-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-02-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-04-M-ok.in -Dout=$LOGS/A-02-04-M-ok.out erp.app.App
+Exception in thread "main" pt.tecnico.uilib.forms.FormException: O campo 'email' não existe no formulário 'Mostrar todos os clientes'.
+	at pt.tecnico.uilib.forms.Form.get(Form.java:150)
+	at pt.tecnico.uilib.forms.Form.stringField(Form.java:179)
+	at pt.tecnico.uilib.menus.Command.stringField(Command.java:143)
+	at erp.app.client.DoShowClients.execute(DoShowClients.java:22)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.main.DoOpenMenuClients.execute(DoOpenMenuClients.java:18)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.App.main(App.java:22)
+*** expected/A-02-04-M-ok.out	2026-11-18 18:04:12.286709971 +0000
+--- logs/ei/A-02-04-M-ok.out	2026-11-18 18:19:56.576987293 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 24,67 ****</font>
+  3 - Mostrar todos os clientes
+  4 - Mostrar notificações de cliente
+  0 - Sair
+- Escolha uma opção: cliente1@erp.pt - Cliente 1 - 0.00
+- Menu de Gestão de Clientes
+- 1 - Registar cliente
+- 2 - Mostrar cliente
+- 3 - Mostrar todos os clientes
+- 4 - Mostrar notificações de cliente
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir ficheiro
+- 2 - Guardar ficheiro
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de empresas
+- 6 - Menu de gestão de produtos
+- 7 - Menu de gestão de clientes
+- 8 - Menu de gestão de compras
+- 0 - Sair
+- Escolha uma opção: Menu de Gestão de Produtos
+- 1 - Registar produto
+- 2 - Mostrar produto
+- 3 - Mostrar todos os produtos
+- 4 - Efectuar pesquisa de produtos
+- 0 - Sair
+- Escolha uma opção: 1 - NACIONAL - Nome1 - ALIMENTAR - 10.00 - 13.00 - 2 - 0
+- Menu de Gestão de Produtos
+- 1 - Registar produto
+- 2 - Mostrar produto
+- 3 - Mostrar todos os produtos
+- 4 - Efectuar pesquisa de produtos
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir ficheiro
+- 2 - Guardar ficheiro
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de empresas
+- 6 - Menu de gestão de produtos
+- 7 - Menu de gestão de clientes
+- 8 - Menu de gestão de compras
+- 0 - Sair
+  Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 24,27 ----</font>
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-02-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-09-M-ok.in -Dout=$LOGS/A-02-09-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-03-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-03-01-M-ok.in -Dout=$LOGS/A-03-01-M-ok.out erp.app.App
+Exception in thread "main" pt.tecnico.uilib.forms.FormException: O campo 'email' não existe no formulário 'Mostrar todos os clientes'.
+	at pt.tecnico.uilib.forms.Form.get(Form.java:150)
+	at pt.tecnico.uilib.forms.Form.stringField(Form.java:179)
+	at pt.tecnico.uilib.menus.Command.stringField(Command.java:143)
+	at erp.app.client.DoShowClients.execute(DoShowClients.java:22)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.main.DoOpenMenuClients.execute(DoOpenMenuClients.java:18)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.App.main(App.java:22)
+*** expected/A-03-01-M-ok.out	2026-11-18 18:04:12.286709971 +0000
+--- logs/ei/A-03-01-M-ok.out	2026-11-18 18:19:57.022989936 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 21,41 ****</font>
+  3 - Mostrar todos os clientes
+  4 - Mostrar notificações de cliente
+  0 - Sair
+- Escolha uma opção: darth@empire.uni - Darth Vader - 0.00
+- Menu de Gestão de Clientes
+- 1 - Registar cliente
+- 2 - Mostrar cliente
+- 3 - Mostrar todos os clientes
+- 4 - Mostrar notificações de cliente
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir ficheiro
+- 2 - Guardar ficheiro
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de empresas
+- 6 - Menu de gestão de produtos
+- 7 - Menu de gestão de clientes
+- 8 - Menu de gestão de compras
+- 0 - Sair
+  Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 21,24 ----</font>
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-03-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-03-02-M-ok.import -Din=A-03-02-M-ok.in -Dout=$LOGS/A-03-02-M-ok.out erp.app.App
+Exception in thread "main" pt.tecnico.uilib.forms.FormException: O campo 'email' não existe no formulário 'Mostrar todos os clientes'.
+	at pt.tecnico.uilib.forms.Form.get(Form.java:150)
+	at pt.tecnico.uilib.forms.Form.stringField(Form.java:179)
+	at pt.tecnico.uilib.menus.Command.stringField(Command.java:143)
+	at erp.app.client.DoShowClients.execute(DoShowClients.java:22)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.main.DoOpenMenuClients.execute(DoOpenMenuClients.java:18)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.App.main(App.java:22)
+*** expected/A-03-02-M-ok.out	2026-11-18 18:04:12.286709971 +0000
+--- logs/ei/A-03-02-M-ok.out	2026-11-18 18:19:57.215991080 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 21,43 ****</font>
+  3 - Mostrar todos os clientes
+  4 - Mostrar notificações de cliente
+  0 - Sair
+- Escolha uma opção: ahsoka@jedi.org - Ahsoka Tano - 0.00
+- obiwan@jedi.org - Obi-Wan Kenobi - 0.00
+- pal@star.uni - Palpatine - 0.00
+- Menu de Gestão de Clientes
+- 1 - Registar cliente
+- 2 - Mostrar cliente
+- 3 - Mostrar todos os clientes
+- 4 - Mostrar notificações de cliente
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir ficheiro
+- 2 - Guardar ficheiro
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de empresas
+- 6 - Menu de gestão de produtos
+- 7 - Menu de gestão de clientes
+- 8 - Menu de gestão de compras
+- 0 - Sair
+  Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 21,24 ----</font>
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-03-05-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-03-05-M-ok.import -Din=A-03-05-M-ok.in -Dout=$LOGS/A-03-05-M-ok.out erp.app.App
+Exception in thread "main" pt.tecnico.uilib.forms.FormException: O campo 'email' não existe no formulário 'Mostrar todos os clientes'.
+	at pt.tecnico.uilib.forms.Form.get(Form.java:150)
+	at pt.tecnico.uilib.forms.Form.stringField(Form.java:179)
+	at pt.tecnico.uilib.menus.Command.stringField(Command.java:143)
+	at erp.app.client.DoShowClients.execute(DoShowClients.java:22)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.main.DoOpenMenuClients.execute(DoOpenMenuClients.java:18)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.App.main(App.java:22)
+*** expected/A-03-05-M-ok.out	2026-11-18 18:04:12.286709971 +0000
+--- logs/ei/A-03-05-M-ok.out	2026-11-18 18:19:57.424992319 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 21,44 ****</font>
+  3 - Mostrar todos os clientes
+  4 - Mostrar notificações de cliente
+  0 - Sair
+- Escolha uma opção: ahsoka@jedi.org - Ahsoka Tano - 0.00
+- han@millenium.falcon.org - Han Solo - 0.00
+- luke@jedi.org - Luke Skywalker - 0.00
+- obiwan@jedi.org - Obi-Wan Kenobi - 0.00
+- Menu de Gestão de Clientes
+- 1 - Registar cliente
+- 2 - Mostrar cliente
+- 3 - Mostrar todos os clientes
+- 4 - Mostrar notificações de cliente
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir ficheiro
+- 2 - Guardar ficheiro
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de empresas
+- 6 - Menu de gestão de produtos
+- 7 - Menu de gestão de clientes
+- 8 - Menu de gestão de compras
+- 0 - Sair
+  Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 21,24 ----</font>
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-04-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-04-01-M-ok.in -Dout=$LOGS/A-04-01-M-ok.out erp.app.App
+Exception in thread "main" pt.tecnico.uilib.forms.FormException: O campo 'email' não existe no formulário 'Mostrar todos os clientes'.
+	at pt.tecnico.uilib.forms.Form.get(Form.java:150)
+	at pt.tecnico.uilib.forms.Form.stringField(Form.java:179)
+	at pt.tecnico.uilib.menus.Command.stringField(Command.java:143)
+	at erp.app.client.DoShowClients.execute(DoShowClients.java:22)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.main.DoOpenMenuClients.execute(DoOpenMenuClients.java:18)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.App.main(App.java:22)
+*** expected/A-04-01-M-ok.out	2026-11-18 18:04:12.287709976 +0000
+--- logs/ei/A-04-01-M-ok.out	2026-11-18 18:19:57.651993664 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,33 ****</font>
+  3 - Mostrar todos os clientes
+  4 - Mostrar notificações de cliente
+  0 - Sair
+- Escolha uma opção: Menu de Gestão de Clientes
+- 1 - Registar cliente
+- 2 - Mostrar cliente
+- 3 - Mostrar todos os clientes
+- 4 - Mostrar notificações de cliente
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir ficheiro
+- 2 - Guardar ficheiro
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de empresas
+- 6 - Menu de gestão de produtos
+- 7 - Menu de gestão de clientes
+- 8 - Menu de gestão de compras
+- 0 - Sair
+  Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 14,17 ----</font>
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-04-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-04-02-M-ok.import -Din=A-04-02-M-ok.in -Dout=$LOGS/A-04-02-M-ok.out erp.app.App
+Exception in thread "main" pt.tecnico.uilib.forms.FormException: O campo 'email' não existe no formulário 'Mostrar todos os clientes'.
+	at pt.tecnico.uilib.forms.Form.get(Form.java:150)
+	at pt.tecnico.uilib.forms.Form.stringField(Form.java:179)
+	at pt.tecnico.uilib.menus.Command.stringField(Command.java:143)
+	at erp.app.client.DoShowClients.execute(DoShowClients.java:22)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.main.DoOpenMenuClients.execute(DoOpenMenuClients.java:18)
+	at pt.tecnico.uilib.menus.Command.performCommand(Command.java:156)
+	at pt.tecnico.uilib.text.TextInteraction.open(TextInteraction.java:120)
+	at pt.tecnico.uilib.Dialog.open(Dialog.java:48)
+	at pt.tecnico.uilib.menus.Menu.open(Menu.java:71)
+	at erp.app.App.main(App.java:22)
+*** expected/A-04-02-M-ok.out	2026-11-18 18:04:12.287709976 +0000
+--- logs/ei/A-04-02-M-ok.out	2026-11-18 18:19:57.848994832 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,37 ****</font>
+  3 - Mostrar todos os clientes
+  4 - Mostrar notificações de cliente
+  0 - Sair
+- Escolha uma opção: ahsoka@jedi.org - Ahsoka Tano - 0.00
+- han@millenium.falcon.org - Han Solo - 0.00
+- luke@jedi.org - Luke Skywalker - 0.00
+- obiwan@jedi.org - Obi-Wan Kenobi - 0.00
+- Menu de Gestão de Clientes
+- 1 - Registar cliente
+- 2 - Mostrar cliente
+- 3 - Mostrar todos os clientes
+- 4 - Mostrar notificações de cliente
+- 0 - Sair
+- Escolha uma opção: Menu Principal
+- 1 - Abrir ficheiro
+- 2 - Guardar ficheiro
+- 3 - Ver data
+- 4 - Avançar data
+- 5 - Menu de gestão de empresas
+- 6 - Menu de gestão de produtos
+- 7 - Menu de gestão de clientes
+- 8 - Menu de gestão de compras
+- 0 - Sair
+  Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 14,17 ----</font>
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-05-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-05-02-M-ok.import -Din=A-05-02-M-ok.in -Dout=$LOGS/A-05-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-05-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-05-04-M-ok.import -Din=A-05-04-M-ok.in -Dout=$LOGS/A-05-04-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-06-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-06-01-M-ok.import -Din=A-06-01-M-ok.in -Dout=$LOGS/A-06-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-06-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-06-02-M-ok.in -Dout=$LOGS/A-06-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-06-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-06-03-M-ok.in -Dout=$LOGS/A-06-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-07-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-07-01-M-ok.in -Dout=$LOGS/A-07-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-07-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-07-03-M-ok.import -Din=A-07-03-M-ok.in -Dout=$LOGS/A-07-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-07-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-07-04-M-ok.import -Din=A-07-04-M-ok.in -Dout=$LOGS/A-07-04-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-08-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-08-02-M-ok.import -Din=A-08-02-M-ok.in -Dout=$LOGS/A-08-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-09-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-09-01-M-ok.in -Dout=$LOGS/A-09-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-09-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-09-02-M-ok.in -Dout=$LOGS/A-09-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-09-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-09-03-M-ok.import -Din=A-09-03-M-ok.in -Dout=$LOGS/A-09-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-09-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-09-04-M-ok.import -Din=A-09-04-M-ok.in -Dout=$LOGS/A-09-04-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-10-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-10-01-M-ok.in -Dout=$LOGS/A-10-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-10-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-10-03-M-ok.import -Din=A-10-03-M-ok.in -Dout=$LOGS/A-10-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-11-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-11-01-M-ok.in -Dout=$LOGS/A-11-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-11-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-11-02-M-ok.import -Din=A-11-02-M-ok.in -Dout=$LOGS/A-11-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-02-M-ok.import -Din=A-12-02-M-ok.in -Dout=$LOGS/A-12-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-03-M-ok.import -Din=A-12-03-M-ok.in -Dout=$LOGS/A-12-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-04-M-ok.import -Din=A-12-04-M-ok.in -Dout=$LOGS/A-12-04-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-05-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-05-M-ok.import -Din=A-12-05-M-ok.in -Dout=$LOGS/A-12-05-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-06-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-06-M-ok.import -Din=A-12-06-M-ok.in -Dout=$LOGS/A-12-06-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-07-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-07-M-ok.import -Din=A-12-07-M-ok.in -Dout=$LOGS/A-12-07-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-01-M-ok.import -Din=A-13-01-M-ok.in -Dout=$LOGS/A-13-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-02-M-ok.import -Din=A-13-02-M-ok.in -Dout=$LOGS/A-13-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-03-M-ok.import -Din=A-13-03-M-ok.in -Dout=$LOGS/A-13-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-05-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-05-M-ok.import -Din=A-13-05-M-ok.in -Dout=$LOGS/A-13-05-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-09-M-ok.import -Din=A-13-09-M-ok.in -Dout=$LOGS/A-13-09-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-10-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-10-M-ok.import -Din=A-13-10-M-ok.in -Dout=$LOGS/A-13-10-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-11-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-11-M-ok.import -Din=A-13-11-M-ok.in -Dout=$LOGS/A-13-11-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-01-M-ok.import -Din=A-14-01-M-ok.in -Dout=$LOGS/A-14-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-02-M-ok.import -Din=A-14-02-M-ok.in -Dout=$LOGS/A-14-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-03-M-ok.import -Din=A-14-03-M-ok.in -Dout=$LOGS/A-14-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-06-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-06-M-ok.import -Din=A-14-06-M-ok.in -Dout=$LOGS/A-14-06-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-08-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-08-M-ok.import -Din=A-14-08-M-ok.in -Dout=$LOGS/A-14-08-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-09-M-ok.import -Din=A-14-09-M-ok.in -Dout=$LOGS/A-14-09-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-12-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-12-M-ok.import -Din=A-14-12-M-ok.in -Dout=$LOGS/A-14-12-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+</pre>

@@ -1,0 +1,27 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+./erp/basket/Basket.java:15: error: cannot find symbol
+import erp.divisao_encomendas.UNICA;
+                             ^
+  symbol:   class UNICA
+  location: package erp.divisao_encomendas
+./erp/Erp.java:20: error: cannot find symbol
+import erp.divisao_encomendas.UNICA;
+                             ^
+  symbol:   class UNICA
+  location: package erp.divisao_encomendas
+./erp/basket/Basket.java:38: error: cannot find symbol
+    private DivisaoEncomendas estrategia = new UNICA();
+                                               ^
+  symbol:   class UNICA
+  location: class Basket
+./erp/Erp.java:287: error: cannot find symbol
+            algoritmo = new UNICA();
+                            ^
+  symbol:   class UNICA
+  location: class Erp
+4 errors
+make: *** [Makefile:4: all] Error 1
+

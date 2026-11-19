@@ -1,0 +1,981 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+(cd src; jar cf ../erp-core.jar `find . -name \*.class -o -name \*.java`)
+Checking manager interface structure...
+rm -f erp-app.jar `find . -name \*.class`
+(cd src; javac -cp /usr/share/java/po-uilib.jar:../../erp-core/erp-core.jar -encoding UTF-8 `find . -name \*.java`)
+(cd src; jar cf ../erp-app.jar `find . -name \*.class -o -name \*.java` )
+<font color='white' style='background: blue;'>---------------------------A-01-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-01-M-ok.in -Dout=$LOGS/A-01-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-02-M-ok.in -Dout=$LOGS/A-01-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-01-03-M-ok.import -Din=A-01-03-M-ok.in -Dout=$LOGS/A-01-03-M-ok.out erp.app.App
+*** expected/A-01-03-M-ok.out	2026-11-18 18:04:12.284709961 +0000
+--- logs/ei/A-01-03-M-ok.out	2026-11-18 18:28:34.458090923 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,21 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 14,20 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-01-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-01-04-M-ok.import -Din=A-01-04-M-ok.in -Dout=$LOGS/A-01-04-M-ok.out erp.app.App
+*** expected/A-01-04-M-ok.out	2026-11-18 18:04:12.284709961 +0000
+--- logs/ei/A-01-04-M-ok.out	2026-11-18 18:28:34.648092071 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,21 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 0 - China - 30.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 14,20 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-01-08-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-01-08-M-ok.import -Din=A-01-08-M-ok.in -Dout=$LOGS/A-01-08-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-09-M-ok.in -Dout=$LOGS/A-01-09-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-01-11-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-01-11-M-ok.in -Dout=$LOGS/A-01-11-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-02-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-02-01-M-ok.import -Din=A-02-01-M-ok.in -Dout=$LOGS/A-02-01-M-ok.out erp.app.App
+*** expected/A-02-01-M-ok.out	2026-11-18 18:04:12.285709966 +0000
+--- logs/ei/A-02-01-M-ok.out	2026-11-18 18:28:35.524097362 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,22 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 0
+! 2 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 0 - China - 30.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 14,20 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-02-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-02-M-ok.in -Dout=$LOGS/A-02-02-M-ok.out erp.app.App
+*** expected/A-02-02-M-ok.out	2026-11-18 18:04:12.285709966 +0000
+--- logs/ei/A-02-02-M-ok.out	2026-11-18 18:28:35.781098915 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 24,32 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 0
+! 2 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 0 - China - 30.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 24,30 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-02-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-03-M-ok.in -Dout=$LOGS/A-02-03-M-ok.out erp.app.App
+*** expected/A-02-03-M-ok.out	2026-11-18 18:04:12.285709966 +0000
+--- logs/ei/A-02-03-M-ok.out	2026-11-18 18:28:36.035100449 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 44,51 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Nome1 - ALIMENTAR - 10.00 - 13.00 - 2 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 44,50 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-02-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-04-M-ok.in -Dout=$LOGS/A-02-04-M-ok.out erp.app.App
+*** expected/A-02-04-M-ok.out	2026-11-18 18:04:12.286709971 +0000
+--- logs/ei/A-02-04-M-ok.out	2026-11-18 18:28:36.291101995 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 47,54 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Nome1 - ALIMENTAR - 10.00 - 13.00 - 2 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 47,53 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-02-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-02-09-M-ok.in -Dout=$LOGS/A-02-09-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-03-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-03-01-M-ok.in -Dout=$LOGS/A-03-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-03-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-03-02-M-ok.import -Din=A-03-02-M-ok.in -Dout=$LOGS/A-03-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-03-05-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-03-05-M-ok.import -Din=A-03-05-M-ok.in -Dout=$LOGS/A-03-05-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-04-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-04-01-M-ok.in -Dout=$LOGS/A-04-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-04-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-04-02-M-ok.import -Din=A-04-02-M-ok.in -Dout=$LOGS/A-04-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-05-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-05-02-M-ok.import -Din=A-05-02-M-ok.in -Dout=$LOGS/A-05-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-05-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-05-04-M-ok.import -Din=A-05-04-M-ok.in -Dout=$LOGS/A-05-04-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-06-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-06-01-M-ok.import -Din=A-06-01-M-ok.in -Dout=$LOGS/A-06-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-06-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-06-02-M-ok.in -Dout=$LOGS/A-06-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-06-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-06-03-M-ok.in -Dout=$LOGS/A-06-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-07-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-07-01-M-ok.in -Dout=$LOGS/A-07-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-07-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-07-03-M-ok.import -Din=A-07-03-M-ok.in -Dout=$LOGS/A-07-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-07-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-07-04-M-ok.import -Din=A-07-04-M-ok.in -Dout=$LOGS/A-07-04-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-08-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-08-02-M-ok.import -Din=A-08-02-M-ok.in -Dout=$LOGS/A-08-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-09-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-09-01-M-ok.in -Dout=$LOGS/A-09-01-M-ok.out erp.app.App
+*** expected/A-09-01-M-ok.out	2026-11-18 18:04:12.288709981 +0000
+--- logs/ei/A-09-01-M-ok.out	2026-11-18 18:28:39.934124002 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 21,41 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: 1 - NACIONAL - Batata - ALIMENTAR - 12.00 - 15.60 - 2 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu Principal
+! 1 - Abrir ficheiro
+! 2 - Guardar ficheiro
+! 3 - Ver data
+! 4 - Avançar data
+! 5 - Menu de gestão de empresas
+! 6 - Menu de gestão de produtos
+! 7 - Menu de gestão de clientes
+! 8 - Menu de gestão de compras
+! 0 - Sair
+! Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 21,31 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o tipo de produto: Introduza o nome do produto: Introduza o preço base: 
+! ERRO: Fim de entrada de dados (R-EOF): pt.tecnico.uilib.text.RuntimeEOFException: Fim do fluxo de dados de entrada
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-09-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-09-02-M-ok.in -Dout=$LOGS/A-09-02-M-ok.out erp.app.App
+*** expected/A-09-02-M-ok.out	2026-11-18 18:04:12.289709986 +0000
+--- logs/ei/A-09-02-M-ok.out	2026-11-18 18:28:40.146125283 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 21,41 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: 1 - IMPORTADO - CPU - ELECTRONICA - 120.00 - 145.20 - 12 - 0 - China - 21.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu Principal
+! 1 - Abrir ficheiro
+! 2 - Guardar ficheiro
+! 3 - Ver data
+! 4 - Avançar data
+! 5 - Menu de gestão de empresas
+! 6 - Menu de gestão de produtos
+! 7 - Menu de gestão de clientes
+! 8 - Menu de gestão de compras
+! 0 - Sair
+! Escolha uma opção: 
+\ No newline at end of file
+<font color="brown">--- 21,31 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o tipo de produto: Introduza o nome do produto: Introduza o preço base: 
+! ERRO: Fim de entrada de dados (R-EOF): pt.tecnico.uilib.text.RuntimeEOFException: Fim do fluxo de dados de entrada
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-09-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-09-03-M-ok.import -Din=A-09-03-M-ok.in -Dout=$LOGS/A-09-03-M-ok.out erp.app.App
+*** expected/A-09-03-M-ok.out	2026-11-18 18:04:12.289709986 +0000
+--- logs/ei/A-09-03-M-ok.out	2026-11-18 18:28:40.360126576 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 21,28 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: 2 - IMPORTADO - btt - ALIMENTAR - 12.00 - 14.52 - 12 - 0 - china - 21.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 21,33 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+! 1 - Registar produto
+! 2 - Mostrar produto
+! 3 - Mostrar todos os produtos
+! 4 - Efectuar pesquisa de produtos
+! 0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-09-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-09-04-M-ok.import -Din=A-09-04-M-ok.in -Dout=$LOGS/A-09-04-M-ok.out erp.app.App
+*** expected/A-09-04-M-ok.out	2026-11-18 18:04:12.289709986 +0000
+--- logs/ei/A-09-04-M-ok.out	2026-11-18 18:28:40.589127959 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 28,42 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: 3 - NACIONAL - batata - ALIMENTAR - 12.00 - 15.60 - 12 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: 4 - IMPORTADO - imported - VESTUARIO - 13.00 - 14.56 - 123 - 0 - UK - 12.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 28,52 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+! 1 - Registar produto
+! 2 - Mostrar produto
+! 3 - Mostrar todos os produtos
+! 4 - Efectuar pesquisa de produtos
+! 0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+! 1 - Registar produto
+! 2 - Mostrar produto
+! 3 - Mostrar todos os produtos
+! 4 - Efectuar pesquisa de produtos
+! 0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-10-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-10-01-M-ok.in -Dout=$LOGS/A-10-01-M-ok.out erp.app.App
+*** expected/A-10-01-M-ok.out	2026-11-18 18:04:12.289709986 +0000
+--- logs/ei/A-10-01-M-ok.out	2026-11-18 18:28:40.806129270 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,34 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: Mostrar produto: Operação inválida: O produto 1 não existe.
+! Menu de Gestão de Produtos
+! 1 - Registar produto
+! 2 - Mostrar produto
+! 3 - Mostrar todos os produtos
+! 4 - Efectuar pesquisa de produtos
+! 0 - Sair
+! Escolha uma opção: Introduza o número do produto: Mostrar produto: Operação inválida: O produto 0 não existe.
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: Mostrar produto: Operação inválida: O produto -1 não existe.
+  Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+<font color="brown">--- 14,26 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o tipo de produto: Introduza o nome do produto: Introduza o preço base: Introduza a categoria: Introduza o prazo de entrega base: Registar produto: Operação inválida: Registo de produto falhado: nome '0'.
+  Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+<font style="background: brown;" color="white">----- ZONE  2  ----</font>
+<font color="brown">*** 46,48 ****</font>
+<font color="brown">--- 38,41 ----</font>
+  8 - Menu de gestão de compras
+  0 - Sair
+  Escolha uma opção: 
++ ERRO: Fim de entrada de dados (R-EOF): pt.tecnico.uilib.text.RuntimeEOFException: Fim do fluxo de dados de entrada
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-10-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-10-03-M-ok.import -Din=A-10-03-M-ok.in -Dout=$LOGS/A-10-03-M-ok.out erp.app.App
+*** expected/A-10-03-M-ok.out	2026-11-18 18:04:12.290709991 +0000
+--- logs/ei/A-10-03-M-ok.out	2026-11-18 18:28:41.006130479 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,34 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 0
+! Menu de Gestão de Produtos
+! 1 - Registar produto
+! 2 - Mostrar produto
+! 3 - Mostrar todos os produtos
+! 4 - Efectuar pesquisa de produtos
+! 0 - Sair
+! Escolha uma opção: Introduza o número do produto: 2 - NACIONAL - Camisa - VESTUARIO - 45.00 - 58.50 - 2 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o número do produto: 3 - NACIONAL - Colher de Pau - ALIMENTAR - 2.00 - 2.60 - 1 - 0
+  Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+<font color="brown">--- 14,26 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o tipo de produto: Introduza o nome do produto: Introduza o preço base: Introduza a categoria: Introduza o prazo de entrega base: Registar produto: Operação inválida: Registo de produto falhado: nome '2'.
+  Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+<font style="background: brown;" color="white">----- ZONE  2  ----</font>
+<font color="brown">*** 46,48 ****</font>
+<font color="brown">--- 38,41 ----</font>
+  8 - Menu de gestão de compras
+  0 - Sair
+  Escolha uma opção: 
++ ERRO: Fim de entrada de dados (R-EOF): pt.tecnico.uilib.text.RuntimeEOFException: Fim do fluxo de dados de entrada
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-11-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Din=A-11-01-M-ok.in -Dout=$LOGS/A-11-01-M-ok.out erp.app.App
+*** expected/A-11-01-M-ok.out	2026-11-18 18:04:12.290709991 +0000
+--- logs/ei/A-11-01-M-ok.out	2026-11-18 18:28:41.205131681 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 27,34 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Batata - ALIMENTAR - 12.00 - 15.60 - 3 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 27,33 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-11-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-11-02-M-ok.import -Din=A-11-02-M-ok.in -Dout=$LOGS/A-11-02-M-ok.out erp.app.App
+*** expected/A-11-02-M-ok.out	2026-11-18 18:04:12.290709991 +0000
+--- logs/ei/A-11-02-M-ok.out	2026-11-18 18:28:41.392132810 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,23 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 0
+! 2 - NACIONAL - Camisa - VESTUARIO - 45.00 - 58.50 - 2 - 0
+! 3 - NACIONAL - Colher de Pau - ALIMENTAR - 2.00 - 2.60 - 1 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 14,20 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-12-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-02-M-ok.import -Din=A-12-02-M-ok.in -Dout=$LOGS/A-12-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-03-M-ok.import -Din=A-12-03-M-ok.in -Dout=$LOGS/A-12-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-04-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-04-M-ok.import -Din=A-12-04-M-ok.in -Dout=$LOGS/A-12-04-M-ok.out erp.app.App
+*** expected/A-12-04-M-ok.out	2026-11-18 18:04:12.290709991 +0000
+--- logs/ei/A-12-04-M-ok.out	2026-11-18 18:28:42.181137577 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,25 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 0
+! 2 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 0 - China - 30.0
+! 3 - NACIONAL - Camisa - VESTUARIO - 45.00 - 58.50 - 2 - 20
+! 4 - NACIONAL - Colher de Pau - ALIMENTAR - 2.00 - 2.60 - 1 - 0
+! 5 - IMPORTADO - Laranjas - ALIMENTAR - 3.00 - 3.30 - 1 - 0 - África do Sul - 10.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color="brown">--- 14,20 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-12-05-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-05-M-ok.import -Din=A-12-05-M-ok.in -Dout=$LOGS/A-12-05-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-06-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-06-M-ok.import -Din=A-12-06-M-ok.in -Dout=$LOGS/A-12-06-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-12-07-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-12-07-M-ok.import -Din=A-12-07-M-ok.in -Dout=$LOGS/A-12-07-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-01-M-ok.import -Din=A-13-01-M-ok.in -Dout=$LOGS/A-13-01-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-02-M-ok.import -Din=A-13-02-M-ok.in -Dout=$LOGS/A-13-02-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-03-M-ok.import -Din=A-13-03-M-ok.in -Dout=$LOGS/A-13-03-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-05-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-05-M-ok.import -Din=A-13-05-M-ok.in -Dout=$LOGS/A-13-05-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-09-M-ok.import -Din=A-13-09-M-ok.in -Dout=$LOGS/A-13-09-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-10-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-10-M-ok.import -Din=A-13-10-M-ok.in -Dout=$LOGS/A-13-10-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-13-11-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-13-11-M-ok.import -Din=A-13-11-M-ok.in -Dout=$LOGS/A-13-11-M-ok.out erp.app.App
+<font color='green'>TEST PASSED!</font>
+<font color='white' style='background: blue;'>---------------------------A-14-01-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-01-M-ok.import -Din=A-14-01-M-ok.in -Dout=$LOGS/A-14-01-M-ok.out erp.app.App
+*** expected/A-14-01-M-ok.out	2026-11-18 18:04:12.293710006 +0000
+--- logs/ei/A-14-01-M-ok.out	2026-11-18 18:28:44.818153509 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,33 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 10
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 2 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 20 - China - 30.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color="brown">--- 14,35 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Número inválido!
+! Escolha uma opção: Número inválido!
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-14-02-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-02-M-ok.import -Din=A-14-02-M-ok.in -Dout=$LOGS/A-14-02-M-ok.out erp.app.App
+*** expected/A-14-02-M-ok.out	2026-11-18 18:04:12.293710006 +0000
+--- logs/ei/A-14-02-M-ok.out	2026-11-18 18:28:44.983154506 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,26 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o critério de pesquisa: Introduza o critério de pesquisa: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 10
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color="brown">--- 14,30 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-14-03-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-03-M-ok.import -Din=A-14-03-M-ok.in -Dout=$LOGS/A-14-03-M-ok.out erp.app.App
+*** expected/A-14-03-M-ok.out	2026-11-18 18:04:12.293710006 +0000
+--- logs/ei/A-14-03-M-ok.out	2026-11-18 18:28:45.173155654 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,28 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 1 - NACIONAL - Farinha - ALIMENTAR - 15.00 - 19.50 - 3 - 10
+! 3 - NACIONAL - Farinha - VESTUARIO - 15.00 - 19.50 - 2 - 0
+! 5 - IMPORTADO - Farinha - ALIMENTAR - 3.00 - 3.30 - 1 - 0 - África do Sul - 10.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color="brown">--- 14,27 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-14-06-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-06-M-ok.import -Din=A-14-06-M-ok.in -Dout=$LOGS/A-14-06-M-ok.out erp.app.App
+*** expected/A-14-06-M-ok.out	2026-11-18 18:04:12.293710006 +0000
+--- logs/ei/A-14-06-M-ok.out	2026-11-18 18:28:45.385156934 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,32 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 2 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 20 - China - 30.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color="brown">--- 14,35 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Número inválido!
+! Escolha uma opção: Número inválido!
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-14-08-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-08-M-ok.import -Din=A-14-08-M-ok.in -Dout=$LOGS/A-14-08-M-ok.out erp.app.App
+*** expected/A-14-08-M-ok.out	2026-11-18 18:04:12.293710006 +0000
+--- logs/ei/A-14-08-M-ok.out	2026-11-18 18:28:45.580158113 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,26 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 3 - NACIONAL - Farinha - VESTUARIO - 15.00 - 19.50 - 2 - 0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color="brown">--- 14,27 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-14-09-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-09-M-ok.import -Din=A-14-09-M-ok.in -Dout=$LOGS/A-14-09-M-ok.out erp.app.App
+*** expected/A-14-09-M-ok.out	2026-11-18 18:04:12.294710011 +0000
+--- logs/ei/A-14-09-M-ok.out	2026-11-18 18:28:45.771159267 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,28 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 1 - NACIONAL - FaRINHA - ALIMENTAR - 15.00 - 19.50 - 3 - 10
+! 4 - NACIONAL - Colher de Pau - ALIMENTAR - 2.00 - 2.60 - 1 - 0
+! 5 - IMPORTADO - Farinha - ALIMENTAR - 3.00 - 3.30 - 1 - 0 - África do Sul - 10.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color="brown">--- 14,27 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color='brown'>output differs from expected</font>
+<font color='white' style='background: blue;'>---------------------------A-14-12-M-ok.in---------------------------</font>
+prlimit: invalid PID argument: '0': Numerical result out of range
+CLASSPATH=$JAVADIR/po-uilib.jar:$PROJDIR/erp-core/erp-core.jar:$PROJDIR/erp-app/erp-app.jar
+Running: java -Dimport=A-14-12-M-ok.import -Din=A-14-12-M-ok.in -Dout=$LOGS/A-14-12-M-ok.out erp.app.App
+*** expected/A-14-12-M-ok.out	2026-11-18 18:04:12.294710011 +0000
+--- logs/ei/A-14-12-M-ok.out	2026-11-18 18:28:45.990160590 +0000
+<font style="background: brown;" color="white">----- ZONE  1  ----</font>
+<font color="brown">*** 14,32 ****</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: 1 - IMPORTADO - Telemovel - ELECTRONICA - 200.00 - 260.00 - 3 - 10 - China - 30.0
+! Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Introduza o critério de pesquisa: Introduza o termo de pesquisa: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color="brown">--- 14,35 ----</font>
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
+! Escolha uma opção: Número inválido!
+! Escolha uma opção: Número inválido!
+! Escolha uma opção: Menu de Gestão de Produtos
+  1 - Registar produto
+  2 - Mostrar produto
+  3 - Mostrar todos os produtos
+  4 - Efectuar pesquisa de produtos
+  0 - Sair
++ Escolha uma opção: Número inválido!
++ Escolha uma opção: Número inválido!
+  Escolha uma opção: Menu Principal
+  1 - Abrir ficheiro
+  2 - Guardar ficheiro
+<font color='brown'>output differs from expected</font>
+</pre>

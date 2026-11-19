@@ -1,5 +1,9 @@
 package erp.exceptions;
 
+/**
+ * Reperesents an error when at least one of the product fields
+ * is not valid.
+*/
 public class InvalidProductFieldsException extends Exception {
 
     @java.io.Serial

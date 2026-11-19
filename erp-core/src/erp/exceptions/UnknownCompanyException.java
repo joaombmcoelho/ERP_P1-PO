@@ -1,5 +1,9 @@
 package erp.exceptions;
 
+/**
+ * Represents an error when the given company id doenst match with any
+ * company, because it doenst exist.
+ */
 public class UnknownCompanyException extends Exception {
 
     @java.io.Serial

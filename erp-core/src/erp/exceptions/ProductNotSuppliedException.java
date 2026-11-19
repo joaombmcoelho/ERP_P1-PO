@@ -1,5 +1,9 @@
 package erp.exceptions;
 
+/**
+ * Represents an error when user wants to make changes to a product
+ * the company does not provide.
+ */
 public class ProductNotSuppliedException extends Exception {
 
     @java.io.Serial

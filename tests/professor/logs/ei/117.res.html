@@ -1,0 +1,60 @@
+#################### PROJECT STRUCTURE ####################
+
+-- erp-core is present.
+-- erp-core makefile is present.
+-- erp-core/./src/erp/basket/Basket.java is present.
+-- erp-core/./src/erp/Erp.java is present.
+-- erp-core/./src/erp/ErpManager.java is present.
+-- erp-core/./src/erp/exceptions/ImportFileException.java is present.
+-- erp-core/./src/erp/exceptions/MissingFileAssociationException.java is present.
+-- erp-core/./src/erp/exceptions/UnavailableFileException.java is present.
+-- erp-core/./src/erp/exceptions/UnrecognizedEntryException.java is present.
+!! default makefile rule did not produce 'erp-core.jar'.
+
+#################### CODE ANALYSIS ####################
+
+Findings per problem (HIGH/MEDIUM/LOW):
+
+  Non-private instance fields ........................ 0/0/0
+  Uses of static (constants excepted) ................ 9/0/0
+  Student-defined Message/Prompt/Label types ......... 0/0/0
+  Empty catch blocks ................................. 0/0/0
+  Broad exception types caught, declared, or thrown .. 0/0/0
+  Not programming to base types ...................... 0/0/0
+  Raw types (generic types without type arguments) ... 0/0/0
+  Fields repeated along the class hierarchy .......... 0/0/0
+
+---------- Uses of static (constants excepted) ----------
+
+Uses of static (constants excepted): 9 (HIGH: 9, MEDIUM: 0, LOW: 0)
+
+erp-core/src/erp/company/Company.java
+    16:24  [HIGH  ] Company._nextId  (private static int _nextId)
+
+erp-core/src/erp/product/Product.java
+     6:24  [HIGH  ] Product._nextId  (private static int _nextId)
+
+erp-core/src/erp/product/ProductCategory.java
+    13:35  [HIGH  ] ProductCategory.fromString(String)  (public static ProductCategory fromString(String))
+
+erp-core/src/erp/product/SearchCriterion.java
+    27:35  [HIGH  ] SearchCriterion.fromString(String)  (public static SearchCriterion fromString(String))
+
+erp-core/src/erp/receipt/Receipt.java
+    11:24  [HIGH  ] Receipt._nextId  (private static int _nextId)
+
+erp-core/src/erp/split/SplitStrategy.java
+    60:33  [HIGH  ] SplitStrategy.getDefault()  (public static SplitStrategy getDefault())
+
+erp-core/src/erp/transport/ModalityList.java
+    15:37  [HIGH  ] ModalityList.ModalityEnum.fromString(String)  (private static ModalityEnum fromString(String))
+    29:32  [HIGH  ] ModalityList.getInstance()  (public static ModalityList getInstance())
+
+erp-core/src/erp/transport/Service.java
+    19:39  [HIGH  ] Service.ServiceOption.fromString(String)  (private static ServiceOption fromString(String))
+
+Why this is a problem:
+  [HIGH] static non-final field: A static field that is not final is global mutable state: a single variable shared by every instance and by every part of the program that can reach it. Objects no longer own their state, any code can change it behind their backs, separate instances (e.g. two ERP objects, or a loaded and a new one) interfere with each other, and the value is not saved with the object when it is serialized. Counters and registries belong in an object (e.g. the one that creates or manages the instances).
+  [HIGH] static method: A static method belongs to no object: it cannot use instance state, cannot be overridden, and is not subject to dynamic dispatch, so it cannot take part in polymorphism. It is procedural code inside a class, and callers are hard-wired to that class. The behaviour usually belongs to one of the objects involved (often the one whose data it uses).
+  Fix: Keep `static` only for constants (`static final`). Move state into the objects that own it and behaviour into methods of those objects; use instance methods so subclasses can redefine them.
+

@@ -1,0 +1,169 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+./erp/company/Company.java:33: error: cannot find symbol
+    public int getUnits(Product product) {
+                        ^
+  symbol:   class Product
+  location: class Company
+./erp/Erp.java:36: error: cannot find symbol
+    private Map&lt;Integer, Company&gt; _companies = new TreeMap();
+                         ^
+  symbol:   class Company
+  location: class Erp
+./erp/Erp.java:38: error: cannot find symbol
+    private Map&lt;String, Client&gt; _clients = new TreeMap();
+                        ^
+  symbol:   class Client
+  location: class Erp
+./erp/Erp.java:40: error: cannot find symbol
+    private Map&lt;Integer, Product&gt; _products = new TreeMap();
+                         ^
+  symbol:   class Product
+  location: class Erp
+./erp/Erp.java:42: error: cannot find symbol
+    public Company registerCompany(String name) throws InvalidCompanyNameException {
+           ^
+  symbol:   class Company
+  location: class Erp
+./erp/Erp.java:42: error: cannot find symbol
+    public Company registerCompany(String name) throws InvalidCompanyNameException {
+                                                       ^
+  symbol:   class InvalidCompanyNameException
+  location: class Erp
+./erp/Erp.java:50: error: cannot find symbol
+    public void registerClient(String name, String email) throws DuplicateClientException {
+                                                                 ^
+  symbol:   class DuplicateClientException
+  location: class Erp
+./erp/Erp.java:56: error: cannot find symbol
+    public void ProductExceptionVerification(String name, int basePrice, String category, int delay) throws InvalidProductRegistrationException {
+                                                                                                            ^
+  symbol:   class InvalidProductRegistrationException
+  location: class Erp
+./erp/Erp.java:66: error: cannot find symbol
+    public Product registerNationalProduct(String name, int basePrice, String category, int delay) throws InvalidProductRegistrationException {
+           ^
+  symbol:   class Product
+  location: class Erp
+./erp/Erp.java:66: error: cannot find symbol
+    public Product registerNationalProduct(String name, int basePrice, String category, int delay) throws InvalidProductRegistrationException {
+                                                                                                          ^
+  symbol:   class InvalidProductRegistrationException
+  location: class Erp
+./erp/Erp.java:72: error: cannot find symbol
+    public Product registerImportedProduct(String name, int basePrice, String category, int delay, String origin, double tax) throws InvalidProductRegistrationException {
+           ^
+  symbol:   class Product
+  location: class Erp
+./erp/Erp.java:72: error: cannot find symbol
+    public Product registerImportedProduct(String name, int basePrice, String category, int delay, String origin, double tax) throws InvalidProductRegistrationException {
+                                                                                                                                     ^
+  symbol:   class InvalidProductRegistrationException
+  location: class Erp
+./erp/Erp.java:87: error: cannot find symbol
+    int totalUnits(Product product) {
+                   ^
+  symbol:   class Product
+  location: class Erp
+./erp/Erp.java:94: error: cannot find symbol
+    double recommendedPrice(Product product) {
+                            ^
+  symbol:   class Product
+  location: class Erp
+./erp/client/Client.java:10: error: cannot find symbol
+    private Map&lt;Company, Basket&gt; _basket= new TreeMap();
+                         ^
+  symbol:   class Basket
+  location: class Client
+./erp/product/NationalProduct.java:5: error: constructor Product in class Product cannot be applied to given types;
+        super(name, basePrice, category, delay);
+        ^
+  required: int,String,int,String,int
+  found:    String,int,String,int
+  reason: actual and formal argument lists differ in length
+./erp/product/ImportedProduct.java:13: error: constructor Product in class Product cannot be applied to given types;
+        super(name, basePrice, category, delay);
+        ^
+  required: int,String,int,String,int
+  found:    String,int,String,int
+  reason: actual and formal argument lists differ in length
+./erp/company/CompanyProduct.java:12: error: method changeInventory() in CompanyProduct is missing a method body, or should be declared abstract
+    public void changeInventory(); //to do
+                ^
+./erp/Erp.java:44: error: cannot find symbol
+            throw new InvalidCompanyNameException(name);
+                      ^
+  symbol:   class InvalidCompanyNameException
+  location: class Erp
+./erp/Erp.java:45: error: cannot find symbol
+        Company company = new Company(_nextCompany++, name);
+        ^
+  symbol:   class Company
+  location: class Erp
+./erp/Erp.java:45: error: cannot find symbol
+        Company company = new Company(_nextCompany++, name);
+                              ^
+  symbol:   class Company
+  location: class Erp
+./erp/Erp.java:52: error: cannot find symbol
+            throw new DuplicateClientException(name, email);
+                      ^
+  symbol:   class DuplicateClientException
+  location: class Erp
+./erp/Erp.java:53: error: cannot find symbol
+        _clients.put(name, new Client(name, email));
+                               ^
+  symbol:   class Client
+  location: class Erp
+./erp/Erp.java:58: error: cannot find symbol
+            throw new InvalidProductRegistrationException(name);
+                      ^
+  symbol:   class InvalidProductRegistrationException
+  location: class Erp
+./erp/Erp.java:60: error: cannot find symbol
+            throw new InvalidProductRegistrationException(name);
+                      ^
+  symbol:   class InvalidProductRegistrationException
+  location: class Erp
+./erp/Erp.java:62: error: cannot find symbol
+            throw new InvalidProductRegistrationException(name);
+                      ^
+  symbol:   class InvalidProductRegistrationException
+  location: class Erp
+./erp/Erp.java:68: error: cannot find symbol
+        Product product = new NationalProduct(_nextProduct++, name, basePrice, category, delay);
+        ^
+  symbol:   class Product
+  location: class Erp
+./erp/Erp.java:68: error: cannot find symbol
+        Product product = new NationalProduct(_nextProduct++, name, basePrice, category, delay);
+                              ^
+  symbol:   class NationalProduct
+  location: class Erp
+./erp/Erp.java:75: error: cannot find symbol
+            throw new InvalidProductRegistrationException(name);
+                      ^
+  symbol:   class InvalidProductRegistrationException
+  location: class Erp
+./erp/Erp.java:77: error: cannot find symbol
+        Product product = new ImportedProduct(_nextProduct++, name, basePrice, category, delay, origin, tax);
+        ^
+  symbol:   class Product
+  location: class Erp
+./erp/Erp.java:77: error: cannot find symbol
+        Product product = new ImportedProduct(_nextProduct++, name, basePrice, category, delay, origin, tax);
+                              ^
+  symbol:   class ImportedProduct
+  location: class Erp
+./erp/Erp.java:89: error: cannot find symbol
+        for (Company company : _companies.values())
+             ^
+  symbol:   class Company
+  location: class Erp
+Note: Some input files use unchecked or unsafe operations.
+Note: Recompile with -Xlint:unchecked for details.
+32 errors
+make: *** [Makefile:4: all] Error 1
+

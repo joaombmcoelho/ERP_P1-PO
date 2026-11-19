@@ -1,0 +1,10 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+./erp/Erp.java:119: error: ';' expected
+        }
+         ^
+1 error
+make: *** [Makefile:4: all] Error 1
+

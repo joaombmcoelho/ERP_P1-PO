@@ -1,0 +1,347 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+./erp/custom_exceptions/ClientIdExistsException.java:6: error: class ClientIdAlreadyExistsException is public, should be declared in a file named ClientIdAlreadyExistsException.java
+public class ClientIdAlreadyExistsException extends Exception {
+       ^
+./erp/company/Inventory.java:17: error: cannot find symbol
+    public void changeInventory(int amount, float multiplier) throws InventoryException{
+                                                                     ^
+  symbol:   class InventoryException
+  location: class Inventory
+./erp/ErpManager.java:57: error: cannot find symbol
+    public Company getCompanyById(int id){
+           ^
+  symbol:   class Company
+  location: class ErpManager
+./erp/ErpManager.java:61: error: cannot find symbol
+    public List&lt;Company&gt; getCompanies(){
+           ^
+  symbol:   class List
+  location: class ErpManager
+./erp/ErpManager.java:61: error: cannot find symbol
+    public List&lt;Company&gt; getCompanies(){
+                ^
+  symbol:   class Company
+  location: class ErpManager
+./erp/ErpManager.java:65: error: cannot find symbol
+    public List&lt;Inventory&gt; getCompanyProducts(int companyId){
+           ^
+  symbol:   class List
+  location: class ErpManager
+./erp/ErpManager.java:65: error: cannot find symbol
+    public List&lt;Inventory&gt; getCompanyProducts(int companyId){
+                ^
+  symbol:   class Inventory
+  location: class ErpManager
+./erp/ErpManager.java:69: error: cannot find symbol
+    public Product getProductById(int id){
+           ^
+  symbol:   class Product
+  location: class ErpManager
+./erp/ErpManager.java:73: error: cannot find symbol
+    public List&lt;Product&gt; getProducts(){
+           ^
+  symbol:   class List
+  location: class ErpManager
+./erp/ErpManager.java:73: error: cannot find symbol
+    public List&lt;Product&gt; getProducts(){
+                ^
+  symbol:   class Product
+  location: class ErpManager
+./erp/ErpManager.java:81: error: cannot find symbol
+    public Client getClientByEmail(String email){
+           ^
+  symbol:   class Client
+  location: class ErpManager
+./erp/ErpManager.java:85: error: cannot find symbol
+    public List&lt;Client&gt; getClients(){
+           ^
+  symbol:   class List
+  location: class ErpManager
+./erp/ErpManager.java:85: error: cannot find symbol
+    public List&lt;Client&gt; getClients(){
+                ^
+  symbol:   class Client
+  location: class ErpManager
+./erp/product/Product.java:19: error: cannot find symbol
+        _basePrice = basePrice;
+                     ^
+  symbol:   variable basePrice
+  location: class Product
+./erp/product/Product.java:26: error: cannot find symbol
+        return _source.calculatePrice(this);
+                      ^
+  symbol:   method calculatePrice(Product)
+  location: variable _source of type Source
+./erp/product/SearchCriterion.java:21: error: cannot find symbol
+            return product -&gt; product.getSource().getType() == ProductSource.INTERNATIONAL && product.getSource().getCountry().equalsIgnoreCase(term);
+                                     ^
+  symbol:   method getSource()
+  location: variable product of type Product
+./erp/product/SearchCriterion.java:21: error: cannot find symbol
+            return product -&gt; product.getSource().getType() == ProductSource.INTERNATIONAL && product.getSource().getCountry().equalsIgnoreCase(term);
+                                                               ^
+  symbol: variable ProductSource
+./erp/product/SearchCriterion.java:21: error: cannot find symbol
+            return product -&gt; product.getSource().getType() == ProductSource.INTERNATIONAL && product.getSource().getCountry().equalsIgnoreCase(term);
+                                                                                                     ^
+  symbol:   method getSource()
+  location: variable product of type Product
+./erp/split/SplitStrategy.java:15: error: cannot find symbol
+            splitDeliveries.put(unique);
+                           ^
+  symbol:   method put(Delivery)
+  location: variable splitDeliveries of type List&lt;Delivery&gt;
+./erp/split/SplitStrategy.java:27: error: _product has private access in ReceiptLine
+                sum += ord._product._baseDelay;
+                          ^
+./erp/split/SplitStrategy.java:27: error: _baseDelay has private access in Product
+                sum += ord._product._baseDelay;
+                                   ^
+./erp/split/SplitStrategy.java:34: error: cannot find symbol
+                dividedOrders.put(ord);
+                             ^
+  symbol:   method put(ReceiptLine)
+  location: variable dividedOrders of type List&lt;ReceiptLine&gt;
+./erp/split/SplitStrategy.java:35: error: _product has private access in ReceiptLine
+                if (ord._product._baseDelay&gt;average){
+                       ^
+./erp/split/SplitStrategy.java:35: error: _baseDelay has private access in Product
+                if (ord._product._baseDelay&gt;average){
+                                ^
+./erp/split/SplitStrategy.java:36: error: cannot find symbol
+                    splitDeliveries.put(new Delivery(dividedOrders));
+                                   ^
+  symbol:   method put(Delivery)
+  location: variable splitDeliveries of type List&lt;Delivery&gt;
+./erp/split/SplitStrategy.java:39: error: incompatible types: List&lt;ReceiptLine&gt; cannot be converted to List&lt;Delivery&gt;
+            return dividedOrders;
+                   ^
+./erp/split/SplitStrategy.java:50: error: method divideDeliveries in enum SplitStrategy cannot be applied to given types;
+        List&lt;Delivery&gt; splitDeliveries = this.divideDeliveries(today, orders);
+                                             ^
+  required: List&lt;ReceiptLine&gt;
+  found:    int,List&lt;ReceiptLine&gt;
+  reason: actual and formal argument lists differ in length
+./erp/split/SplitStrategy.java:52: error: method maxProductDelay in class Delivery cannot be applied to given types;
+            deli.setDate(deli.maxProductDelay()+today);
+                             ^
+  required: List&lt;ReceiptLine&gt;
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+./erp/split/SplitStrategy.java:54: error: incompatible types: possible lossy conversion from double to int
+                deli.addDeliveryCost(PROCESS_FEE);
+                                     ^
+./erp/split/SplitStrategy.java:61: error: cannot find symbol
+        return _default;
+               ^
+  symbol:   variable _default
+  location: class SplitStrategy
+./erp/receipt/ReceiptLine.java:14: error: cannot find symbol
+        _price = unitPrice;
+        ^
+  symbol:   variable _price
+  location: class ReceiptLine
+./erp/delivery/Delivery.java:27: error: cannot find symbol
+            fullPrice += content.getFullPrice();
+                         ^
+  symbol:   variable content
+  location: class Delivery
+./erp/delivery/Delivery.java:39: error: _product has private access in ReceiptLine
+            if (i._product._baseDelay &gt; max){
+                 ^
+./erp/delivery/Delivery.java:39: error: _baseDelay has private access in Product
+            if (i._product._baseDelay &gt; max){
+                          ^
+./erp/delivery/Delivery.java:40: error: _product has private access in ReceiptLine
+                max = i._product._baseDelay &gt; max;
+                       ^
+./erp/delivery/Delivery.java:40: error: _baseDelay has private access in Product
+                max = i._product._baseDelay &gt; max;
+                                ^
+./erp/delivery/Delivery.java:40: error: incompatible types: boolean cannot be converted to int
+                max = i._product._baseDelay &gt; max;
+                                            ^
+./erp/transport/TransportChoices.java:41: error: cannot find symbol
+        _services.put(new Service(service));
+                 ^
+  symbol:   method put(Service)
+  location: variable _services of type List&lt;Service&gt;
+./erp/transport/ModalityList.java:9: error: constructor Modality in class Modality cannot be applied to given types;
+    private static final Modality _instance = new Modality();
+                                              ^
+  required: int,int
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+./erp/transport/ModalityList.java:30: error: incompatible types: Modality cannot be converted to ModalityList
+        return _instance;
+               ^
+./erp/transport/ModalityList.java:35: error: Modality(int,int) has private access in Modality
+        _modalities.put(trueKey, new Modality(fee, delay));
+                                 ^
+./erp/company/Inventory.java:19: error: cannot find symbol
+            throw new InventoryException();
+                      ^
+  symbol:   class InventoryException
+  location: class Inventory
+./erp/company/Inventory.java:31: error: cannot find symbol
+        double unitPrice = Math.round(_product.calculatePrice() * multiplier * 100) / 100.0;
+                                                                  ^
+  symbol:   variable multiplier
+  location: class Inventory
+./erp/company/Company.java:22: error: cannot find symbol
+        Comparator.comparingString(Client::getEmail)
+                  ^
+  symbol:   method comparingString(Client::getEmail)
+  location: interface Comparator
+./erp/company/Company.java:66: error: for-each not applicable to expression type
+        for( Inventory inventory: _totalInventory){
+                                  ^
+  required: array or java.lang.Iterable
+  found:    Map&lt;Product,Inventory&gt;
+./erp/company/Company.java:67: error: cannot find symbol
+            if (inventory.getAmount()&gt;0){
+                         ^
+  symbol:   method getAmount()
+  location: variable inventory of type Inventory
+./erp/company/Company.java:79: error: cannot find symbol
+        return _totalInventory.get(product).getAmount();
+                                           ^
+  symbol:   method getAmount()
+  location: class Inventory
+./erp/basket/Basket.java:40: error: cannot find symbol
+        _client = client;
+                  ^
+  symbol:   variable client
+  location: class Basket
+./erp/basket/Basket.java:47: error: method changeLine in class Basket cannot be applied to given types;
+        return changeLine();
+               ^
+  required: Product,int
+  found:    no arguments
+  reason: actual and formal argument lists differ in length
+./erp/basket/Basket.java:84: error: cannot find symbol
+        _lines.get(product).addAmount(amount);
+                           ^
+  symbol:   method addAmount(int)
+  location: class BasketLine
+./erp/basket/Basket.java:92: error: incompatible types: Entry&lt;Product,BasketLine&gt; cannot be converted to Map&lt;Product,BasketLine&gt;
+        for (Map&lt;Product, BasketLine&gt; line : _lines.entrySet()){
+                                                            ^
+./erp/basket/Basket.java:93: error: cannot find symbol
+            Product product = line.getKey();
+                                  ^
+  symbol:   method getKey()
+  location: variable line of type Map&lt;Product,BasketLine&gt;
+./erp/basket/Basket.java:94: error: cannot find symbol
+            BasketLine basketLine = line.getValue();
+                                        ^
+  symbol:   method getValue()
+  location: variable line of type Map&lt;Product,BasketLine&gt;
+./erp/basket/Basket.java:98: error: cannot find symbol
+            ReceiptLine receiptLine = new ReceiptLine(product, basketLine.getAmount, _company.calculateProductPrice(product));
+                                                                         ^
+  symbol:   variable getAmount
+  location: variable basketLine of type BasketLine
+./erp/basket/Basket.java:99: error: cannot find symbol
+            receiptList.put(receipt);
+                            ^
+  symbol:   variable receipt
+  location: class Basket
+./erp/basket/Basket.java:101: error: incompatible types: Entry&lt;Product,BasketLine&gt; cannot be converted to Map&lt;Product,BasketLine&gt;
+        for (Map&lt;Product, BasketLine&gt; line : _lines.entrySet()){
+                                                            ^
+./erp/basket/Basket.java:102: error: cannot find symbol
+            Product product = line.getKey();
+                                  ^
+  symbol:   method getKey()
+  location: variable line of type Map&lt;Product,BasketLine&gt;
+./erp/basket/Basket.java:103: error: cannot find symbol
+            BasketLine basketLine = line.getValue();
+                                        ^
+  symbol:   method getValue()
+  location: variable line of type Map&lt;Product,BasketLine&gt;
+./erp/basket/Basket.java:106: error: cannot find symbol
+        receipt = new Receipt(_client, _company. _choices.generateDeliveries(today, receiptList, _split), today);
+        ^
+  symbol:   variable receipt
+  location: class Basket
+./erp/basket/Basket.java:106: error: cannot find symbol
+        receipt = new Receipt(_client, _company. _choices.generateDeliveries(today, receiptList, _split), today);
+                                               ^
+  symbol:   variable _choices
+  location: variable _company of type Company
+./erp/basket/Basket.java:108: error: cannot find symbol
+        return receipt;
+               ^
+  symbol:   variable receipt
+  location: class Basket
+./erp/receipt/Receipt.java:28: error: cannot find symbol
+        Purchase(client, company, lines);
+        ^
+  symbol:   method Purchase(Client,Company,List&lt;ReceiptLine&gt;)
+  location: class Receipt
+./erp/receipt/Receipt.java:29: error: cannot find symbol
+        _date = date;
+                ^
+  symbol:   variable date
+  location: class Receipt
+./erp/Erp.java:43: error: cannot find symbol
+        date = 1;
+        ^
+  symbol:   variable date
+  location: class Erp
+./erp/Erp.java:77: error: Company(String) is not public in Company; cannot be accessed from outside package
+        Company newCompany = new Company(name);
+                             ^
+./erp/Erp.java:78: error: bad operand types for binary operator '=='
+        if (newCompany.getId()==null || newCompany.getName() == null || newCompany.getName().isNull() ){
+                              ^
+  first type:  int
+  second type: &lt;null&gt;
+./erp/Erp.java:78: error: cannot find symbol
+        if (newCompany.getId()==null || newCompany.getName() == null || newCompany.getName().isNull() ){
+                                                                                            ^
+  symbol:   method isNull()
+  location: class String
+./erp/Erp.java:106: error: incompatible types: int cannot be converted to Product
+        _companies.get(companyId).changeInventory(productId, amount, multiplier);
+                                                  ^
+./erp/Erp.java:135: error: incompatible types: List&lt;Inventory&gt; cannot be converted to List&lt;Product&gt;
+        return _companies.get(companyId).getValidInventory();
+                                                          ^
+./erp/Erp.java:139: error: cannot find symbol
+        return _companies.getTrackedClients();
+                         ^
+  symbol:   method getTrackedClients()
+  location: variable _companies of type Map&lt;Integer,Company&gt;
+./erp/Erp.java:158: error: bad operand type ProductCategory for unary operator '!'
+        if (!productCategory){return false;}
+            ^
+./erp/Erp.java:218: error: Client(String,String) is not public in Client; cannot be accessed from outside package
+        _clients.put(email, new Client(email, name));
+                            ^
+./erp/Erp.java:270: error: cannot find symbol
+        Client client = _clients.get(clientId);
+                                     ^
+  symbol:   variable clientId
+  location: class Erp
+./erp/Erp.java:280: error: incompatible types: int cannot be converted to Product
+        return basket.changeProduct(productId, amount);
+                                    ^
+./erp/Erp.java:284: error: cannot find symbol
+        SplitStrategy splitStrategy = SplitStrategy.fromString(strategy);
+                                                   ^
+  symbol:   method fromString(String)
+  location: class SplitStrategy
+./erp/Erp.java:289: error: cannot find symbol
+        Modality modality = _modalityList.getModality(stringModality);
+        ^
+  symbol:   class Modality
+  location: class Erp
+Note: Some messages have been simplified; recompile with -Xdiags:verbose to get full output
+76 errors
+make: *** [Makefile:4: all] Error 1
+

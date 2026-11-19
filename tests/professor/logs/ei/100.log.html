@@ -1,0 +1,20 @@
+Checking core structure...
+compile_project:58: no matches found: *.in
+rm -f erp-core.jar `find . -name \*.class`
+(cd src; javac -encoding UTF-8 `find . -name \*.java`)
+(cd src; jar cf ../erp-core.jar `find . -name \*.class -o -name \*.java`)
+Checking manager interface structure...
+rm -f erp-app.jar `find . -name \*.class`
+(cd src; javac -cp /usr/share/java/po-uilib.jar:../../erp-core/erp-core.jar -encoding UTF-8 `find . -name \*.java`)
+./erp/app/product/DoPerformSearch.java:13: error: ';' expected
+        addStringField("criterion", Prompt.searchCriterion())
+                                                             ^
+./erp/app/basket/DoCheckout.java:18: error: illegal start of expression
+        super(true, Label.CHECKOUT, manager, basket, /*<font color="red">FIXME</font> add validity condition*/);
+                                                                                     ^
+./erp/app/basket/DoSetModality.java:18: error: illegal start of expression
+        super(Label.SET_MODALITY, manager, basket, /*<font color="red">FIXME</font> add validity condition*/);
+                                                                                   ^
+3 errors
+make: *** [Makefile:6: all] Error 1
+

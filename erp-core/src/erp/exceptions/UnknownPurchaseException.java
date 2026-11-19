@@ -1,5 +1,9 @@
 package erp.exceptions;
 
+/**
+ * Represents an error when the given purchase id doenst match with any
+ * purchase registered in the system, because it doenst exist.
+ */
 public class UnknownPurchaseException extends Exception {
 
     @java.io.Serial
