@@ -9,6 +9,7 @@ import pt.tecnico.uilib.menus.CommandException;
  */
 class DoShowCompanies extends Command<ErpManager> {
 
+    /* define the fields */
     DoShowCompanies(ErpManager receiver) {
         super(Label.SHOW_COMPANIES, receiver);
     }

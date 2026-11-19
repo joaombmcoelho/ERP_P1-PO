@@ -9,6 +9,7 @@ import erp.app.exceptions.UnknownProductKeyException;
 
 import pt.tecnico.uilib.menus.Command;
 import pt.tecnico.uilib.menus.CommandException;
+
 /**
  * Changes what a company holds of a product — the amount is added to its
  * inventory and the factor replaces the previous one — starting the supply if
@@ -19,6 +20,7 @@ import pt.tecnico.uilib.menus.CommandException;
  */
 class DoChangeProductInventory extends Command<ErpManager> {
 
+    /* define the fields */
     DoChangeProductInventory(ErpManager receiver) {
         super(Label.CHANGE_PRODUCT_INVENTORY, receiver);
 
@@ -30,6 +32,7 @@ class DoChangeProductInventory extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
+        /* get the fields */
         int companyId = integerField("companyId");
         int productId = integerField("productId");
         int amountToUpdate = integerField("amountToUpdate");

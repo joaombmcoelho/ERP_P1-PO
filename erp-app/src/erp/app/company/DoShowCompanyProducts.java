@@ -11,6 +11,7 @@ import pt.tecnico.uilib.menus.CommandException;
 /** Shows what a company supplies: units, price factor and selling price. */
 class DoShowCompanyProducts extends Command<ErpManager> {
 
+    /* define the fields */
     DoShowCompanyProducts(ErpManager receiver) {
         super(Label.SHOW_COMPANY_PRODUCTS, receiver);
         addIntegerField("companyId", Prompt.companyId());
@@ -18,6 +19,7 @@ class DoShowCompanyProducts extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
+        /* get the fields */
         int companyId = integerField("companyId");
 
         try{

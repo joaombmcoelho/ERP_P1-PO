@@ -14,6 +14,7 @@ import pt.tecnico.uilib.menus.CommandException;
  */
 class DoRegisterCompany extends Command<ErpManager> {
 
+    /* define the fields */
     DoRegisterCompany(ErpManager receiver) {
         super(Label.REGISTER_COMPANY, receiver);
         addStringField("name", Prompt.companyName());
@@ -21,9 +22,11 @@ class DoRegisterCompany extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
+        /* get the fields */
         String companyName = stringField("name");
 
         try{
+            /* registration successful */
             int idCompany = _receiver.registerCompany(companyName);
             _display.popup(Message.registrationSuccessful(idCompany));
         }

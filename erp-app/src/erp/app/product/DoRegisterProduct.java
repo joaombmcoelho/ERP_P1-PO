@@ -20,6 +20,7 @@ import pt.tecnico.uilib.forms.Form;
  */
 class DoRegisterProduct extends Command<ErpManager> {
 
+    /* define the fields */
     DoRegisterProduct(ErpManager receiver) {
         super(Label.REGISTER_PRODUCT, receiver);
         addStringField("type", Prompt.productType());
@@ -31,6 +32,7 @@ class DoRegisterProduct extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
+        /* get the fields */
         String productType = stringField("type");
         String productName = stringField("name");
         int basePrice = integerField("base price");
@@ -40,6 +42,7 @@ class DoRegisterProduct extends Command<ErpManager> {
         String[] extraArgs = {};
 
         if (productType.equals("IMPORTADO")){
+            /* if product is type imported has extraArgs, otherwise is empty */
             extraArgs = new String[]{
                 Form.requestString(Prompt.originCountry()),
                 Form.requestString(Prompt.customsTax())
@@ -47,6 +50,7 @@ class DoRegisterProduct extends Command<ErpManager> {
         }
 
         try {
+            /* registration successful */
             int productId = _receiver.registerProduct(productType, productName, basePrice,
                                                         productCategory, baseDelay, extraArgs);
             _display.popup(Message.registrationSuccessful(productId));

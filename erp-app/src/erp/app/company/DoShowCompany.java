@@ -13,6 +13,7 @@ import pt.tecnico.uilib.menus.CommandException;
  */
 class DoShowCompany extends Command<ErpManager> {
 
+    /* define the fields */
     DoShowCompany(ErpManager receiver) {
         super(Label.SHOW_COMPANY, receiver);
         addIntegerField("companyId", Prompt.companyId());
@@ -20,6 +21,7 @@ class DoShowCompany extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
+        /* get the fields */
         int companyId = integerField("companyId");
 
         try{

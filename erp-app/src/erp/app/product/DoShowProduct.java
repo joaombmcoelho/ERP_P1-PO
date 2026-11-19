@@ -14,6 +14,7 @@ import pt.tecnico.uilib.menus.CommandException;
  */
 class DoShowProduct extends Command<ErpManager> {
 
+    /* define the fields */
     DoShowProduct(ErpManager receiver) {
         super(Label.SHOW_PRODUCT, receiver);
         addIntegerField("productId", Prompt.productId());
@@ -21,6 +22,7 @@ class DoShowProduct extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
+        /* gets the fields */
         int productId = integerField("productId");
 
         try{

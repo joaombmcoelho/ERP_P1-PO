@@ -23,6 +23,7 @@ import pt.tecnico.uilib.menus.CommandException;
  */
 class DoDoPurchase extends Command<ErpManager> {
 
+    /* defines the fields */
     DoDoPurchase(ErpManager receiver) {
         super(Label.DO_PURCHASE, receiver);
         addStringField("email", erp.app.client.Prompt.clientEMail());
@@ -31,10 +32,12 @@ class DoDoPurchase extends Command<ErpManager> {
 
     @Override
     protected final void execute() throws CommandException {
+        /* gets the fields */
         String email = stringField("email");
         int companyId = integerField("companyId");
 
         try{
+            /* get basket and opens a basket menu */
             Basket basket = _receiver.getBasket(email, companyId);
             (new erp.app.basket.Menu(_receiver, basket)).open();
         }
