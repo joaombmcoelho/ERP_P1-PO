@@ -14,3 +14,4 @@
 ####### Logs & temps #######
 *.log
 *.tmp.DS_Store
+.vscode/

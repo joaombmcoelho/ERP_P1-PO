@@ -1,7 +1,0 @@
-{
-  "java.project.sourcePaths": ["erp-app/src"],
-  "java.project.referencedLibraries": [
-    "uilib/po-uilib.jar",
-    "erp-core/erp-core.jar"
-  ]
-}
