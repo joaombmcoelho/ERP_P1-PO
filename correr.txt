@@ -2,10 +2,6 @@
 
 make all
 java -Dimport=tests/test.import -cp "/usr/share/java/po-uilib.jar:erp-core/erp-core.jar:erp-app/erp-app.jar" erp.app.App
-/***************** CORRER TESTES ********************/
 
-./tests/run_tests_claude.sh
-
-./tests/run_tests_yang.sh
 
 java -cp "/usr/share/java/po-uilib.jar:erp-core/erp-core.jar:erp-app/erp-app.jar" erp.app.App

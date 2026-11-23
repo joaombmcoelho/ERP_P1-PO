@@ -1,7 +1,0 @@
-./src/erp/basket/Basket.java
-./src/erp/Erp.java
-./src/erp/ErpManager.java
-./src/erp/exceptions/ImportFileException.java
-./src/erp/exceptions/MissingFileAssociationException.java
-./src/erp/exceptions/UnavailableFileException.java
-./src/erp/exceptions/UnrecognizedEntryException.java
